@@ -1,0 +1,23 @@
+@import "bootstrap-sprockets";
+
+// First import united variables
+@import "bootswatch/united/variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// And finally bootswatch style itself
+@import "bootswatch/united/bootswatch";
+
+.jumbotron.home {
+}
+.form-horizontal.home {
+	padding: 20px;
+	h2 {
+		text-align: center;
+	}
+	.btn {
+		display: block;
+		width: 100%;
+	}
+}
