@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get 'pages/faq'
   get 'pages/contact'
   devise_for :users
+  resources :properties
 end

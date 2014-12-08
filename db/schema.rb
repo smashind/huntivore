@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126222520) do
+ActiveRecord::Schema.define(version: 20141204221025) do
+
+  create_table "properties", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "hunttype"
+    t.string   "location"
+    t.integer  "price"
+    t.boolean  "available"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "accommodates"
+  end
+
+  add_index "properties", ["location"], name: "index_properties_on_location", unique: true
+  add_index "properties", ["user_id"], name: "index_properties_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "first_name"

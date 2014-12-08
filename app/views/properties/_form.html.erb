@@ -1,0 +1,64 @@
+		<%= form_for(@property) do |f| %>
+			<% if @property.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@property.errors.count, "error") %> stopped this listing from being created:</h2>
+
+					<ul>
+					<% @property.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+					</ul>
+				</div>
+			<% end %>
+<div class="form-horizontal">
+	<fieldset>
+		<div class="form-group">
+			<%= f.label :hunttype, "Type of Hunt", class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.select :hunttype, options_for_select(["Overnight","Day trip"]), {}, { autofocus: true, class: "form-control" } %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :title, class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_field :title, class: "form-control", placeholder: "Pick an exciting, descriptive title" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :description, class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_area :description, class: "form-control", placeholder: "Be descriptive and detailed, but try to keep it short :)" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :location, class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_field :location, class: "form-control", placeholder: "Where is your property?" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :accommodates, class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_field :accommodates, class: "form-control", placeholder: "How many people does your property accommodate?" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :price, "Price", class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_field :price, class: "form-control", placeholder: "Price per night for overnight hunts, or total price for day hunts" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-8 col-md-offset-4">
+				<%= f.submit "Submit Property", class: "btn btn-primary center-block" %>
+			</div>
+		</div>
+		<% end %> 
+	</fieldset>
+</div>

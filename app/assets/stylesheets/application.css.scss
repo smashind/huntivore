@@ -9,10 +9,13 @@
 // And finally bootswatch style itself
 @import "bootswatch/united/bootswatch";
 
+body {
+	padding-top: 80px;
+}
 .jumbotron.home {
 }
 .form-horizontal.home {
-	padding: 20px;
+	padding: 0 20px;
 	h2 {
 		text-align: center;
 	}
@@ -20,4 +23,8 @@
 		display: block;
 		width: 100%;
 	}
+}
+.btn {
+	display: block;
+	width: 100%;
 }
