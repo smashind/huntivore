@@ -27,7 +27,7 @@
       	  <li class="dropdown">
 	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Welcome back, <%= current_user.first_name %> <span class="caret"></span></a>
 	          <ul class="dropdown-menu" aria-labelledby="download">
-              <li><%= link_to 'My Profile' %></li>
+              <li><%= link_to 'My Profile', user_path(current_user) %></li>
 	            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
 	            <li class="divider"></li>
 	            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>

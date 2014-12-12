@@ -1,0 +1,50 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#user-profile {
+  a { text-decoration: none; }
+	.row {
+		padding: 10px;
+		h1 {
+		  margin-top: 0;
+		  padding-top: 0;
+		}
+		img { 
+			padding-top: 10px;
+		}
+	}
+	.prop-list{
+	  padding-top: 10px;
+		margin-left: -13px;
+	  .prop {
+	  	a {
+	  	  color: #8E8E8E;
+	  	}
+	    height: 200px;
+	    border: 1px solid #E0E0E0;
+		  -webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+			-webkit-box-shadow: 0 0 1px 1px #E0E0E0;
+			box-shadow: 0 0 1px 1px #E0E0E0;
+			margin-bottom: 20px;
+			max-width: 319px;
+			font-size: 20px;
+			text-align: center;
+			padding-top: 80px;
+			color: #8E8E8E;
+			text-decoration: none;
+			background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 1%, rgba(214,214,214,0.36) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(1%,rgba(0,0,0,0)), color-stop(100%,rgba(214,214,214,0.36))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 1%,rgba(214,214,214,0.36) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 1%,rgba(214,214,214,0.36) 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 1%,rgba(214,214,214,0.36) 100%); /* IE10+ */
+			background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 1%,rgba(214,214,214,0.36) 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#5cd6d6d6',GradientType=0 ); /* IE6-9 */
+			&:hover {
+				color: #777;		
+			}
+	  }
+	}
+}

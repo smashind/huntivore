@@ -1,0 +1,44 @@
+<div id="user-profile">
+	<div class="row">
+		<div class="col-md-2 col-md-offset-1">
+			<%= gravatar_for(@user) %>
+		</div>
+		<div class="col-md-4">
+			<h1><%= @user.full_name %></h1>
+			<p><%= (@user.created_at).strftime("Member since %B %Y") %></p>
+			<% if is_owner? @user %>
+				<%= button_to "List Your Property", new_property_path, class: "btn btn-success" %>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<h4>Properties</h4>
+			<% if is_owner? @user %>
+				<div class="prop-list">
+					<div class="col-lg-3 col-md-4 col-sm-6">
+						<%= link_to new_property_path do %>
+							<div class='prop'>+ List Your Property</div>
+						<% end %>
+					</div>
+			<% else %>
+				<div class="prop-list">
+			<% end %>
+			
+			<% if @user.properties.any? %>
+				
+				<% @user.properties.each do |p| %>
+				<div class="col-lg-3 col-md-4 col-sm-6">
+					<%= link_to p do %>
+						<div class='prop'><%= p.title %></div>
+					<% end %>
+				</div>
+				<% end %>
+				</ul>
+			<% else %>
+				<p>You haven't listed any properties yet.</p>
+			<% end %>
+		</div>
+	</div>
+</div>

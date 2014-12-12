@@ -96,7 +96,7 @@ describe "PropertyPages" do
 			click_link "Logout" 
 			sign_in user2
 			visit edit_property_path(listing)
-			expect(current_path).to eq(root_path)
+			expect(current_path).to eq(user_path(user2))
 		end
 
 		describe "property page" do 
@@ -115,6 +115,10 @@ describe "PropertyPages" do
 			it "should render the edit view" do 
 				click_link "Edit property"
 				expect(current_path).to eq(edit_property_path(listing))
+			end
+
+			it "should link to the owner's profile" do 
+				expect(page).to have_link("Joe Smith", href: user_path(user))
 			end
 		end
 
