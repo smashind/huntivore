@@ -6,4 +6,7 @@ class Property < ActiveRecord::Base
   validates :accommodates, presence: true
   validates :price, presence: true
   validates :user_id, presence: true
+
+  has_many :property_attachments
+  accepts_nested_attributes_for :property_attachments
 end

@@ -75,7 +75,7 @@ describe "PropertyPages" do
 
 		it "can be edited by the owner" do
 			visit edit_property_path(listing) 
-			expect(page).to have_content("Edit Duck Hunt")
+			expect(page).to have_content("Editing")
 		end
 
 		it "should update with valid attributes" do

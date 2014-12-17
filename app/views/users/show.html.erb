@@ -7,7 +7,7 @@
 			<h1><%= @user.full_name %></h1>
 			<p><%= (@user.created_at).strftime("Member since %B %Y") %></p>
 			<% if is_owner? @user %>
-				<%= button_to "List Your Property", new_property_path, class: "btn btn-success" %>
+				<%= link_to "List Your Property", new_property_path, class: "btn btn-success" %>
 			<% end %>
 		</div>
 	</div>
@@ -17,9 +17,9 @@
 			<h4>Properties</h4>
 			<% if is_owner? @user %>
 				<div class="prop-list">
-					<div class="col-lg-3 col-md-4 col-sm-6">
+					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 						<%= link_to new_property_path do %>
-							<div class='prop'>+ List Your Property</div>
+							<div class='prop'><p>+ List Your Property</p></div>
 						<% end %>
 					</div>
 			<% else %>
@@ -29,11 +29,17 @@
 			<% if @user.properties.any? %>
 				
 				<% @user.properties.each do |p| %>
-				<div class="col-lg-3 col-md-4 col-sm-6">
-					<%= link_to p do %>
-						<div class='prop'><%= p.title %></div>
-					<% end %>
-				</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+						<%= link_to p do %>
+							<% if p.property_attachments.any? %>
+								<% p.property_attachments[0,1].each do |a| %>
+							  	<div class="prop"><p><%= p.title %></p><%= image_tag(a.image_url(:thumb)) %></div>
+							  <% end %>
+							<% else %>
+								<div class='prop'><p><%= p.title %></p><%= image_tag 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcReAAGzQYXCHxU__J0IiGF1Igvy4NgPbUKbNz1HZvQS0YsjUWTDbQ' %></div>
+							<% end %>
+						<% end %>
+					</div>
 				<% end %>
 				</ul>
 			<% else %>

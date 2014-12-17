@@ -1,5 +1,17 @@
 <h1><%= @property.title %></h1>
 
+<% if @property_attachments.any? %>
+	<% @property_attachments.each do |p| %>
+		<%= link_to(image_tag(p.image_url(:thumb)), p.image_url) %>
+	<% end %>
+<% else %>
+	<% if is_owner? @property.user %>
+		<p>You haven't uploaded any images yet. Listings with vibrant images are much more likely to be rented!</p>
+	<% else %>
+	  <p>No images for this property.</p>
+	<% end %>
+<% end %>
+
 <p><%= @property.description %></p>
 
 <p><strong>Location:</strong> <%= @property.location %></p>

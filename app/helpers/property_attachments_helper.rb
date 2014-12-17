@@ -1,0 +1,2 @@
+module PropertyAttachmentsHelper
+end
