@@ -2,6 +2,9 @@
 	<div class="row">
 		<div class="col-md-2 col-md-offset-1">
 			<%= gravatar_for(@user) %>
+			<% if is_owner? @user %>
+				<div><%= link_to "Edit this image", "https://en.gravatar.com/", target: "_blank" %></div>
+			<% end %>
 		</div>
 		<div class="col-md-4">
 			<h1><%= @user.full_name %></h1>
@@ -43,7 +46,9 @@
 				<% end %>
 				</ul>
 			<% else %>
-				<p>You haven't listed any properties yet.</p>
+				<% if !is_owner? @user %>
+					<p><%= "#{@user.first_name} hasn't listed any properties yet." %></p>
+				<% end %>
 			<% end %>
 		</div>
 	</div>
