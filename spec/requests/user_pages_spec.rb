@@ -21,7 +21,7 @@ describe 'User pages' do
 		end
 	end
 
-	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr") }
+	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", twitter: "huntivore") }
 
   describe "user login" do 
 
@@ -76,13 +76,29 @@ describe 'User pages' do
 		  expect(page).to have_link("Duck Hunt")
 		end
 
-		it "should say if no properties are listed" do 
-			expect(page).to have_content("You haven't listed any properties yet.")
-		end
-
 		it "should have a list new property button" do 
 			expect(page).to have_link("List Your Property")
 		end
+
+		it "should have a link to edit profile" do
+			expect(page).to have_link("Edit profile")
+		end
   end
+
+  describe "editing user" do 
+  	before do 
+  		sign_in user
+  		visit edit_user_registration_path
+  	end
+
+  	it { should have_content("Twitter") }
+  	it { should have_content("Facebook") }
+  	it { should have_content("Instagram") }
+  	it { should have_content("Website") }
+
+  	
+
+  end
+
 
 end

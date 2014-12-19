@@ -1,0 +1,14 @@
+<div class="profile-social">
+	<% unless @user.facebook.blank? %>
+	  <%= link_to image_tag("https://cdn3.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_black-24.png"), "https://www.facebook.com/#{@user.facebook}" %>
+	<% end %>
+	<% unless @user.twitter.blank? %>
+	  <%= link_to image_tag("https://cdn3.iconfinder.com/data/icons/free-social-icons/67/twitter_circle_black-24.png"), "https://twitter.com/#{@user.twitter}" %>
+	<% end %>
+	<% unless @user.instagram.blank? %>
+	  <%= link_to image_tag("https://cdn3.iconfinder.com/data/icons/free-social-icons/67/instagram_circle_black-24.png"), "http://instagram.com/#{@user.instagram}" %>
+	<% end %>
+	<% unless @user.website.blank? %>
+	  <%= link_to image_tag("https://cdn0.iconfinder.com/data/icons/faticons-2/25/world8-24.png"), "#{@user.website}" %>
+	<% end %>
+</div>

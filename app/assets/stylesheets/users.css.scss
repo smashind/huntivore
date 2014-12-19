@@ -79,6 +79,22 @@
 			}
 	  }
 	}
+	.btn {
+	  margin-right: 10px;
+	  @media (max-width: 515px) {
+	    margin: 10px 10px 10px 0;
+	  }
+	}
+	.profile-social {
+	  margin-top: -10px;
+	  img {
+	    opacity: 0.5;
+	    margin-right: 5px;
+	    &:hover {
+	      opacity: 1;
+	    }
+	  }
+	}
 }
 
 .user-reg-errors {
