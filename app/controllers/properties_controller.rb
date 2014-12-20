@@ -17,15 +17,21 @@ class PropertiesController < ApplicationController
 
 	def create
 		@property = current_user.properties.new(property_params)
-		if @property.save
-			if params[:property_attachments]
-				params[:property_attachments]['image'].each do |a|
-					@property_attachment = @property.property_attachments.create!(:image => a, :property_id => @property.id)
+
+		respond_to do |format|
+			if @property.save
+				if params[:property_attachments]
+					params[:property_attachments]['image'].each do |a|
+						@property_attachment = @property.property_attachments.create!(:image => a, :property_id => @property.id)
+					end
 				end
+				format.html { redirect_to @property, notice: "Property was successfully added." }
+				format.json { render action: 'show', status: created, location: @property }
+			else
+				@property.property_attachments.build
+				format.html { render action: 'new' }
+				format.json { render json: @property.errors, status: :unprocessable_entity }
 			end
-			redirect_to @property, notice: "Property was successfully added."
-		else
-			render action: 'new'
 		end
 	end
 
@@ -36,21 +42,28 @@ class PropertiesController < ApplicationController
 	end
 
 	def update
-		if @property.update_attributes(property_params)
-			if params[:property_attachments]
-				params[:property_attachments]['image'].each do |a|
-					@property_attachment = @property.property_attachments.create!(:image => a, :property_id => @property.id)
+		respond_to do |format|
+			if @property.update_attributes(property_params)
+				if params[:property_attachments]
+					params[:property_attachments]['image'].each do |a|
+						@property_attachment = @property.property_attachments.create!(:image => a, :property_id => @property.id)
+					end
 				end
+				format.html { redirect_to @property, notice: "Property was successfully updated." }
+				format.json { head :no_content }
+			else
+				format.html { render action: 'edit' }
+				format.json { render json: @property.errors, status: :unprocessable_entity }
 			end
-			redirect_to @property, notice: "Property was successfully updated."
-		else
-			render action: 'edit'
 		end
 	end
 
 	def destroy
 		@property.destroy
-		redirect_to properties_path, notice: "Property was successfully deleted."
+		respond_to do |format|
+			format.html { redirect_to properties_path, notice: "Property was successfully deleted." }
+			format.json { head :no_content }
+		end
 	end
 
 	private
