@@ -31,6 +31,6 @@ CarrierWave.configure do |config|
 	if Rails.env.development?
 		config.fog_directory = 'huntivore-dev'
 	else
-		config.fog_directory = 'huntivore'
+		config.fog_directory = 'huntivore-dev'
 	end
 end
