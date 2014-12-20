@@ -13,8 +13,7 @@ CarrierWave.configure do |config|
 		# Configuration for Amazon S3
 		:provider => 'AWS',
 		:aws_access_key_id => ENV['S3_KEY'],
-		:aws_secret_access_key => ENV['S3_SECRET'],
-		:region => 'us-west-2'
+		:aws_secret_access_key => ENV['S3_SECRET']
 	}
 	 
 	# For testing, upload files to local `tmp` folder.
@@ -31,6 +30,6 @@ CarrierWave.configure do |config|
 	if Rails.env.development?
 		config.fog_directory = 'huntivore-dev'
 	else
-		config.fog_directory = 'huntivore-dev'
+		config.fog_directory = 'tripbuddy'
 	end
 end
