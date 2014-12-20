@@ -15,7 +15,7 @@ CarrierWave.configure do |config|
 		:aws_access_key_id => ENV['S3_KEY'],
 		:aws_secret_access_key => ENV['S3_SECRET'],
 		:region => 'us-west-2',
-		:host => 'http://huntivore.s3.amazonaws.com/'
+		:host => 'http://huntivore.s3-us-west-2.amazonaws.com/'
 	}
 	 
 	# For testing, upload files to local `tmp` folder.
