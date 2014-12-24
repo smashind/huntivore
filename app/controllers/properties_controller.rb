@@ -7,6 +7,7 @@ class PropertiesController < ApplicationController
 	end
 
 	def show
+		@reservation = Reservation.new
 		@property_attachments = @property.property_attachments.all
 	end
 

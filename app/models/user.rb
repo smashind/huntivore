@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
 
   has_many :properties, dependent: :destroy
-
+  has_many :reservations
 
 
   def full_name

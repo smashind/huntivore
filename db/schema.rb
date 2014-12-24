@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218120400) do
+ActiveRecord::Schema.define(version: 20141223000752) do
 
   create_table "properties", force: true do |t|
     t.string   "title"
@@ -37,6 +37,19 @@ ActiveRecord::Schema.define(version: 20141218120400) do
   end
 
   add_index "property_attachments", ["property_id"], name: "index_property_attachments_on_property_id"
+
+  create_table "reservations", force: true do |t|
+    t.date     "to"
+    t.date     "from"
+    t.string   "status"
+    t.integer  "user_id"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservations", ["property_id"], name: "index_reservations_on_property_id"
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "first_name"

@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  get 'property_attachments/destroy'
-
   root to: 'pages#home'
   get 'pages/faq'
   get 'pages/contact'
   devise_for :users
   resources :users
-  resources :properties
+  resources :properties do 
+    resources :reservations
+  end
+  resources :reservations, only: :show
   resources :property_attachments, only: :destroy
 end
