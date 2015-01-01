@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   get 'pages/contact'
   devise_for :users
   resources :users
-  resources :properties do 
-    resources :reservations
-  end
-  resources :reservations, only: :show
+  resources :properties
+  resources :reservations
   resources :property_attachments, only: :destroy
 end

@@ -17,7 +17,33 @@
 //= require_tree .
 
 
+// $(function() {
+// 	$("#reservation_from").datepicker({ minDate: 0 });
+// 	$("#reservation_to").datepicker({ minDate:  });
+// })
+
 $(function() {
-	$("#reservation_from").datepicker();
-	$("#reservation_to").datepicker();
-})
+
+    var datepickersOpt = {
+        dateFormat: 'mm/dd/yy',
+        minDate   : 0
+    }
+
+    $("#reservation_from").datepicker($.extend({
+        onSelect: function() {
+        	  $("#reservation_to").removeAttr('disabled');
+            var minDate = $(this).datepicker('getDate');
+            minDate.setDate(minDate.getDate()+1); //add one day
+            $("#reservation_to").datepicker( "option", "minDate", minDate);
+        }
+    },datepickersOpt));
+
+    $("#reservation_to").datepicker($.extend({
+        onSelect: function() {
+            var maxDate = $(this).datepicker('getDate');
+            maxDate.setDate(maxDate.getDate()-1);
+            $("#reservation_from").datepicker( "option", "maxDate", maxDate);
+        }
+    },datepickersOpt));
+	
+});

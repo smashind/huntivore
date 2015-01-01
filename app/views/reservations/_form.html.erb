@@ -1,4 +1,4 @@
-
+<div id="reserve">
   <div class="form-horizontal reserve">
   	<fieldset>
   		
@@ -8,23 +8,45 @@
 		  			<h3>Reserve this Property</h3>
 		  		</div>
 		  	</div>
-		  	<%= form_for([@property, @reservation]) do |f| %>
+		  	<%= form_for(@reservation) do |f| %>
+
+			  	<% if @reservation.errors.any? %>
+						<div id="error_explanation">
+							<h2><%= pluralize(@reservation.errors.count, "error") %>:</h2>
+
+							<ul>
+							<% @reservation.errors.full_messages.each do |msg| %>
+								<li><%= msg %></li>
+							<% end %>
+							</ul>
+						</div>
+					<% end %>
 		  	
 		  	<div class="form-group">
 			  	<div class="col-sm-5 col-xs-4">
-				    <%= f.text_field :from, class: "form-control", placeholder: "Start" %>
+			  		<div class="input-group">
+			  			<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+				    	<%= f.text_field :from, class: "form-control", placeholder: "Start" %>
+				    </div>
 				  </div>
 
-
-
 			  	<div class="col-sm-5 col-xs-4">
-				    <%= f.text_field :to, class: "form-control", placeholder: "End"  %>
+			  		<div class="input-group">
+			  			<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+			  			<% if Rails.env.test? %>
+			  				<%= f.text_field :to, class: "form-control", placeholder: "End" %>
+			  			<% else %>
+		  		  		<%= f.text_field :to, class: "form-control", placeholder: "End", disabled: "" %>
+		  		  	<% end %>
+		  		  </div>
 				  </div>
 				</div>
 
+				<%= f.hidden_field :property_id, value: @property.id %>
+
 				<div class="form-group">
 					<div class="col-sm-10 col-xs-8">
-			  		<%= f.submit "Reserve this Listing", class: "btn btn-info center-block" %>
+						<%= f.submit "Reserve this Listing", class: "btn btn-info center-block" %>
 			  	</div>
 			  </div>
 
@@ -32,3 +54,4 @@
 		  </div>
 		</fieldset>
 	</div>  
+</div>	

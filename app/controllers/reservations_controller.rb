@@ -13,6 +13,8 @@ class ReservationsController < ApplicationController
 
   	if @reservation.save
   		redirect_to @reservation, notice: "Reservation was successfully created."
+    else
+      redirect_to :back, alert: "Reservation not submitted. Please check your dates and try again." 
   	end
   end
 
