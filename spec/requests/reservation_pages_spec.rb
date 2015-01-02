@@ -23,7 +23,7 @@ describe "ReservationPages" do
   	  end
     end
 
-    describe "with invalid dates" do 
+    describe "with invalid characters" do 
       before do 
         fill_in "reservation_from", with: 'dkdkd'
         fill_in "reservation_to",   with: 'dkdkd'
@@ -31,9 +31,33 @@ describe "ReservationPages" do
 
       it "should not create a reservation" do 
         click_button "Reserve this Listing"
-        expect(page).to have_content("Date is invalid")
+        expect(page).to have_content("Reservation not submitted.")
       end
     end
+
+    describe "with dates out of order" do 
+      before do 
+        fill_in "reservation_from", with: '05/20/2015'
+        fill_in "reservation_to",   with: '05/15/2015'
+      end
+
+      it "should not create a reservation" do 
+        click_button "Reserve this Listing"
+        expect(page).to have_content("Reservation not submitted.")
+      end
+    end
+
+    describe "with no end date" do 
+      before do 
+        fill_in "reservation_from", with: '05/20/2015'
+      end
+
+      it "should not create a reservation" do 
+        click_button "Reserve this Listing"
+        expect(page).to have_content("Reservation not submitted.")
+      end
+    end 
+
   end
 
 end
