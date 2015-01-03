@@ -7,9 +7,9 @@
 
 <h3>Pay Now</h3>
 
-  <form name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+  <form name="_xclick" action="https://sandbox.paypal.com/us/cgi-bin/" method="post">
       <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="danthemanvt-facilitator@gmail.com">
+      <input type="hidden" name="business" value="dannyjbaumann@gmail.com">
       <input type="hidden" name="currency_code" value="USD">
       <input type="hidden" name="item_name" value="<%= @reservation.property.title %>">
       <input type="hidden" name="amount" value="<%= @reservation.trip_price %>">
