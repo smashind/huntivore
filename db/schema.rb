@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223000752) do
+ActiveRecord::Schema.define(version: 20150102230200) do
+
+  create_table "payment_notifications", force: true do |t|
+    t.text     "params"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.integer  "reservation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payment_notifications", ["reservation_id"], name: "index_payment_notifications_on_reservation_id"
 
   create_table "properties", force: true do |t|
     t.string   "title"

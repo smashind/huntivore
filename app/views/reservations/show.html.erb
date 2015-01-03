@@ -1,2 +1,34 @@
-<h1>Reservations#show</h1>
-<p>Find me in app/views/reservations/show.html.erb</p>
+<h1>Trip Details</h1>
+
+<h4><%= @reservation.property.title %></h4>
+<strong>Start:</strong> <%= @reservation.from %><br />
+<strong>End:</strong> <%= @reservation.to %><br />
+<strong>Total Price:</strong> $<%= @reservation.trip_price %>
+
+<h3>Pay Now</h3>
+
+  <form name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="danthemanvt-facilitator@gmail.com">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="hidden" name="item_name" value="<%= @reservation.property.title %>">
+      <input type="hidden" name="amount" value="<%= @reservation.trip_price %>">
+      <input type="hidden" name="return" value="https://protected-brook-4630.herokuapp.com/pages/success">
+      <input type="hidden" name="notify_url" value="https://protected-brook-4630.herokuapp.com/payment_notifications/">
+      <input type="hidden" name="invoice" value="<%= @reservation.id %>">
+      <input type="image" src="http://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"         border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+  </form>
+  Please make your payment ASAP.
+
+  <% if @reservation.payment_notifications.exists? %>
+  	<% @reservation.payment_notifications[0,1].each do |respay| %>
+  		<% if respay.status == "Completed" %>
+  			<p>Complete. Paypal transaction id: <strong><%= respay.transaction_id %></strong></p>
+  		<% else %>
+  		  <p>uh oh.</p>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>Not paid yet.</p>
+  <% end %>
+
