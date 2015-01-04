@@ -1,6 +1,6 @@
 <h1>Trip Details</h1>
 
-<h4><%= @reservation.property.title %></h4>
+<h4><%= link_to "#{@reservation.property.title}", property_path(@reservation.property) %></h4>
 <strong>Start:</strong> <%= @reservation.from %><br />
 <strong>End:</strong> <%= @reservation.to %><br />
 <strong>Total Price:</strong> $<%= @reservation.trip_price %>

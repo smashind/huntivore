@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get 'pages/contact'
   get 'pages/success'
   devise_for :users
-  resources :users
+  resources :users do 
+    get 'trips'
+    get 'hosting'
+  end
   resources :properties
   resources :reservations
   resources :property_attachments, only: :destroy

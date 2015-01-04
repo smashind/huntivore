@@ -21,6 +21,13 @@ describe "ReservationPages" do
   	  it "should create a reservation" do 
   	    expect { click_button "Reserve this Listing" }.to change(Reservation, :count).by(1)
   	  end
+
+      it "should show on the user profile page" do 
+        click_button "Reserve this Listing"
+        visit user_path(user2)
+        click_link "Trips"
+        expect(page).to have_content("Duck Hunt")
+      end
     end
 
     describe "with invalid characters" do 

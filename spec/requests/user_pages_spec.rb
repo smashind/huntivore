@@ -83,6 +83,14 @@ describe 'User pages' do
 		it "should have a link to edit profile" do
 			expect(page).to have_link("Edit profile")
 		end
+
+		it "should have a trips link" do 
+			expect(page).to have_link("Trips")
+		end
+
+		it "should have a hosting link" do 
+			expect(page).to have_link("Hosting")
+		end
   end
 
   describe "editing user" do 

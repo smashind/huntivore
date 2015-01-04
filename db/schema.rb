@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150102230200) do
+ActiveRecord::Schema.define(version: 20150104160907) do
 
   create_table "payment_notifications", force: true do |t|
     t.text     "params"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20150102230200) do
   create_table "reservations", force: true do |t|
     t.date     "to"
     t.date     "from"
-    t.string   "status"
+    t.string   "status",      default: "Pending"
     t.integer  "user_id"
     t.integer  "property_id"
     t.datetime "created_at"

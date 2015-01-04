@@ -1,25 +1,11 @@
 <div id="user-profile">
-	<div class="row">
-		<div class="col-md-2 col-md-offset-1">
-			<%= gravatar_for(@user) %>
-			<% if is_owner? @user %>
-				<div><%= link_to "Edit this image", "https://en.gravatar.com/", target: "_blank" %></div>
-			<% end %>
-		</div>
-		<div class="col-md-8">
-    <% if is_owner? @user %>
-  		<%= link_to "List your property", new_property_path, class: "btn btn-success pull-right" %>
-  		<%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-warning pull-right" %>
-    <% end %>
-			<h1><%= @user.full_name %></h1>
-			<p><%= (@user.created_at).strftime("Member since %B %Y") %></p>
-			<%= render partial: "social" %>
-		</div>		
-	</div>
+	<%= render partial: "profile_top" %>
 
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-			<h4>Properties</h4>
+			
+			<%= render partial: "nav", locals: { active: 'Properties' } %>
+
 			<% if is_owner? @user %>
 				<div class="prop-list">
 					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">

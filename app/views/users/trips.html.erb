@@ -1,0 +1,21 @@
+<div id="user-profile">
+	<%= render partial: "profile_top" %>
+
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			
+			<%= render partial: "nav", locals: { active: 'Trips' } %>
+
+			<% if @user.reservations.any? %>
+				<% @user.reservations.each do |res| %>
+				  <h4><%= link_to "#{res.property.title}", res %></h4>
+				  <p><%= res.from %> to <%= res.to %></p>
+				  <p>$<%= res.trip_price %></p>
+				<% end %>
+			<% else %>
+				<h4>You don't have any trips planned yet.</h4>
+			<% end %>
+
+    </div>
+	</div>
+</div>

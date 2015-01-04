@@ -7,7 +7,7 @@ class PaymentNotification < ActiveRecord::Base
 
     def mark_as_paid
     	if status == "Completed"
-    		reservation.update_attributes(updated_at: Time.now, status: "paid")
+    		reservation.update_attributes(updated_at: Time.now, status: "Paid")
     		# Todo
     		# ReservationMailer.paid_email(reservation).deliver
     	end
