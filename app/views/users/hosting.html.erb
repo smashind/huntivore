@@ -7,7 +7,7 @@
 			<%= render partial: "nav", locals: { active: 'Hosting' } %>
 
 			<% @reserves == false %>
-			<% if @user.properties.any? %>
+			<% if has_properties? @user %>
 				<% @user.properties.each do |property| %>
 				  <% property.reservations.each do |res| %>
 					  <h4><%= link_to "#{res.property.title}", property_path(res.property) %></h4>
@@ -21,8 +21,6 @@
 					  <p>You aren't hosting any trips yet.</p>
 				  <% end %>
 				<% end %>
-			<% else %>
-				<p>You don't have any properties listed yet.</p>
 			<% end %>
 
     </div>

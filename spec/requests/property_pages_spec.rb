@@ -116,10 +116,6 @@ describe "PropertyPages" do
 				click_link "Edit property"
 				expect(current_path).to eq(edit_property_path(listing))
 			end
-
-			it "should link to the owner's profile" do 
-				expect(page).to have_link("Joe Smith", href: user_path(user))
-			end
 		end
 
 	end

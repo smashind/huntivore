@@ -28,6 +28,14 @@ describe "ReservationPages" do
         click_link "Trips"
         expect(page).to have_content("Duck Hunt")
       end
+
+      it "should show on the owner's profile page" do 
+        click_button "Reserve this Listing"
+        click_link "Logout"
+        sign_in user 
+        click_link "Hosting"
+        expect(page).to have_content("Duck Hunt")
+      end
     end
 
     describe "with invalid characters" do 

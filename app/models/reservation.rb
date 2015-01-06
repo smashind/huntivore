@@ -4,6 +4,8 @@ class Reservation < ActiveRecord::Base
   has_many :payment_notifications
   validates :from, presence: true
   validates :to, presence: true
+  validates :user_id, presence: true
+  validates :property_id, presence: true
 
   validate :date_order
 

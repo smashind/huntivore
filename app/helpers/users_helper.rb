@@ -13,4 +13,13 @@ module UsersHelper
 			false
 		end
 	end
+
+	def has_properties? user
+		if user.properties.any?
+			true
+		else
+			"<h4>You don't have any properties listed.</h4>"
+		end
+	end
+
 end
