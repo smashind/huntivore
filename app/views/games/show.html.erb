@@ -1,0 +1,6 @@
+<h1><%= @game.name.titleize %> Hunts</h1>
+
+<% @game.properties.each do |property| %>
+  <%= link_to "#{property.title}", property %>
+<% end %>
+

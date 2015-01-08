@@ -68,6 +68,7 @@ describe 'User pages' do
 			visit new_property_path
 			fill_in 'Title',        with: 'Duck Hunt'
 			fill_in 'Description',  with: 'A sweet place to hunt ducks'
+			fill_in 'Game',         with: 'duck'
 			fill_in 'Location',     with: 'Alabama'
 			fill_in 'Accommodates', with: 4
 		  fill_in 'Price',        with: 99

@@ -16,6 +16,12 @@
 
 		<p><%= @property.description %></p>
 
+		<p>
+			<% @property.games.each do |game| %>
+				<%= link_to game.name, game_path(game), class: "btn btn-primary btn-xs" %>
+			<% end %>
+		</p>
+
 		<p><strong>Location:</strong> <%= @property.location %></p>
 		<p><strong>Accommodates:</strong> <%= @property.accommodates %></p>
 		<p><strong>Price:</strong> $<%= @property.price %>/night</p>

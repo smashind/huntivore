@@ -5,6 +5,7 @@ describe Property do
 		property = Property.new(
 			title: 'Duck Hunt',
 			description: 'A sweet place to hunt ducks',
+			game_list: 'boar,bear,geese',
 			hunttype: 'day',
 			location: 'Alabama',
 			accommodates: 4,
@@ -29,6 +30,12 @@ describe Property do
 		property = Property.new(location: nil)
 		property.valid?
 		expect(property.errors[:location]).to include("can't be blank")
+	end
+
+	it "is invalid without any game tags" do 
+		property = Property.new(game_list: "")
+		property.valid?
+		expect(property.errors[:game_list]).to include("can't be blank")
 	end
 
 	it "is invalid without an accommodates number" do 

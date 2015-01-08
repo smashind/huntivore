@@ -74,6 +74,6 @@ class PropertiesController < ApplicationController
 	  end
 
 	  def property_params
-	  	params.require(:property).permit(:title, :description, :hunttype, :location, :accommodates, :price, property_attachments_attributes: [:id, :property_id, :image])
+	  	params.require(:property).permit(:title, :description, :hunttype, :location, :accommodates, :game_list, :price, property_attachments_attributes: [:id, :property_id, :image])
 	  end
 end

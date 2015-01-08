@@ -34,6 +34,13 @@
 		</div>
 
 		<div class="form-group">
+			<%= f.label :game_list, "Edit Game", class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_field :game_list, :value => edit_game(@property.games), class: "form-control", placeholder: "Enter game separated by commas" %>
+			</div>
+		</div>
+
+		<div class="form-group">
 			<%= f.label :location, class: "col-md-4 control-label" %>
 			<div class="col-md-8">
 				<%= f.text_field :location, class: "form-control", placeholder: "Where is your property?" %>
@@ -83,7 +90,7 @@
 
 		<div class="form-group">
 			<div class="col-md-8 col-md-offset-4">
-				<%= f.submit "Submit Property", class: "btn btn-primary center-block" %>
+				<%= f.submit "Update Property", class: "btn btn-primary center-block" %>
 			</div>
 		</div>
 		<% end %> 

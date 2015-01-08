@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104160907) do
+ActiveRecord::Schema.define(version: 20150106124256) do
+
+  create_table "games", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "gamings", force: true do |t|
+    t.integer  "game_id"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "gamings", ["game_id"], name: "index_gamings_on_game_id"
+  add_index "gamings", ["property_id"], name: "index_gamings_on_property_id"
 
   create_table "payment_notifications", force: true do |t|
     t.text     "params"
