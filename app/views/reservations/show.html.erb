@@ -1,8 +1,12 @@
 <h1>Trip Details</h1>
 
 <h4><%= link_to "#{@reservation.property.title}", property_path(@reservation.property) %></h4>
-<strong>Start:</strong> <%= @reservation.from %><br />
-<strong>End:</strong> <%= @reservation.to %><br />
+<% if @reservation.property.hunttype == 'overnight' %>
+  <strong>Start:</strong> <%= @reservation.from %><br />
+  <strong>End:</strong> <%= @reservation.to %><br />
+<% else %>
+  <strong>Date:</strong> <%= @reservation.from %><br /> 
+<% end %>
 <strong>Total Price:</strong> $<%= @reservation.trip_price %>
 
 <h3>Pay Now</h3>

@@ -34,5 +34,9 @@
   </div>
 
   <div class='col-md-5 col-md-offset-1 col-sm-6 col-xs-12'>
-		<%= render partial: "reservations/form" %>
+		<% if @property.hunttype == "overnight" %>
+			<%= render partial: "reservations/form" %>
+		<% else %>
+		  <%= render partial: "reservations/day_form" %>
+		<% end %>
   </div>

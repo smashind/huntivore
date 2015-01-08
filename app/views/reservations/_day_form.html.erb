@@ -1,0 +1,33 @@
+<div class="form-horizontal reserve">
+	<fieldset>
+		
+	  <div class="form-group">
+	  	<div class="form-group">
+	  		<div class="col-sm-12 col-xs-12">
+	  			<h3>Book this Hunt</h3>
+	  		</div>
+	  	</div>
+	  	<%= form_for(@reservation) do |f| %>
+	  	
+	  	<div class="form-group">
+		  	<div class="col-sm-12 col-xs-12 col-xxs-12">
+		  		<div class="input-group">
+		  			<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+			    	<%= f.text_field :from, class: "form-control", placeholder: "Select a Date" %>
+			    </div>
+			  </div>
+
+			</div>
+
+			<%= f.hidden_field :property_id, value: @property.id %>
+
+			<div class="form-group">
+				<div class="col-sm-12 col-xs-12">
+					<%= f.submit "Reserve this Listing", class: "btn btn-info center-block" %>
+		  	</div>
+		  </div>
+
+		  <% end %>
+	  </div>
+	</fieldset>
+</div> 
