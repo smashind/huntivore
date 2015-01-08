@@ -3,9 +3,11 @@
 		<h1><%= @property.title %></h1>
 
 		<% if @property_attachments.any? %>
+		<div class="popup-gallery">
 			<% @property_attachments.each do |p| %>
 				<%= link_to(image_tag(p.image_url(:thumb)), p.image_url, class: "prop-image") %>
 			<% end %>
+		</div>
 		<% else %>
 			<% if is_owner? @property.user %>
 				<p>You haven't uploaded any images yet. Listings with vibrant images are much more likely to be rented!</p>
