@@ -1,10 +1,10 @@
 <div class="row">
-	<div class="col-md-5 col-md-offset-1 col-sm-6 col-xs-12">
+	<div class="col-md-6 col-sm-6 col-xs-12">
 		<h1><%= @property.title %></h1>
 
 		<% if @property_attachments.any? %>
 			<% @property_attachments.each do |p| %>
-				<%= link_to(image_tag(p.image_url(:thumb)), p.image_url) %>
+				<%= link_to(image_tag(p.image_url(:thumb)), p.image_url, class: "prop-image") %>
 			<% end %>
 		<% else %>
 			<% if is_owner? @property.user %>
