@@ -1,5 +1,5 @@
 class ReservationMailer < ActionMailer::Base
-  default from: "taylor@huntivore.com"
+  default from: "The Huntivore Team <support@huntivore.com>"
 
   def reservation_email(user, property, reservation)
   	@user = user
