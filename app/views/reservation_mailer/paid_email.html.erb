@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Hey <%= @user.first_name %>,</h3>
+    <p>
+      The below reservation was paid for. 
+    </p>
+
+    <p>
+      To see the details, please visit <%= link_to "the reservation confirmation here", "http://floating-caverns-5235.herokuapp.com#{reservation_path(@reservation)}" %>.
+    </p>
+    <h3>Traveler Contact information:</h3>
+      <p><strong>Name:</strong> <%= @resmaker.full_name %><br />
+        <strong>Email:</strong> <%= @resmaker.email %><br />
+      </p>
+
+    <h3>Hunt Details</h3>
+      <p><% if @reservation.property.hunttype == 'overnight' %>
+            <strong>Start:</strong> <%= @reservation.from %><br />
+            <strong>End:</strong> <%= @reservation.to %><br />
+          <% else %>
+            <strong>Date:</strong> <%= @reservation.from %><br /> 
+          <% end %>
+      </p>
+
+    <p>You will be paid after the trip is completed.</p>
+
+    <p>
+      Thanks,
+    </p>
+
+      <h3>The Huntivore Team</h3>
+  </body>
+</html>
