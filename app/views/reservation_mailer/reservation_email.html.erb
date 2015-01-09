@@ -10,7 +10,7 @@
     </p>
 
     <p>
-      To see the details, please visit <%= link_to "the reservation confirmation here", "http://floating-caverns-5235.herokuapp.com#{reservation_path(@reservation)}" %>.
+      To see the details, please visit <%= link_to "the reservation confirmation here", "https://protected-brook-4630.herokuapp.com#{reservation_path(@reservation)}" %>.
     </p>
 
     <h3>Owner Contact information:</h3>
@@ -25,6 +25,10 @@
           <% else %>
             <strong>Date:</strong> <%= @reservation.from %><br /> 
           <% end %>
+          <strong>Total Price:</strong> $<%= @reservation.trip_price %>
+      </p>
+
+      <p>If you haven't already, please <strong><%= link_to "pay for your reservation now", "https://protected-brook-4630.herokuapp.com#{reservation_path(@reservation)}" %></strong>.
       </p>
 
     <p>Have a great day!</p>
