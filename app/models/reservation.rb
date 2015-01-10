@@ -26,7 +26,7 @@ class Reservation < ActiveRecord::Base
     end
 
     def should_validate_to?
-      if property.hunttype == 'overnight'
+      if property.hunttype == 'Overnight'
         true
       end
     end

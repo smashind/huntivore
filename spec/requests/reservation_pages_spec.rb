@@ -6,7 +6,8 @@ describe "ReservationPages" do
 
   let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr") }
   let(:user2) { User.create(first_name: "Gary", last_name: "Scott", email: "gary@example.com", password: "foobarrr") }
-  let(:listing) { user.properties.create(title: "Duck Hunt", description: "A sweet place to hunt ducks", game_list: "duck, hen", location: "Alabama", accommodates: 4, price: 99) }
+  let(:user3) { User.create(first_name: "Tom", last_name: "Nook", email: "tom@example.com", password: "foobarrr") }
+  let(:listing) { user.properties.create(title: "Duck Hunt", hunttype: "overnight", description: "A sweet place to hunt ducks", game_list: "duck, hen", location: "Alabama", accommodates: 4, price: 99) }
   before { sign_in user2 }
 
   describe "reservation creation" do 
@@ -33,7 +34,7 @@ describe "ReservationPages" do
         click_button "Reserve this Listing"
         click_link "Logout"
         sign_in user 
-        click_link "Hosting"
+        first(:link, "Hosting").click
         expect(page).to have_content("Duck Hunt")
       end
     end
@@ -73,6 +74,41 @@ describe "ReservationPages" do
       end
     end 
 
+  end
+
+  describe "Reservation page" do 
+
+    before do 
+      visit property_path(listing)
+      fill_in "reservation_from", with: '05/15/2015' 
+      fill_in "reservation_to",   with: '05/20/2015' 
+      click_button "Reserve this Listing"
+    end
+
+    it "should show to logged in reservation maker" do 
+      visit reservation_path(1)
+      expect(current_path).to eq(reservation_path(1))
+    end
+
+    it "should show to the property owner" do 
+      click_link "Logout"
+      sign_in user
+      visit reservation_path(1)
+      expect(current_path).to eq(reservation_path(1))
+    end
+
+    it "should not show for a non logged in user" do 
+      click_link "Logout"
+      visit reservation_path(1)
+      expect(current_path).to eq(new_user_session_path)
+    end
+
+    it "should not show for a different user" do 
+      click_link "Logout"
+      sign_in user3
+      visit reservation_path(1)
+      expect(page).to have_content("You don't have permission to view this page.")
+    end
   end
 
 end

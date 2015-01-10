@@ -1,5 +1,7 @@
 <h1>Find a Hunt by Game Type</h1>
 
-<% @games.each do |game| %>
-	<%= link_to game.name, game_path(game), class: "btn btn-primary btn-lg" %>
-<% end %>
+<div id="all-game">
+	<% @games.each do |game| %>
+		<%= link_to game.name, game_path(game), class: "btn btn-primary btn-lg" %>
+	<% end %>
+</div>

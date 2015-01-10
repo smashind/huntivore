@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
 
   def show
   	@reservation = Reservation.find(params[:id])

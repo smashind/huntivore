@@ -24,9 +24,10 @@
 			<% end %>
 		</p>
 
+		<p><strong>Type:</strong> <%= @property.hunttype %></p>
 		<p><strong>Location:</strong> <%= @property.location %></p>
 		<p><strong>Accommodates:</strong> <%= @property.accommodates %></p>
-		<p><strong>Price:</strong> $<%= @property.price %>/night</p>
+		<p><strong>Price:</strong> $<%= @property.price %><% unless @property.hunttype == 'Day trip' %>/night<% end%></p>
 
 		<% if is_owner? @property.user %>
 			<%= link_to "Edit property", edit_property_path(@property) %> | <%= link_to "Delete property", @property, method: :delete, data: {confirm: "Are you sure you want to delete this property?"} %>
@@ -36,7 +37,7 @@
   </div>
 
   <div class='col-md-5 col-md-offset-1 col-sm-6 col-xs-12'>
-		<% if @property.hunttype == "overnight" %>
+		<% if @property.hunttype == "Overnight" %>
 			<%= render partial: "reservations/form" %>
 		<% else %>
 		  <%= render partial: "reservations/day_form" %>

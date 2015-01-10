@@ -1,38 +1,65 @@
-<h1>Trip Details</h1>
+<% if can_view? %>
+  <h1>Reservation Details</h1>
 
-<h4><%= link_to "#{@reservation.property.title}", property_path(@reservation.property) %></h4>
-<% if @reservation.property.hunttype == 'overnight' %>
-  <strong>Start:</strong> <%= @reservation.from %><br />
-  <strong>End:</strong> <%= @reservation.to %><br />
-<% else %>
-  <strong>Date:</strong> <%= @reservation.from %><br /> 
-<% end %>
-<strong>Total Price:</strong> $<%= @reservation.trip_price %>
-
-<h3>Pay Now</h3>
-
-  <form name="_xclick" action="https://www.sandbox.paypal.com/us/cgi-bin/" method="post">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="dannyjbaumann@gmail.com">
-      <input type="hidden" name="currency_code" value="USD">
-      <input type="hidden" name="item_name" value="<%= @reservation.property.title %>">
-      <input type="hidden" name="amount" value="<%= @reservation.trip_price %>">
-      <input type="hidden" name="return" value="https://protected-brook-4630.herokuapp.com/pages/success">
-      <input type="hidden" name="notify_url" value="https://protected-brook-4630.herokuapp.com/payment_notifications/">
-      <input type="hidden" name="invoice" value="<%= @reservation.id %>">
-      <input type="image" src="http://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"         border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-  </form>
-  Please make your payment ASAP.
-
-  <% if @reservation.payment_notifications.exists? %>
-  	<% @reservation.payment_notifications[0,1].each do |respay| %>
-  		<% if respay.status == "Completed" %>
-  			<p>Complete. Paypal transaction id: <strong><%= respay.transaction_id %></strong></p>
-  		<% else %>
-  		  <p>uh oh.</p>
-      <% end %>
-    <% end %>
+  <h4><%= link_to "#{@reservation.property.title}", property_path(@reservation.property) %></h4>
+  <strong>Type:</strong> <%= @reservation.property.hunttype %><br />
+  <% if @reservation.property.hunttype == 'Overnight' %>
+    <strong>Start:</strong> <%= @reservation.from %><br />
+    <strong>End:</strong> <%= @reservation.to %><br />
   <% else %>
-    <p>Not paid yet.</p>
+    <strong>Date:</strong> <%= @reservation.from %><br /> 
   <% end %>
+  <strong>Total Price:</strong> $<%= @reservation.trip_price %>
+
+  
+    <% if @reservation.status == 'Pending' %>
+      <% if res_maker? %>
+
+        <h3>Owner Contact Information</h3>
+        <p>
+          <strong>Name:</strong> <%= @reservation.property.user.full_name %><br />
+          <strong>Email:</strong> <%= mail_to "#{@reservation.property.user.email}" %>
+        </p>
+        <h3>Pay Now</h3>
+
+        <form name="_xclick" action="https://www.sandbox.paypal.com/us/cgi-bin/" method="post">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="dannyjbaumann@gmail.com">
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="hidden" name="item_name" value="<%= @reservation.property.title %>">
+            <input type="hidden" name="amount" value="<%= @reservation.trip_price %>">
+            <input type="hidden" name="return" value="https://protected-brook-4630.herokuapp.com/pages/success">
+            <input type="hidden" name="notify_url" value="https://protected-brook-4630.herokuapp.com/payment_notifications/">
+            <input type="hidden" name="invoice" value="<%= @reservation.id %>">
+            <input type="image" src="http://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"         border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+        </form>
+
+        <p>Please make your payment ASAP.</p>
+      <% elsif prop_owner? %>
+        <h3>Hunter Contact Information</h3>
+        <p>
+          <strong>Name:</strong> <%= @reservation.user.full_name %><br />
+          <strong>Email:</strong> <%= mail_to "#{@reservation.user.email}" %>
+        </p>
+        <h3>Pending payment</h3>
+
+        <p>This reservation hasn't been paid for yet.</p>
+      <% end %>
+    <% elsif @reservation.status == 'Paid' %>
+
+      <p>This reservation has been paid for! You are all set.</p>
+
+      	<% @reservation.payment_notifications.each do |respay| %>
+      		<% if respay.status == "Completed" %>
+      			<p>Complete. Paypal transaction id: <strong><%= respay.transaction_id %></strong></p>
+      		<% else %>
+      		  <p>Something went wrong. Please contact support for more information.</p>
+          <% end %>
+        <% end %>
+    <% end %>
+
+
+<% else %>
+  <h2>You don't have permission to view this page.</h2>
+<% end %>
 
