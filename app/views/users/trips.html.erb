@@ -6,12 +6,30 @@
 			
 			<%= render partial: "nav", locals: { active: 'Trips' } %>
 
-			<% if @user.reservations.any? %>
-				<% @user.reservations.each do |res| %>
-				  <h4><%= link_to "#{res.property.title}", res %></h4>
-				  <p><%= res.from %> to <%= res.to %></p>
-				  <p>$<%= res.trip_price %></p>
+			<% if @reservations.any? %>
+			<table class="table table-striped table-hover ">
+				<thead>
+			    <tr>
+			      <th>Property</th>
+			      <th>Reservation</th>
+			      <th>When</th>
+			      <th>Price</th>
+			      <th>Status</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+				<% @reservations.each do |res| %>
+				  <tr class="warning">
+					  <td><%= link_to "#{res.property.title}", property_path(res.property) %></td>
+					  <td><%= link_to "View Reservation", res %></td>
+					  <td> <%= res.from %> <% if res.property.hunttype == 'Overnight' %> to <%= res.to %> <% end %></td>
+					  <td> $<%= res.trip_price %></td>
+						<td> <%= res.status %></td>
+					</tr>
 				<% end %>
+				</tbody>
+			</table>
+			<%= will_paginate @reservations, renderer: BootstrapPagination::Rails %>
 			<% else %>
 				<h4>You don't have any trips planned yet.</h4>
 			<% end %>

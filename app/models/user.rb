@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :properties, dependent: :destroy
   has_many :reservations
+  has_many :hostings, through: :properties, source: :reservations
 
 
   def full_name

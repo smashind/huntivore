@@ -12,9 +12,9 @@ describe "GamePages" do
 
   describe "index" do 
 
-  	it "should include all tags" do 
+  	it "should include all tags in alphabetical order" do 
   		visit games_path
-  		expect(page).to have_content("duck mallard hen")
+  		expect(page).to have_content("duck hen mallard")
   	end
   end
 
@@ -22,7 +22,6 @@ describe "GamePages" do
 
   	it "should include the tags" do 
   		visit property_path(1)
-  		save_and_open_page
   		expect(page).to have_content("duck mallard hen")
   	end
   end
