@@ -155,5 +155,31 @@ describe "PropertyPages" do
 
 	end
 
+	describe "property favoriting" do 
+
+		it "can be favorited" do 
+			visit property_path(listing)
+			expect(page).to have_css("i.fa.fa-star-o")
+		end
+
+		it "gets favorited" do 
+			expect { Favorite.new(user_id: 1, property_id: 1).to change(Favorite, :count).by(-1) }
+		end
+
+	end
+
+	describe "property unfavoriting" do 
+		before do 
+			click_link "Logout"
+			sign_in user2
+			user2.favorites.create(property_id: 1)
+		end
+
+		it "can be unfavorited" do 
+			visit property_path(listing)
+			expect(page).to have_css("i.fa.fa-star")
+		end
+
+	end
 
 end

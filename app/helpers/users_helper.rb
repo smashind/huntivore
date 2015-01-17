@@ -22,4 +22,26 @@ module UsersHelper
 		end
 	end
 
+	def can_fav?(user, property)
+		unless user.favorites.find_by(property_id: property.id).present?
+			true
+		else
+			false
+		end
+	end
+
+	def can_favorite?(user, property)
+    if user.favorites.any?
+      user.favorites.each do |fav|
+        if fav.property_id == property.id
+          false
+        else
+          true
+        end
+      end
+    else
+      true
+    end
+  end
+
 end

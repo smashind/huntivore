@@ -1,0 +1,32 @@
+<div id="user-profile">
+	<%= render partial: "profile_top" %>
+
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			
+			<%= render partial: "nav", locals: { active: 'Favorites' } %>
+			
+			<% if @user.favorites.any? %>
+				
+				<div class="prop-list">
+				<% @favorites.each do |f| %>
+					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+						<%= link_to f.property do %>
+							<% if f.property.property_attachments.any? %>
+								<% f.property.property_attachments[0,1].each do |a| %>
+							  	<div class="prop"><p><%= f.property.title %></p><%= image_tag(a.image_url(:thumb)) %></div>
+							  <% end %>
+							<% else %>
+								<div class='prop'><p><%= f.property.title %></p><%= image_tag 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcReAAGzQYXCHxU__J0IiGF1Igvy4NgPbUKbNz1HZvQS0YsjUWTDbQ' %></div>
+							<% end %>
+						<% end %>
+					</div>
+				<% end %>
+				</div>
+				<%= will_paginate @favorites, renderer: BootstrapPagination::Rails  %>
+			<% else %>
+				<h4>No favorites yet.</h4>
+			<% end %>
+		</div>
+	</div>
+</div>

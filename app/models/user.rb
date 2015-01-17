@@ -8,9 +8,10 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
 
   has_many :properties, dependent: :destroy
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
   has_many :hostings, through: :properties, source: :reservations
-
+  has_many :favorites, dependent: :destroy
+  has_many :favorited, through: :properties, source: :favorites
 
   def full_name
   	first_name + " " + last_name

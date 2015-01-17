@@ -35,6 +35,7 @@
               <li><%= link_to 'My Profile', user_path(current_user) %></li>
               <li><%= link_to 'My Trips', user_trips_path(current_user) %></li>
               <li><%= link_to 'Hosting', user_hosting_path(current_user) %></li>
+              <li><%= link_to 'Favorites', user_favorites_path(current_user) %></li>
 	            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
 	            <li class="divider"></li>
 	            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>

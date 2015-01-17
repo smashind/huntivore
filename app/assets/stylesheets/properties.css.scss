@@ -13,3 +13,19 @@
 	  margin: 0 10px 10px 0;
 	}
 }
+.property {
+	h1 {
+	  display: inline-block;
+	}
+	.favorite {
+	  float: left;
+	}
+	a {
+	  padding-right: 10px;
+	  color: #efb73e;
+	  &:hover {
+	    color: #E7A413;
+	  }
+	}
+
+}

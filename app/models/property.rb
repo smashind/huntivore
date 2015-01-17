@@ -1,6 +1,7 @@
 class Property < ActiveRecord::Base
   belongs_to :user
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
+  has_many :favorites
   validates :title, presence: true
   validates :description, presence: true
   validates :location, presence: true
@@ -9,12 +10,10 @@ class Property < ActiveRecord::Base
   validates :user_id, presence: true
   validates :game_list, presence: true
 
-  has_many :property_attachments
+  has_many :property_attachments, dependent: :destroy
   accepts_nested_attributes_for :property_attachments
 
-  has_many :reservations
-
-  has_many :gamings
+  has_many :gamings, dependent: :destroy
   has_many :games, through: :gamings
 
   def game_list

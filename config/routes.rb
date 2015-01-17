@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'games/index'
-
-  get 'games/show'
-
-  get 'games/destroy'
-
   root to: 'pages#home'
   get 'pages/faq'
   get 'pages/contact'
@@ -13,11 +7,13 @@ Rails.application.routes.draw do
   resources :users do 
     get 'trips'
     get 'hosting'
+    get 'favorites'
   end
   resources :properties
   resources :reservations
   resources :property_attachments, only: :destroy
   resources :games, path: "game"
+  resources :favorites
 
   post 'payment_notifications', :controller => 'payment_notifications', :action => 'create'
   match "pages/success", :to => 'pages#success', via: [:get, :post]

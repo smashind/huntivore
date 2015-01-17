@@ -2,4 +2,5 @@
 	<li <% if active == "Properties" %> class="active"<% end %> ><%= link_to "Properties", user_path(@user) %></li>
 	<li <% if active == "Trips" %> class="active"<% end %> ><%= link_to "Trips", user_trips_path(@user) %></li>
 	<li <% if active == "Hosting" %> class="active"<% end %> ><%= link_to "Hosting", user_hosting_path(@user) %></li>
+	<li <% if active == "Favorites" %> class="active"<% end %> ><%= link_to "Favorites", user_favorites_path(@user) %></li>
 </ul>

@@ -1,6 +1,17 @@
 <div class="row">
 	<div class="col-md-6 col-sm-6 col-xs-12">
-		<h1><%= @property.title %></h1>
+
+		<div class="property"><h1>
+		<% if user_signed_in? %>
+		<div class="favorite">
+			<% if can_fav?(current_user, @property) %>
+	      <%= link_to '<i class="fa fa-star-o" title="Add to Favorites"></i>'.html_safe, favorites_path(property_id: @property.id), method: :post %>
+	    <% else %>
+	      <%= link_to '<i class="fa fa-star" title="Remove from Favorites"></i>'.html_safe, favorite_path(id: current_user.favorites.find_by(property_id: @property.id)), method: :delete, id: "unfavorite" %>
+	    <% end %>
+	  </div>
+		<% end %><%= @property.title %></h1></div>
+
 
 		<% if @property_attachments.any? %>
 		<div class="popup-gallery">

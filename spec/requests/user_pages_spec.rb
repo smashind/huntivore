@@ -104,10 +104,6 @@ describe 'User pages' do
   	it { should have_content("Facebook") }
   	it { should have_content("Instagram") }
   	it { should have_content("Website") }
-
-  	
-
   end
-
 
 end
