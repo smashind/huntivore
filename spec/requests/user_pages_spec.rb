@@ -22,6 +22,7 @@ describe 'User pages' do
 	end
 
 	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", twitter: "huntivore") }
+	let(:user2) { User.create(first_name: "Gary", last_name: "Johnson", email: "gary@example.com", password: "foobarrr" ) }
 
   describe "user login" do 
 
@@ -104,6 +105,33 @@ describe 'User pages' do
   	it { should have_content("Facebook") }
   	it { should have_content("Instagram") }
   	it { should have_content("Website") }
+  end
+
+  describe "non logged in users" do 
+  	before { visit user_path(user) }
+
+  	it "should not show the trips tab" do 
+  		expect(page).to_not have_link("Trips", href: user_trips_path(user))
+  	end
+
+  	it "should not show the hosting tab" do 
+  		expect(page).to_not have_link("Hosting", href: user_hosting_path(user))
+  	end
+  end
+
+  describe "different users" do 
+  	before do
+  		sign_in user2
+  		visit user_path(user)
+  	end
+
+  	it "should not show the trips tab" do 
+  		expect(page).to_not have_link("Trips", href: user_trips_path(user))
+  	end
+
+  	it "should not show the hosting tab" do 
+  		expect(page).to_not have_link("Hosting", href: user_hosting_path(user))
+  	end  	
   end
 
 end
