@@ -1,0 +1,29 @@
+<h3>Hunter Contact Information</h3>
+<p>
+  <strong>Name:</strong> <%= @reservation.user.full_name %><br />
+  <strong>Email:</strong> <%= mail_to "#{@reservation.user.email}" %>
+</p>
+
+<% if @reservation.status == 'Pending' %>
+  <h3>Pending payment</h3>
+
+  <p>This reservation hasn't been paid for yet.</p> <%= render partial: 'cancel' %>
+
+<% elsif @reservation.status == 'Paid' %>
+
+<h3>Paid</h3>
+
+<p>This reservation has been paid for!</p> <%= render partial: 'cancel' %>
+
+	<% @reservation.payment_notifications.each do |respay| %>
+		<% if respay.status == "Completed" %>
+			<p>Complete. Paypal transaction id: <strong><%= respay.transaction_id %></strong></p>
+		<% else %>
+		  <p>Something went wrong. Please contact support for more information.</p>
+    <% end %>
+  <% end %>
+<% elsif @reservation.status == 'Canceled' %>
+  <h3>Canceled</h3>
+  <p>You have canceled this reservation.</p>
+  <p><strong>Reason:</strong> <%= @reservation.cancel_reason %></p>
+<% end %>
