@@ -19,7 +19,13 @@
 			  </thead>
 			  <tbody>
 				<% @hosted_trips.each do |res| %>
-					<tr class="warning">
+					<% if res.status == "Pending" %>
+				  	<tr class='warning'>
+				  <% elsif res.status == "Canceled" %>
+				  	<tr class='danger'>
+				  <% else %>
+				  	<tr class='success'>
+				  <% end %>
 					  <td><%= link_to "#{res.property.title}", property_path(res.property) %></td>
 					  <td><%= link_to "View Reservation", res %></td>
 					  <td> <%= res.from %> <% if res.property.hunttype == 'Overnight' %> to <%= res.to %> <% end %></td>

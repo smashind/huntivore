@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114114334) do
+ActiveRecord::Schema.define(version: 20150121113558) do
 
   create_table "favorites", force: true do |t|
     t.integer  "user_id"
@@ -78,11 +78,12 @@ ActiveRecord::Schema.define(version: 20150114114334) do
   create_table "reservations", force: true do |t|
     t.date     "to"
     t.date     "from"
-    t.string   "status",      default: "Pending"
+    t.string   "status",        default: "Pending"
     t.integer  "user_id"
     t.integer  "property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "cancel_reason"
   end
 
   add_index "reservations", ["property_id"], name: "index_reservations_on_property_id"

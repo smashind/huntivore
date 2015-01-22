@@ -23,9 +23,20 @@ class ReservationsController < ApplicationController
   	end
   end
 
+  def update
+    @reservation = Reservation.find(params[:id])
+
+    if @reservation.update_attributes(reservation_params)
+      ReservationMailer.cancel_email(@reservation).deliver
+      redirect_to @reservation, alert: "Reservation was canceled."
+    else
+      redirect_to @reservation, alert: "Something went wrong and the reservation was NOT canceled."
+    end
+  end
+
   private
 
     def reservation_params
-    	params.require(:reservation).permit(:from, :to, :user_id, :property_id)
+    	params.require(:reservation).permit(:from, :to, :user_id, :property_id, :status, :cancel_reason)
     end
 end

@@ -12,7 +12,7 @@
   <strong>Total Price:</strong> $<%= @reservation.trip_price %>
 
   
-    <% if @reservation.status == 'Pending' %>
+    
       <% if res_maker? %>
 
         <h3>Owner Contact Information</h3>
@@ -20,44 +20,94 @@
           <strong>Name:</strong> <%= @reservation.property.user.full_name %><br />
           <strong>Email:</strong> <%= mail_to "#{@reservation.property.user.email}" %>
         </p>
-        <h3>Pay Now</h3>
 
-        <form name="_xclick" action="https://www.sandbox.paypal.com/us/cgi-bin/" method="post">
-            <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="dannyjbaumann@gmail.com">
-            <input type="hidden" name="currency_code" value="USD">
-            <input type="hidden" name="item_name" value="<%= @reservation.property.title %>">
-            <input type="hidden" name="amount" value="<%= @reservation.trip_price %>">
-            <input type="hidden" name="return" value="https://protected-brook-4630.herokuapp.com/pages/success">
-            <input type="hidden" name="notify_url" value="https://protected-brook-4630.herokuapp.com/payment_notifications/">
-            <input type="hidden" name="invoice" value="<%= @reservation.id %>">
-            <input type="image" src="http://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"         border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-        </form>
+        <% if @reservation.status == 'Pending' %>
+          <h3>Pay Now</h3>
 
-        <p>Please make your payment ASAP.</p>
+          <form name="_xclick" action="https://www.sandbox.paypal.com/us/cgi-bin/" method="post">
+              <input type="hidden" name="cmd" value="_xclick">
+              <input type="hidden" name="business" value="dannyjbaumann@gmail.com">
+              <input type="hidden" name="currency_code" value="USD">
+              <input type="hidden" name="item_name" value="<%= @reservation.property.title %>">
+              <input type="hidden" name="amount" value="<%= @reservation.trip_price %>">
+              <input type="hidden" name="return" value="https://protected-brook-4630.herokuapp.com/pages/success">
+              <input type="hidden" name="notify_url" value="https://protected-brook-4630.herokuapp.com/payment_notifications/">
+              <input type="hidden" name="invoice" value="<%= @reservation.id %>">
+              <input type="image" src="http://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"         border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+          </form>
+
+          <p>Please make your payment ASAP.</p>
+
+        <% elsif @reservation.status == 'Paid' %>
+
+          <p>This reservation has been paid for! You are all set.</p>
+
+          <% @reservation.payment_notifications.each do |respay| %>
+            <% if respay.status == "Completed" %>
+              <p>Complete. Paypal transaction id: <strong><%= respay.transaction_id %></strong></p>
+            <% else %>
+              <p>Something went wrong. Please contact support for more information.</p>
+            <% end %>
+          <% end %>
+
+        <% elsif @reservation.status == 'Canceled' %>
+          <p>The property owner canceled this reservation.</p>
+          <p><strong>Reason:</strong> <%= @reservation.cancel_reason %></p>
+        <% end %>
+
       <% elsif prop_owner? %>
         <h3>Hunter Contact Information</h3>
         <p>
           <strong>Name:</strong> <%= @reservation.user.full_name %><br />
           <strong>Email:</strong> <%= mail_to "#{@reservation.user.email}" %>
         </p>
-        <h3>Pending payment</h3>
 
-        <p>This reservation hasn't been paid for yet.</p>
-      <% end %>
-    <% elsif @reservation.status == 'Paid' %>
+        <% if @reservation.status == 'Pending' %>
+          <h3>Pending payment</h3>
 
-      <p>This reservation has been paid for! You are all set.</p>
+          <p>This reservation hasn't been paid for yet. <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">Cancel Reservation
+          </button></p>
 
-      	<% @reservation.payment_notifications.each do |respay| %>
-      		<% if respay.status == "Completed" %>
-      			<p>Complete. Paypal transaction id: <strong><%= respay.transaction_id %></strong></p>
-      		<% else %>
-      		  <p>Something went wrong. Please contact support for more information.</p>
-          <% end %>
+          <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Please explain why you are canceling this reservation</h4>
+      </div>
+      <div class="modal-body">
+
+        <%= form_for(@reservation) do |f| %>
+          <%= f.text_area :cancel_reason, class: "form-control", rows: 3, placeholder: "Example - We are sorry but the hunt is not available during those times. Please try in May instead.", required: true %> 
+          <%= f.hidden_field :status, value: "Canceled" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Don't Cancel</button>
+        <%= f.submit "Cancel Reservation", class: "btn btn-primary" %>
         <% end %>
-    <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- modal test -->
+        <% elsif @reservation.status == 'Paid' %>
+
+        <p>This reservation has been paid for! You are all set.</p>
+
+        	<% @reservation.payment_notifications.each do |respay| %>
+        		<% if respay.status == "Completed" %>
+        			<p>Complete. Paypal transaction id: <strong><%= respay.transaction_id %></strong></p>
+        		<% else %>
+        		  <p>Something went wrong. Please contact support for more information.</p>
+            <% end %>
+          <% end %>
+        <% elsif @reservation.status == 'Canceled' %>
+          <p>You have canceled this reservation.</p>
+          <p><strong>Reason:</strong> <%= @reservation.cancel_reason %></p>
+        <% end %>
+      <% end %>
 
 <% else %>
   <h2>You don't have permission to view this page.</h2>

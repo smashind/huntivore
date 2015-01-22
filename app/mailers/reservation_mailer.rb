@@ -24,4 +24,12 @@ class ReservationMailer < ActionMailer::Base
     @user = reservation.property.user
     mail(to: @user.email, subject: 'Reservation Payment Confirmation')
   end
+
+  def cancel_email(reservation)
+    @reservation = reservation
+    @resmaker = reservation.user
+    @property = reservation.property
+    @user = reservation.property.user
+    mail(to: @resmaker.email, subject: 'Your reservation was canceled')
+  end
 end

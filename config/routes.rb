@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     get 'favorites'
   end
   resources :properties
-  resources :reservations
+  resources :reservations do 
+    post :cancel
+  end
   resources :property_attachments, only: :destroy
   resources :games, path: "game"
   resources :favorites
