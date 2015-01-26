@@ -23,6 +23,8 @@ describe 'User pages' do
 
 	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", twitter: "huntivore") }
 	let(:user2) { User.create(first_name: "Gary", last_name: "Johnson", email: "gary@example.com", password: "foobarrr" ) }
+	let(:listing) { user.properties.create(title: "Duck Hunt", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, price: 99) }
+	let(:res) { user2.reservations.create(property_id: listing.id, from: "05/25/2015", to: "05/27/2015") }
 
   describe "user login" do 
 
@@ -93,6 +95,37 @@ describe 'User pages' do
 		it "should have a hosting link" do 
 			expect(page).to have_link("Hosting")
 		end
+
+		describe "trip and hosting tabs" do 
+			
+			let!(:user2) { User.create(first_name: "Gary", last_name: "Johnson", email: "gary@example.com", password: "foobarrr" ) }
+			let!(:listing) { user.properties.create(title: "Duck Hunt", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, price: 99) }
+			let!(:res) { user2.reservations.create(property_id: listing.id, from: "05/25/2015", to: "05/27/2015") }
+			
+      it "should list the user's hosted trips" do
+			  visit user_hosting_path(user) 		
+				expect(page).to have_link("View Reservation", href: reservation_path(1))
+			end
+
+			it "should list the hosted trip status" do 
+				visit user_hosting_path(user)
+				expect(page).to have_content("Pending")
+			end
+
+			it "should list the user's trips" do 
+				click_link "Logout"
+				sign_in user2
+				visit user_trips_path(user2) 		
+				expect(page).to have_link("View Reservation", href: reservation_path(1))
+			end
+
+			it "should list the user's trips' status" do 
+				click_link "Logout"
+				sign_in user2
+				visit user_trips_path(user2) 		
+				expect(page).to have_content("Pending")
+			end
+		end
   end
 
   describe "editing user" do 
@@ -114,8 +147,18 @@ describe 'User pages' do
   		expect(page).to_not have_link("Trips", href: user_trips_path(user))
   	end
 
+  	it "should not show the trips page" do 
+  		visit user_trips_path(user)
+  		expect(current_path).to eq(new_user_session_path)
+  	end
+
   	it "should not show the hosting tab" do 
   		expect(page).to_not have_link("Hosting", href: user_hosting_path(user))
+  	end
+
+  	it "should not show the hosting page" do 
+  		visit user_hosting_path(user)
+  		expect(current_path).to eq(new_user_session_path)
   	end
   end
 
@@ -129,9 +172,19 @@ describe 'User pages' do
   		expect(page).to_not have_link("Trips", href: user_trips_path(user))
   	end
 
+  	it "should not show the trips page" do 
+  		visit user_trips_path(user)
+  		expect(page).to have_content("Permission was denied.")
+  	end
+
   	it "should not show the hosting tab" do 
   		expect(page).to_not have_link("Hosting", href: user_hosting_path(user))
-  	end  	
+  	end
+
+  	it "should not show the hosting page" do 
+  		visit user_hosting_path(user)
+  		expect(page).to have_content("Permission was denied.")
+  	end 	
   end
 
 end
