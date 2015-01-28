@@ -10,14 +10,14 @@
 	  	<%= form_for(@reservation) do |f| %>
 	  	
 	  	<div class="form-group">
-		  	<div class="col-sm-5 col-xs-6 col-xxs-12">
+		  	<div class="col-sm-4 col-xs-4 col-xxs-12">
 		  		<div class="input-group">
 		  			<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
 			    	<%= f.text_field :from, class: "form-control", placeholder: "Start" %>
 			    </div>
 			  </div>
 
-		  	<div class="col-sm-5 col-xs-6 col-xxs-12">
+		  	<div class="col-sm-4 col-xs-4 col-xxs-12">
 		  		<div class="input-group">
 		  			<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
 		  			<% if Rails.env.test? %>
@@ -27,7 +27,26 @@
 	  		  	<% end %>
 	  		  </div>
 			  </div>
+
+			  <div class="col-sm-4 col-xs-4 col-xxs-12">
+			  	<div class="input-group">
+				  	<span class="input-group-addon"><i class="fa fa-user"></i></span><select class="form-control" id="selectUsers">
+		          <option>1</option>
+		          <option>2</option>
+		          <option>3</option>
+		          <option>4</option>
+		          <option>5</option>
+	          </select>
+	        </div>
+        </div>
 			</div>
+
+
+
+			<p>From: <span class="res_from"> </span></p>
+			<p>To: <span class="res_to"> </span></p>
+			<p>Trip Length: <span class="days"> </span></p>
+			<p>Price: <span class="price"> </span></p>
 
 			<%= f.hidden_field :property_id, value: @property.id %>
 
@@ -41,3 +60,5 @@
 	  </div>
 	</fieldset>
 </div>  	
+
+<script><%= javascript_variables %></script>

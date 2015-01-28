@@ -9,6 +9,7 @@ class PropertiesController < ApplicationController
 	def show
 		@reservation = Reservation.new
 		@property_attachments = @property.property_attachments.all
+		javascript_variables(price: @property.price)
 	end
 
 	def new
