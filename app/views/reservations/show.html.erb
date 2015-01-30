@@ -9,6 +9,7 @@
   <% else %>
     <strong>Date:</strong> <%= @reservation.from %><br /> 
   <% end %>
+  <strong>Participants:</strong> <%= @reservation.guests %><br />
   <strong>Total Price:</strong> $<%= @reservation.trip_price %> 
     
   <% if res_maker? %>

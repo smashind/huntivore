@@ -10,13 +10,27 @@
 	  	<%= form_for(@reservation) do |f| %>
 	  	
 	  	<div class="form-group">
-		  	<div class="col-sm-12 col-xs-12 col-xxs-12">
+		  	<div class="col-sm-8 col-xs-8 col-xxs-12">
 		  		<div class="input-group">
 		  			<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
 			    	<%= f.text_field :from, class: "form-control", placeholder: "Select a Date" %>
 			    </div>
 			  </div>
 
+			  <div class="col-sm-4 col-xs-4 col-xxs-12">
+			  	<div class="input-group">
+				  	<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				  	<%= f.select(:guests, options_for_select(1..@property.accommodates), {}, { class: "form-control", id: "selectUsers"}) %>
+	        </div>
+        </div>
+
+			</div>
+      
+      <div class="trip-preview">
+      	<h4>Reservation Details</h4>
+				<p>Date: <span class="res_from"> </span></p>
+				<p>Participants: <span class="users"> </span></p>
+				<p>Price: <span class="price"> </span></p>
 			</div>
 
 			<%= f.hidden_field :property_id, value: @property.id %>

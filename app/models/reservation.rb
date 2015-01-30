@@ -10,10 +10,14 @@ class Reservation < ActiveRecord::Base
   validate :date_order
 
   def trip_price
-    if to.nil?
+    if to.nil? && !property.per_person
       property.price
+    elsif to.nil? && property.per_person
+      property.price * guests
+    elsif property.per_person
+  	  Array(from..to-1).count * property.price * guests
     else
-  	  Array(from..to-1).count * property.price
+      Array(from..to-1).count * property.price
     end
   end
 

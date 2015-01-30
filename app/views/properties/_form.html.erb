@@ -62,6 +62,20 @@
 		</div>
 
 		<div class="form-group">
+			<%= f.label :per_person, "Per Person?", class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<div class="radio">
+					<%= f.radio_button(:per_person, true) %>
+					<%= label(:per_person, "Price is per person") %>
+				</div>
+				<div class="radio">
+					<%= f.radio_button(:per_person, false) %>
+					<%= label(:per_person, "Price is NOT per person (total price)") %>
+			  </div>
+			</div>
+		</div>
+
+		<div class="form-group">
 			<%= f.fields_for :property_attachments do |p| %>
 				<label class="col-md-4 control-label">
 					<%= p.label :image, "Images" %>

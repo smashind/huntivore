@@ -9,7 +9,7 @@ class PropertiesController < ApplicationController
 	def show
 		@reservation = Reservation.new
 		@property_attachments = @property.property_attachments.all
-		javascript_variables(price: @property.price)
+		javascript_variables(price: @property.price, per_person: @property.per_person, hunttype: @property.hunttype)
 	end
 
 	def new
@@ -75,6 +75,6 @@ class PropertiesController < ApplicationController
 	  end
 
 	  def property_params
-	  	params.require(:property).permit(:title, :description, :hunttype, :location, :accommodates, :game_list, :price, property_attachments_attributes: [:id, :property_id, :image])
+	  	params.require(:property).permit(:title, :description, :hunttype, :location, :accommodates, :game_list, :price, :per_person, property_attachments_attributes: [:id, :property_id, :image])
 	  end
 end

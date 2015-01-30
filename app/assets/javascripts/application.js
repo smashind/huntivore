@@ -37,12 +37,33 @@ $(function() {
             $("#reservation_to").datepicker( "option", "minDate", minDate);
             var reservation_from = (Date.parse($("#reservation_from").val())) / 86400000;
             $(".res_from").text($("#reservation_from").val());
-            if ($("#reservation_to").val().length) {
-              var reservation_to = (Date.parse($("#reservation_to").val())) / 86400000;
-              $(".res_to").text($("#reservation_to").val());
-              $(".days").text(reservation_to - reservation_from);
-              var users = parseInt($("#selectUsers").val());
-              $(".price").text((reservation_to - reservation_from).toFixed(0) * price * users);
+            var users = parseInt($("#selectUsers").val());
+            if (hunttype == "Day trip") {
+              if (per_person == true) {
+                $(".users").text(users);
+                $(".price").text(price * users);
+                $(".trip-preview").slideDown();
+              } else { 
+                $(".users").text(users);
+                $(".price").text(price);
+                $(".trip-preview").slideDown();
+              };
+            } else {
+              if ($("#reservation_to").val().length) {
+                var reservation_to = (Date.parse($("#reservation_to").val())) / 86400000;
+                $(".res_to").text($("#reservation_to").val());
+                $(".days").text(reservation_to - reservation_from);
+                var users = parseInt($("#selectUsers").val());
+                if (per_person == true) {
+                  $(".users").text(users);
+                  $(".price").text((reservation_to - reservation_from).toFixed(0) * price * users);
+                  $(".trip-preview").slideDown();
+                } else { 
+                  $(".users").text(users);
+                  $(".price").text((reservation_to - reservation_from).toFixed(0) * price);
+                  $(".trip-preview").slideDown();
+                };
+              };
             };
         }
     },datepickersOpt));
@@ -58,19 +79,69 @@ $(function() {
             $(".res_to").text($("#reservation_to").val());
             $(".days").text((reservation_to - reservation_from).toFixed(0));
             var users = parseInt($("#selectUsers").val());
-            $(".price").text((reservation_to - reservation_from).toFixed(0) * price * users);
+            if (per_person == true) {
+              $(".users").text(users);
+              $(".price").text((reservation_to - reservation_from).toFixed(0) * price * users);
+              $(".trip-preview").slideDown();
+            } else { 
+              $(".users").text(users);
+              $(".price").text((reservation_to - reservation_from).toFixed(0) * price);
+              $(".trip-preview").slideDown();
+            };
         }
     },datepickersOpt));
 	
     $("#selectUsers").change(function(e) {
+        if (hunttype == "Day trip") {
+          if ($("#reservation_from").val().length) {
+            var reservation_from = (Date.parse($("#reservation_from").val())) / 86400000;
+            $(".res_from").text($("#reservation_from").val());
+            var users = parseInt($("#selectUsers").val());
+            if (per_person == true) {
+              $(".users").text(users);
+              $(".price").text(price * users);
+              $(".trip-preview").slideDown();
+            } else { 
+              $(".users").text(users);
+              $(".price").text(price);
+              $(".trip-preview").slideDown();
+            };
+          };
+        } else {
+          if ($("#reservation_to").val().length) {
+            var reservation_to = (Date.parse($("#reservation_to").val())) / 86400000;
+            $(".res_to").text($("#reservation_to").val());
+            $(".days").text(reservation_to - reservation_from);
+            var users = parseInt($("#selectUsers").val());
+            if (per_person == true) {             
+              $(".users").text(users);
+              $(".price").text((reservation_to - reservation_from).toFixed(0) * price * users);
+              $(".trip-preview").slideDown();
+            } else { 
+              $(".users").text(users);
+              $(".price").text((reservation_to - reservation_from).toFixed(0) * price);
+              $(".trip-preview").slideDown();
+            };
+          };
+        };
         if ($("#reservation_to").val().length && $("#reservation_from").val().length) {
             var reservation_from = (Date.parse($("#reservation_from").val())) / 86400000;
             $(".res_from").text($("#reservation_from").val());
             var reservation_to = (Date.parse($("#reservation_to").val())) / 86400000;
             $(".res_to").text($("#reservation_to").val());
+            $(".days").text(reservation_to - reservation_from);
             var users = parseInt($("#selectUsers").val());
-            $(".price").text((reservation_to - reservation_from).toFixed(0) * price * users);
+            if (per_person == true) {
+              $(".users").text(users);
+              $(".price").text((reservation_to - reservation_from).toFixed(0) * price * users);
+              $(".trip-preview").slideDown();
+            } else { 
+              $(".users").text(users);
+              $(".price").text((reservation_to - reservation_from).toFixed(0) * price);
+              $(".trip-preview").slideDown();
+            };
         };
+
     }).change();
 });
 
@@ -93,9 +164,3 @@ $(document).ready(function() {
         }
     });
 });
-
-$(document).ready(function() {
-  var reservation_to = Date.parse($("#reservation_to").val());
-  var reservation_from = Date.parse($("#reservation_from").val());
-  $(".trip_length").text(reservation_from);
-})
