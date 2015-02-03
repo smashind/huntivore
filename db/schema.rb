@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128113906) do
+ActiveRecord::Schema.define(version: 20150203115227) do
 
   create_table "favorites", force: true do |t|
     t.integer  "user_id"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20150128113906) do
     t.string   "hunttype"
     t.string   "location"
     t.integer  "price"
-    t.boolean  "available"
+    t.boolean  "available",    default: true
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

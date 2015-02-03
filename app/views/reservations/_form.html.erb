@@ -38,11 +38,27 @@
 
       <div class="trip-preview">
       	<h4>Reservation Details</h4>
-				<p>From: <span class="res_from"> </span></p>
-				<p>To: <span class="res_to"> </span></p>
-				<p>Trip Length: <span class="days"> </span></p>
-				<p>Participants: <span class="users"> </span></p>
-				<p>Price: <span class="price"> </span></p>
+      	<div class="row">
+	      	<div class="col-sm-5 col-xs-6">
+						<p><strong>From:</strong> <span class="res_from"> </span></p>
+					</div>
+					<div class="col-sm-5 col-xs-6">
+						<p><strong>To:</strong> <span class="res_to"> </span></p>
+	        </div>
+	      </div>
+	      <div class="row">
+					<div class="col-sm-5 col-xs-6">
+						<p><strong>Nights:</strong> <span class="days"> </span></p>
+	        </div>
+					<div class="col-sm-5 col-xs-6">
+						<p><strong>Participants:</strong> <span class="users"> </span></p>
+	        </div>
+	      </div>
+	      <div class="row" style="border-bottom: none">
+					<div class="col-sm-8">
+						<p><strong>Price:</strong> $<span class="price"> </span></p>
+					</div>
+			  </div>
 			</div>
 
 			<%= f.hidden_field :property_id, value: @property.id %>

@@ -48,10 +48,16 @@
   </div>
 
   <div class='col-md-5 col-md-offset-1 col-sm-6 col-xs-12'>
-		<% if @property.hunttype == "Overnight" %>
-			<%= render partial: "reservations/form" %>
+  	<% if @property.available %>
+			<% if @property.hunttype == "Overnight" %>
+				<%= render partial: "reservations/form" %>
+			<% else %>
+			  <%= render partial: "reservations/day_form" %>
+			<% end %>
 		<% else %>
-		  <%= render partial: "reservations/day_form" %>
+		  <div class="not-available">
+		    <h4>Currently not available to book.</h4>
+		  </div>
 		<% end %>
   </div>
 <script><%= javascript_variables %></script>

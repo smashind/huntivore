@@ -13,9 +13,27 @@
 <div class="form-horizontal">
 	<fieldset>
 		<div class="form-group">
+			<%= f.label :available, "Available to book?", class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<div class="radio">
+					<%= f.radio_button(:available, true) %>
+					<%= label(:available, "Yes") %>
+				</div>
+				<div class="radio">
+					<%= f.radio_button(:available, false) %>
+					<%= label(:available, "No") %>
+			  </div>
+			</div>
+		</div>
+
+		<div class="form-group">
 			<%= f.label :hunttype, "Type of Hunt", class: "col-md-4 control-label" %>
 			<div class="col-md-8">
-				<%= f.select :hunttype, options_for_select(["Overnight","Day trip"]), {}, { autofocus: true, class: "form-control" } %>
+				<% if @property.hunttype == "Overnight" %>
+					<%= f.select :hunttype, options_for_select(["Overnight","Day trip"]), {}, { autofocus: true, class: "form-control" } %>
+				<% else %>
+				  <%= f.select :hunttype, options_for_select(["Day trip","Overnight"]), {}, { autofocus: true, class: "form-control" } %>
+				<% end %>
 			</div>
 		</div>
 

@@ -90,6 +90,20 @@
 		</div>
 
 		<div class="form-group">
+			<%= f.label :available, "Available to book?", class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<div class="radio">
+					<%= f.radio_button(:available, true) %>
+					<%= label(:available, "Yes") %>
+				</div>
+				<div class="radio">
+					<%= f.radio_button(:available, false) %>
+					<%= label(:available, "No (save as draft)") %>
+			  </div>
+			</div>
+		</div>
+
+		<div class="form-group">
 			<div class="col-md-8 col-md-offset-4">
 				<%= f.submit "Submit Property", class: "btn btn-primary center-block" %>
 			</div>
