@@ -90,11 +90,27 @@ describe "ReservationPages" do
       expect(current_path).to eq(reservation_path(1))
     end
 
+    it "should be pending" do 
+      expect(page).to have_content("Pending")
+    end
+
+    it "should have a pay now button" do 
+      visit reservation_path(1)
+      expect(page).to have_selector(:button, "Make Your Payment Now")
+    end
+
     it "should show to the property owner" do 
       click_link "Logout"
       sign_in user
       visit reservation_path(1)
       expect(current_path).to eq(reservation_path(1))
+    end
+
+    it "should have a cancel button" do 
+      click_link "Logout"
+      sign_in user
+      visit reservation_path(1)
+      expect(page).to have_content('Cancel')
     end
 
     it "should not show for a non logged in user" do 

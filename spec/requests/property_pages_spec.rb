@@ -23,7 +23,6 @@ describe "PropertyPages" do
 			end
 
 			it "should create a property" do 
-
 				expect { click_button 'Submit Property' }.to change(Property, :count).by(1)
 			end
 
@@ -179,7 +178,85 @@ describe "PropertyPages" do
 			visit property_path(listing)
 			expect(page).to have_css("i.fa.fa-star")
 		end
-
 	end
 
+	describe "unpublishing property" do 
+		before do 
+			visit edit_property_path(listing)
+			page.choose('property_available_false')
+			click_button('Update Property')
+			visit property_path(listing)
+		end
+
+		it "should not be reservable" do 
+			expect(page).to_not have_content("Reserve this Property")
+		end
+
+		it "should not show on the properties page" do 
+			visit properties_path
+			expect(page).to_not have_content("Duck Hunt")
+		end
+	end
+
+	describe "making price per person" do 
+		before { visit property_path(listing) }
+
+		it "should have per person pricing" do 
+			expect(page).to have_content("(per person)")
+		end
+
+		it "should have nights under the reservation" do 
+			expect(page).to have_css("span.days")
+		end
+	end
+
+	describe "making trip price total" do 
+		before do 
+      visit edit_property_path(listing)
+			page.choose('property_per_person_false')
+			click_button('Update Property')
+			visit property_path(listing)
+		end
+
+		it "price should be total" do 
+			expect(page).to have_content("total")
+		end
+	end
+
+	describe "making an overnight hunt" do 
+		before { visit property_path(listing) }
+
+		it "should be an overnight hunt" do 
+			expect(page).to have_content("Overnight")
+		end
+
+		it "should have a to field" do 
+			expect(page).to have_css("#reservation_to")
+		end
+	end
+
+	describe "making a day hunt" do 
+		before do 
+			visit edit_property_path(listing)
+			select "Day trip", from: "property[hunttype]"
+			click_button('Update Property')
+			visit property_path(listing)
+		end
+
+		it "should be a day trip" do 
+			expect(page).to have_content("Day trip")
+		end
+
+		it "should not have a to field" do 
+			expect(page).to_not have_css("#reservation_to")
+		end
+	end
+
+	describe "accommodates options" do 
+		before { visit property_path(listing) }
+
+		it "should have 4 as an option" do 
+			expect(page.all('select#selectUsers option').map(&:value)).to eq(%w(1 2 3 4))
+		end
+	end
 end
