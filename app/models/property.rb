@@ -25,4 +25,13 @@ class Property < ActiveRecord::Base
     new_or_found_games = game_names.collect { |name| Game.find_or_create_by(name: name) }
     self.games = new_or_found_games
   end
+
+  def self.search(search)
+    search_condition = "%" + search + "%"
+    if where('title LIKE ? OR description LIKE ? OR location LIKE ?', search_condition, search_condition, search_condition).any?
+      where('title LIKE ? OR description LIKE ? OR location LIKE ?', search_condition, search_condition, search_condition)
+    else
+      joins(:games).where(games: { name: search })
+    end
+  end
 end

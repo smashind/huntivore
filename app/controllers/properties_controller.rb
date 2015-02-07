@@ -6,6 +6,10 @@ class PropertiesController < ApplicationController
 		@properties = Property.where(available: true).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
 	end
 
+	def search
+		@properties = Property.search params[:search]
+	end
+
 	def show
 		@reservation = Reservation.new
 		@property_attachments = @property.property_attachments.all

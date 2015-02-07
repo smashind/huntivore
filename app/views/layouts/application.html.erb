@@ -27,6 +27,13 @@
         <li><%= link_to "View all Properties", properties_path %></li>
         <li><%= link_to "Hunts by Game", games_path %></li>
       </ul>
+
+      <div class="navbar-form navbar-left">
+        <%= form_tag(properties_path, action: 'search', :method => 'get') do %>
+          <%= text_field_tag :search, params[:search], class: "form-control col-lg-8 col-md-4 col-sm-2", placeholder: "Search hunts" %>
+        <% end %>
+      </div>      
+      
       <ul class="nav navbar-nav navbar-right">
       	<% if user_signed_in? %>
       	  <li class="dropdown">

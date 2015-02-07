@@ -1,3 +1,14 @@
+<% if params[:search] %>
+<h1>Search Results</h1>
+  <%= pluralize(@properties.search(params[:search]).count, 'result') %> found
+  <% @properties.search(params[:search]).each do |p| %>
+    <p><strong><%= link_to "#{p.title}", p %><strong> - <%= p.location %> ($<%= p.price %>/night)</p>
+  <% end %>
+  <div style="margin-top: 20px">
+    <%= link_to "Go back and search again?", root_path, :class => "btn btn-info" %>
+  </div>
+<% else %>
+
 <h1>Current Listings</h1>
 
 <ul>
@@ -5,6 +16,7 @@
 		<li><strong><%= link_to "#{p.title}", p %><strong> - <%= p.location %> ($<%= p.price %>/night)</li>
 	<% end %>
 </ul>
-<%= will_paginate @properties, renderer: BootstrapPagination::Rails %>
 
 
+
+<% end %>

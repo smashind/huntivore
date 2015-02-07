@@ -28,3 +28,13 @@
 		width: 100%;
 	}
 }
+.navbar-form.navbar-left {
+	input[type="text"] {
+    @media (max-width: 991px) and (min-width: 768px) {
+      width: 135px;
+    }
+    @media (max-width: 767px) {
+      width: 200px;
+    }
+  }
+}
