@@ -27,11 +27,20 @@ class Property < ActiveRecord::Base
   end
 
   def self.search(search)
-    search_condition = "%" + search + "%"
-    if where('title LIKE ? OR description LIKE ? OR location LIKE ?', search_condition, search_condition, search_condition).any?
-      where('title LIKE ? OR description LIKE ? OR location LIKE ?', search_condition, search_condition, search_condition)
+    if Rails.env.production?
+      search_condition = "%" + search + "%"
+      if where('title ILIKE ? OR description ILIKE ? OR location ILIKE ?', search_condition, search_condition, search_condition).any?
+        where('title ILIKE ? OR description ILIKE ? OR location ILIKE ?', search_condition, search_condition, search_condition)
+      else
+        joins(:games).where(games: { name: search })
+      end
     else
-      joins(:games).where(games: { name: search })
+      search_condition = "%" + search + "%"
+      if where('title LIKE ? OR description LIKE ? OR location LIKE ?', search_condition, search_condition, search_condition).any?
+        where('title LIKE ? OR description LIKE ? OR location LIKE ?', search_condition, search_condition, search_condition)
+      else
+        joins(:games).where(games: { name: search })
+      end 
     end
   end
 end

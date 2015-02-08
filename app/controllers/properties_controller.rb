@@ -1,6 +1,9 @@
 class PropertiesController < ApplicationController
 	before_action :set_property, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, only: [:new, :edit, :destroy]
+	if Rails.env.development?
+	  Excon.defaults[:ssl_verify_peer] = false
+	end
 
 	def index
 		@properties = Property.where(available: true).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
