@@ -46,7 +46,7 @@
 	  }
 	}
 }
-@media (max-width: 367px) {
+@media (max-width: 547px) {
 	.form-horizontal.reserve {
 	  .col-xxs-12 {
 	    width: 100%;
@@ -54,6 +54,13 @@
 	  }
 	  input.btn {
 	    margin-top: -15px;
+	  }
+	}
+}
+@media (max-width: 991px) and (min-width: 768px) {
+	.form-horizontal.reserve {
+	  .input-group {
+	    margin-bottom: 15px;
 	  }
 	}
 }

@@ -1,0 +1,24 @@
+<h1>Current Listings</h1>
+<div class="all-properties">
+  <% @properties.each do |p| %>
+    <div class="row">
+      <div class="col-md-6">
+        <% if p.property_attachments.any? %>
+      	  <% p.property_attachments[0,1].each do |a| %>
+            <%= link_to image_tag(a.image_url(:thumb)), p %>
+          <% end %>
+        <% else %>
+            <%= link_to image_tag('https://s3-us-west-1.amazonaws.com/huntivore/images/properties/default_huntivore_property_image.png'), p %>
+        <% end %>
+        <h4><%= link_to "#{p.title}", p %></h4>
+        <%= p.location %> ($<%= p.price %><% if p.hunttype == "Overnight" %>/night<% end %><% if p.per_person? %>/person<% end %>)
+        <p>Accommodates: <%= p.accommodates %></p>
+        <p><%= truncate("#{p.description}", length: 20 ) { link_to "See more", p } %></p>
+        <% p.games.each do |game| %>
+          <%= link_to game.name, game_path(game), class: "btn btn-primary btn-xs" %>
+        <% end %>
+      </div>
+    </div> 
+  <% end %>
+</div>
+<%= will_paginate @properties, renderer: BootstrapPagination::Rails %>

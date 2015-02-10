@@ -10,14 +10,14 @@
 	  	<%= form_for(@reservation) do |f| %>
 	  	
 	  	<div class="form-group">
-		  	<div class="col-sm-4 col-xs-4 col-xxs-12">
+		  	<div class="col-md-4 col-sm-12 col-xs-4 col-xxs-12">
 		  		<div class="input-group">
 		  			<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
 			    	<%= f.text_field :from, class: "form-control", placeholder: "Start" %>
 			    </div>
 			  </div>
 
-		  	<div class="col-sm-4 col-xs-4 col-xxs-12">
+		  	<div class="col-md-4 col-sm-12 col-xs-4 col-xxs-12">
 		  		<div class="input-group">
 		  			<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
 		  			<% if Rails.env.test? %>
@@ -28,7 +28,7 @@
 	  		  </div>
 			  </div>
 
-			  <div class="col-sm-4 col-xs-4 col-xxs-12">
+			  <div class="col-md-4 col-sm-12 col-xs-4 col-xxs-12">
 			  	<div class="input-group">
 				  	<span class="input-group-addon"><i class="fa fa-user"></i></span>
 				  	<%= f.select(:guests, options_for_select(1..@property.accommodates), {}, { class: "form-control", id: "selectUsers"}) %>
