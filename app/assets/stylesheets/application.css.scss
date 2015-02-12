@@ -16,17 +16,55 @@
 // And finally bootswatch style itself
 @import "bootswatch/united/bootswatch";
 
+.container.body {
+	min-height: 400px;
+}
 .jumbotron.home {
+//  background: rgba(150, 150, 150, 1);
+//  background: none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  @media (min-width: 768px) {
+    height: 387px;
+  }
+  h1 {
+    font-weight: bold;
+//    color: #FFF;
+//    text-shadow: 2px 2px 4px #000000;
+    @media (max-width: 1199px) and (min-width: 992px) {
+      font-size: 50px;
+    }
+  }
+  p {
+//    color: #000;
+//    text-shadow: 2px 2px 3px #000000;
+    font-size: 26px;
+  }
+  h2 {
+    color: #FFF;
+    text-shadow: 2px 2px 2px #000000;
+  }
 }
 .form-horizontal.home {
-	padding: 0 20px;
+	padding: 30px;
+	background: rgba(150, 150, 150, 0.5);
+  
+	-webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 	h2 {
 		text-align: center;
+		margin-top: 0;
+    color: #FFF;
+    text-shadow: 0px 0px 10px #000000;
+    font-weight: bold;
 	}
 	.btn {
 		display: block;
 		width: 100%;
-	}
+		font-size: 20px;
+	}	
 }
 .navbar-form.navbar-left {
 	input[type="text"] {
@@ -37,4 +75,30 @@
       width: 200px;
     }
   }
+}
+footer {
+  margin-top: 50px;
+	background-color: #313236;
+	box-shadow: 0px 500px 0px 500px #313236; 
+	.row {
+	  padding: 20px;
+	  .col-sm-4, .col-sm-3 {
+	    h2 {
+	      color: #FFF;
+	      font-size: 32px;
+	      font-style: italic;
+	    }
+	    h3 {
+	      color: #FFF;
+	      font-size: 22px;
+	    }
+	    p {
+	      color: #FFF;
+	      a {
+	        text-decoration: none;
+	        padding-bottom: 5px;
+	      }
+	    }
+	  }
+	}
 }

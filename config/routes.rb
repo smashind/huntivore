@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
-  get 'pages/faq'
-  get 'pages/contact'
+  match 'FAQ', to: 'pages#faq', via: :get
+  match 'contact', to: 'pages#contact', via: :get
+  match 'terms', to: 'pages#terms', via: :get
+  match 'about', to: 'pages#about', via: :get
   get 'pages/success'
   devise_for :users
   resources :users do 
