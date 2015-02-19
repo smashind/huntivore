@@ -32,4 +32,14 @@ class ReservationMailer < ActionMailer::Base
     @user = reservation.property.user
     mail(to: @resmaker.email, subject: 'Your reservation was canceled')
   end
+
+  def paid_night_hunts(paid_night)
+    @paid_night = paid_night
+    mail(to: 'danthemanvt@gmail.com', subject: 'Paid night hunts')
+  end
+
+  def paid_day_hunts(paid_day)
+    @paid_day = paid_day
+    mail(to: 'danthemanvt@gmail.com', subject: 'Paid day hunts')
+  end
 end

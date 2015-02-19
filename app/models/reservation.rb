@@ -21,6 +21,30 @@ class Reservation < ActiveRecord::Base
     end
   end
 
+  def self.update_statuses
+    # Update pending reservations to missed
+    @pending_night = where(status: "Pending").where.not(to: Date.today..Float::INFINITY)
+    where(status: "Pending").where.not(to: Date.today..Float::INFINITY).update_all(status: "Missed")    
+    @pending_day = where(status: "Pending", to: nil).where.not(from: Date.today..Float::INFINITY)
+    where(status: "Pending", to: nil).where.not(from: Date.today..Float::INFINITY).update_all(status: "Missed")
+    
+    # Update paid reservations to completed
+    @paid_night = where(status: "Paid").where.not(to: Date.today..Float::INFINITY)
+    if @paid_night.any?
+      ReservationMailer.paid_night_hunts(@paid_night).deliver
+    end
+    where(status: "Paid").where.not(to: Date.today..Float::INFINITY).update_all(status: "Completed")
+    @paid_day = where(status: "Paid", to: nil).where.not(from: Date.today..Float::INFINITY)
+    if @paid_day.any?
+      ReservationMailer.paid_day_hunts(@paid_day).deliver
+    end
+    where(status: "Paid", to: nil).where.not(from: Date.today..Float::INFINITY).update_all(status: "Completed")
+  end
+
+  def self.testing
+    puts "This is a test"
+  end
+
   private
 
     def date_order

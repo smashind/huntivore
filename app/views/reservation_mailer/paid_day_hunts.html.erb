@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hi boss,
+
+    The following day hunts were completed and the owners can be paid via Paypal.</p>
+
+    <ul>
+    <% @paid_day.each do |res| %>
+      <li><strong>Reservation ID:</strong> <%= res.id %> - <%= res.property.user.full_name %>: <%= res.property.user.email %></li>
+    <% end %>
+    </ul>
+
+    <p>Thanks,<br />
+    Hunbot 3000</p>
+  </body>
+</html>
