@@ -41,11 +41,11 @@ $(function() {
           if (hunttype == "Day trip") {
             if (per_person == true) {
               $(".users").text(users);
-              $(".price").text(price * users);
+              $(".price").text(((price * users) * fee) + price * users);
               $(".trip-preview").slideDown();
             } else { 
               $(".users").text(users);
-              $(".price").text(price);
+              $(".price").text((price * fee) + price);
               $(".trip-preview").slideDown();
             };
           } else {
@@ -56,11 +56,11 @@ $(function() {
               var users = parseInt($("#selectUsers").val());
               if (per_person == true) {
                 $(".users").text(users);
-                $(".price").text((reservation_to - reservation_from).toFixed(0) * price * users);
+                $(".price").text((((reservation_to - reservation_from).toFixed(0) * price * users) * fee) + (reservation_to - reservation_from).toFixed(0) * price * users);
                 $(".trip-preview").slideDown();
               } else { 
                 $(".users").text(users);
-                $(".price").text((reservation_to - reservation_from).toFixed(0) * price);
+                $(".price").text((((reservation_to - reservation_from).toFixed(0) * price) * fee) + (reservation_to - reservation_from).toFixed(0) * price);
                 $(".trip-preview").slideDown();
               };
             };
@@ -81,11 +81,11 @@ $(function() {
           var users = parseInt($("#selectUsers").val());
           if (per_person == true) {
             $(".users").text(users);
-            $(".price").text((reservation_to - reservation_from).toFixed(0) * price * users);
+            $(".price").text((((reservation_to - reservation_from).toFixed(0) * price * users) * fee) + (reservation_to - reservation_from).toFixed(0) * price * users);
             $(".trip-preview").slideDown();
           } else { 
             $(".users").text(users);
-            $(".price").text((reservation_to - reservation_from).toFixed(0) * price);
+            $(".price").text((((reservation_to - reservation_from).toFixed(0) * price) * fee) + (reservation_to - reservation_from).toFixed(0) * price);
             $(".trip-preview").slideDown();
           };
       }
@@ -99,11 +99,11 @@ $(function() {
         var users = parseInt($("#selectUsers").val());
         if (per_person == true) {
           $(".users").text(users);
-          $(".price").text(price * users);
+          $(".price").text(((price * users) * fee) + price * users);
           $(".trip-preview").slideDown();
         } else { 
           $(".users").text(users);
-          $(".price").text(price);
+          $(".price").text((price * fee) + price);
           $(".trip-preview").slideDown();
         }
       }
@@ -121,11 +121,11 @@ $(function() {
         var users = parseInt($("#selectUsers").val());
         if (per_person == true) {             
           $(".users").text(users);
-          $(".price").text((reservation_to - reservation_from).toFixed(0) * price * users);
+          $(".price").text((((reservation_to - reservation_from).toFixed(0) * price * users) * fee) + (reservation_to - reservation_from).toFixed(0) * price * users);
           $(".trip-preview").slideDown();
         } else { 
           $(".users").text(users);
-          $(".price").text((reservation_to - reservation_from).toFixed(0) * price);
+          $(".price").text((((reservation_to - reservation_from).toFixed(0) * price) * fee) + (reservation_to - reservation_from).toFixed(0) * price);
           $(".trip-preview").slideDown();
         }
       } else if ($("#reservation_to").val().length && $("#reservation_from").val().length) {
@@ -137,11 +137,11 @@ $(function() {
         var users = parseInt($("#selectUsers").val());
         if (per_person == true) {
           $(".users").text(users);
-          $(".price").text((reservation_to - reservation_from).toFixed(0) * price * users);
+          $(".price").text((((reservation_to - reservation_from).toFixed(0) * price * users) * fee) + (reservation_to - reservation_from).toFixed(0) * price * users);
           $(".trip-preview").slideDown();
         } else { 
           $(".users").text(users);
-          $(".price").text((reservation_to - reservation_from).toFixed(0) * price);
+          $(".price").text((((reservation_to - reservation_from).toFixed(0) * price) * fee) + (reservation_to - reservation_from).toFixed(0) * price);
           $(".trip-preview").slideDown();
         }
       }

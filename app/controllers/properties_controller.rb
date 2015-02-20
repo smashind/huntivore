@@ -13,7 +13,7 @@ class PropertiesController < ApplicationController
 	def show
 		@reservation = Reservation.new
 		@property_attachments = @property.property_attachments.all
-		javascript_variables(price: @property.price, per_person: @property.per_person, hunttype: @property.hunttype)
+		javascript_variables(price: @property.price, per_person: @property.per_person, hunttype: @property.hunttype, fee: HUNTIVORE_FEE)
 	end
 
 	def new

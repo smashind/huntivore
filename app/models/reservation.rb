@@ -11,13 +11,13 @@ class Reservation < ActiveRecord::Base
 
   def trip_price
     if to.nil? && !property.per_person
-      property.price
+      property.price + (property.price * HUNTIVORE_FEE)
     elsif to.nil? && property.per_person
-      property.price * guests
+      property.price * guests + ((property.price * guests) * HUNTIVORE_FEE)
     elsif property.per_person
-  	  Array(from..to-1).count * property.price * guests
+  	  Array(from..to-1).count * property.price * guests + ((Array(from..to-1).count * property.price * guests) * HUNTIVORE_FEE)
     else
-      Array(from..to-1).count * property.price
+      Array(from..to-1).count * property.price + ((Array(from..to-1).count * property.price) * HUNTIVORE_FEE)
     end
   end
 

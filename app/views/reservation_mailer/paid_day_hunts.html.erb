@@ -10,7 +10,7 @@
 
     <ul>
     <% @paid_day.each do |res| %>
-      <li><strong>Reservation ID:</strong> <%= res.id %> - <%= res.property.user.full_name %>: <%= res.property.user.email %></li>
+      <li><strong>Reservation ID:</strong> <%= res.id %> - <%= res.property.user.full_name %>: <%= res.property.user.email %> - <strong><%= res.trip_price %></strong></li>
     <% end %>
     </ul>
 

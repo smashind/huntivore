@@ -16,4 +16,8 @@ module ReservationsHelper
     	true 
 		end
 	end
+
+	def fee_percent(amount)
+		"#{(amount * 100).to_i}%"
+	end
 end

@@ -1,0 +1,1 @@
+HUNTIVORE_FEE = 0.08
