@@ -40,7 +40,7 @@ describe "PropertyPages" do
 			it "should be listed on properties page" do
 			  click_button 'Submit Property' 
 				visit properties_path
-				expect(page).to have_content("Duck Hunt - Alabama ($99/night)")
+				expect(page).to have_content("($99/night/person)")
 			end
 		end
 

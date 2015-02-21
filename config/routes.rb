@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   match 'terms', to: 'pages#terms', via: :get
   match 'about', to: 'pages#about', via: :get
   get 'pages/success'
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'registrations'}
   resources :users do 
     get 'trips'
     get 'hosting'
