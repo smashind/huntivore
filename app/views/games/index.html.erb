@@ -2,6 +2,8 @@
 
 <div id="all-game">
 	<% @games.each do |game| %>
-		<%= link_to game.name, game_path(game), class: "btn btn-primary btn-lg" %>
+	  <% if game.properties.any? %>
+		  <%= link_to game.name, game_path(game), class: "btn btn-primary btn-lg" %>
+		<% end %>
 	<% end %>
 </div>

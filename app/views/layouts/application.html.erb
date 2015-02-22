@@ -10,6 +10,12 @@
     background-size: 100%;
   }
   </style>
+  <% else %>
+  <style>
+  body {
+    background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/bg_1.jpg');
+  }
+  </style>
   <% end %>
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/pepper-grinder/jquery-ui.css", "application" %>

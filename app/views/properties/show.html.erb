@@ -48,16 +48,22 @@
   </div>
 
   <div class='col-md-6 col-sm-6 col-xs-12'>
-  	<% if @property.available %>
-			<% if @property.hunttype == "Overnight" %>
-				<%= render partial: "reservations/form" %>
+    <% if user_signed_in? %>
+	  	<% if @property.available %>
+				<% if @property.hunttype == "Overnight" %>
+					<%= render partial: "reservations/form" %>
+				<% else %>
+				  <%= render partial: "reservations/day_form" %>
+				<% end %>
 			<% else %>
-			  <%= render partial: "reservations/day_form" %>
+			  <div class="not-available">
+			    <h4>Currently not available to book.</h4>
+			  </div>
 			<% end %>
 		<% else %>
-		  <div class="not-available">
-		    <h4>Currently not available to book.</h4>
-		  </div>
-		<% end %>
+		<div class="not-available">
+	    <h4>Please <%= link_to "create a free account", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %> to book this hunt.</h4>
+	  </div>
+	  <% end %>
   </div>
 <script><%= javascript_variables %></script>
