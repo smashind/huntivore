@@ -22,10 +22,12 @@
 					<% @hosted_trips.each do |res| %>
 						<% if res.status == "Pending" %>
 					  	<tr class='warning'>
-					  <% elsif res.status == "Canceled" %>
+					  <% elsif res.status == "Canceled" || res.status == "Missed" %>
 					  	<tr class='danger'>
-					  <% else %>
+					  <% elsif res.status == "Paid" %>
 					  	<tr class='success'>
+					  <% elsif res.status == "Completed" %>
+					    <tr class="info">
 					  <% end %>
 						  <td><%= link_to "#{res.property.title}", property_path(res.property) %></td>
 						  <td><%= link_to "View Reservation", res %></td>
