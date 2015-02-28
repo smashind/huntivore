@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
-  match 'FAQ', to: 'pages#faq', via: :get
+  match 'faq', to: 'pages#faq', via: :get
   match 'contact', to: 'pages#contact', via: :get
   match 'terms', to: 'pages#terms', via: :get
   match 'about', to: 'pages#about', via: :get

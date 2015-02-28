@@ -16,13 +16,18 @@ describe 'User pages' do
 		end
 
 		it "should redirect to user's page" do 
+			check("user_accepted_terms")
 			click_button "SIGN UP (FREE)"
 			expect(current_path).to eq(user_path(1))
 		end
+
+		it "should not be valid without accepting the terms" do  
+			expect { click_button "SIGN UP (FREE)" }.to change(User, :count).by(0)
+		end
 	end
 
-	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", twitter: "huntivore") }
-	let(:user2) { User.create(first_name: "Gary", last_name: "Johnson", email: "gary@example.com", password: "foobarrr" ) }
+	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", twitter: "huntivore", accepted_terms: true) }
+	let(:user2) { User.create(first_name: "Gassy", last_name: "Pol", email: "garsspol@example.com", password: "foobarrr", accepted_terms: true ) }
 	let(:listing) { user.properties.create(title: "Duck Hunt", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, price: 99) }
 	let(:res) { user2.reservations.create(property_id: listing.id, from: "05/25/2015", to: "05/27/2015") }
 
@@ -98,7 +103,7 @@ describe 'User pages' do
 
 		describe "trip and hosting tabs" do 
 			
-			let!(:user2) { User.create(first_name: "Gary", last_name: "Johnson", email: "gary@example.com", password: "foobarrr" ) }
+			let!(:user2) { User.create(first_name: "Gary", last_name: "Johnson", email: "gary@example.com", password: "foobarrr", accepted_terms: true ) }
 			let!(:listing) { user.properties.create(title: "Duck Hunt", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, price: 99) }
 			let!(:res) { user2.reservations.create(property_id: listing.id, from: "05/25/2015", to: "05/27/2015") }
 			

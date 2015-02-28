@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :accepted_terms, presence: true
 
   has_many :properties, dependent: :destroy
   has_many :reservations, dependent: :destroy

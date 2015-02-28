@@ -13,29 +13,38 @@
 
 			  <div class="form-group">
 			  	<div class="col-sm-6 col-xs-6">
-			  		<%= f.text_field :first_name, class: "form-control", placeholder: "First Name" %>
+			  		<%= f.text_field :first_name, class: "form-control", placeholder: "First Name", required: true %>
 			  	</div>
 
 			  	<div class="col-sm-6 col-xs-6">
-			  		<%= f.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+			  		<%= f.text_field :last_name, class: "form-control", placeholder: "Last Name", required: true %>
 			  	</div>
 			  </div>
 
 			  <div class="form-group">
 			  	<div class="col-lg-12">
-			  		<%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+			  		<%= f.email_field :email, class: "form-control", placeholder: "Email", required: true %>
 			  	</div>
 			  </div>
 
 			  <div class="form-group">
 			  	<div class="col-lg-12">	
-			  		<%= f.password_field :password, class: "form-control", placeholder: "Password"  %>
+			  		<%= f.password_field :password, class: "form-control", placeholder: "Password", required: true  %>
 			  	</div>
 			  </div>
 
 			  <div class="form-group">
 			  	<div class="col-lg-12">	
-			  		<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation"  %>
+			  		<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation", required: true  %>
+			  	</div>
+			  </div>
+
+			  <div class="form-group terms">
+			  	<div class="col-xs-1">	
+			  		<%= f.check_box :accepted_terms, class: "form-control", required: true %>
+			  	</div>
+			  	<div class="col-xs-10">
+			  	  <%= f.label :accepted_terms, "I accept the #{link_to 'Terms', terms_path, target: '_blank'}".html_safe %>
 			  	</div>
 			  </div>
 

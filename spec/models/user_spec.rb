@@ -6,7 +6,8 @@ describe User do
 			first_name: "John",
 			last_name: "Doe",
 			email: "john@example.com",
-			password: "password")
+			password: "password",
+	    accepted_terms: true)
 	}
 
 	subject { @user }

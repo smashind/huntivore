@@ -9,7 +9,7 @@ describe "Pages" do
 		it { should have_selector('h1', text: "Find Time to Hunt") }
 	end
 
-	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr") }
+	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", accepted_terms: true) }
 
 	describe "Home page when signed in" do 
 		before { sign_in user }
