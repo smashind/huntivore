@@ -41,7 +41,7 @@
 
 			  <div class="form-group terms">
 			  	<div class="col-xs-1">	
-			  		<%= f.check_box :accepted_terms, class: "form-control", required: true %>
+			  		<%= f.check_box :accepted_terms, required: true %>
 			  	</div>
 			  	<div class="col-xs-10">
 			  	  <%= f.label :accepted_terms, "I accept the #{link_to 'Terms', terms_path, target: '_blank'}".html_safe %>
