@@ -1,3 +1,8 @@
+<% content_for :head do %>
+  <title>Huntivore | Trips Hosted by <%= @user.full_name %></title>
+  <meta name="description" content="Viewing trips hosted by <%= @user.full_name %>.">
+<% end %>
+
 <% if is_owner? @user %>
 	<div id="user-profile">
 		<%= render partial: "profile_top" %>

@@ -1,3 +1,8 @@
+<% content_for :head do %>
+  <title>Huntivore | <%= @game.name.titleize %> Hunts</title>
+  <meta name="description" content="Looking for <%= @game.name.titleize %> hunts? Look no further! Check out all the options available through Huntivore.">
+<% end %>
+
 <h1><%= @game.name.titleize %> Hunts</h1>
 
 <% @game.properties.each do |property| %>

@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Huntivore</title>
+  <% if content_for?(:head) %>
+    <%= yield(:head) %>
+  <% else %>
+    <title>Huntivore | Find and List Hunting Properties</title>
+    <meta name="description" content="Easily find and list hunting properties with Huntivore, the original peer to peer marketplace for hunters.">
+  <% end %>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <% if controller_name == "pages" && action_name == "home" %>
-  <style>
-  body {
-    background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/huntivore-ducks-black-2.jpg');
-    background-size: 100%;
-  }
-  @media (max-width: 991px) {
-      body {
-        background: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/blacker-leather.jpg');
-      }
+    <style>
+    body {
+      background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/huntivore-ducks-black-2.jpg');
+      background-size: 100%;
     }
-  </style>
-  <% else %>
-  <style>
-  body {
-    background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/bg_1.jpg');
-  }
-  </style>
+    @media (max-width: 991px) {
+        body {
+          background: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/blacker-leather.jpg');
+        }
+      }
+    </style>
+    <% else %>
+    <style>
+    body {
+      background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/bg_1.jpg');
+    }
+    </style>
   <% end %>
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/pepper-grinder/jquery-ui.css", "application" %>

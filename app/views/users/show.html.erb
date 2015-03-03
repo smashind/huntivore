@@ -1,3 +1,8 @@
+<% content_for :head do %>
+  <title>Huntivore | <%= @user.full_name %>'s Huntivore Profile</title>
+  <meta name="description" content="<%= @user.full_name %> is on Huntivore. Join today and start hunting!">
+<% end %>
+
 <div id="user-profile">
 	<%= render partial: "profile_top" %>
 
