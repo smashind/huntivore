@@ -12,32 +12,22 @@
   }
   .container {
     display: block;
-    width: 80%;
+    width: 90%;
     margin: 50px auto;
   }
   .container-inner {
     display: block;
     margin: 0 auto;
   }
-  @media (min-width: 1000px) {
-    .container-inner {
-      width: 50%;
-    }
+  .logo > a > img {
+    display: block;
+    margin: 0 auto;
   }
-  @media (max-width: 999px) and (min-width: 565px) {
-    .container-inner {
-      width: 70%;
-    }
-  }
-  .logo {
-    height: 100px;
-    background: url("https://s3-us-west-1.amazonaws.com/huntivore/images/assets/logo-orange.png")no-repeat;
-  }
-  ul {
-    list-style-type: none;
+  h1, p {
+    text-align: center;
   }
   a {
-    color: #000;
+    color: #DD4B26;
     text-decoration: none;
     font-weight: bold;
   }
@@ -48,15 +38,12 @@
   <div class="container">
     <div class="container-inner">
       <div class="logo"> 
+        <a href="/"><img src="https://s3-us-west-1.amazonaws.com/huntivore/images/assets/logo-orange.png"></a>
       </div>
       <h1>Oops! That page doesn't exist.</h1>
       <p>Perhaps you can find what you are looking for here:</p>
-      <ul>
-        <li><a href="/">Huntivore home</a></li>
-        <li><a href="/users/sign_in">Login</a></li>
-        <li><a href="/about">About Huntivore</a></li>
-        <li><a href="/faq">FAQ</a></li>
-      </ul>
+      <p><a href="/">Huntivore home</a> | <a href="/users/sign_in">Login</a> | <a href="/about">About Huntivore</a> | <a href="/faq">FAQ</a>
+      </p>
       <p>Still not sure where to go? You can <a href="/contact">contact us</a> and we'll help!</p>
     </div>
   </div>
