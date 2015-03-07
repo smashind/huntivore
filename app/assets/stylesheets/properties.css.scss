@@ -22,14 +22,37 @@
 	}
 	.favorite {
 	  float: left;
-	}
-	a {
-	  padding-right: 10px;
-	  color: #efb73e;
-	  &:hover {
-	    color: #E7A413;
+	  a {
+		  padding-right: 10px;
+		  color: #efb73e;
+		  &:hover {
+		    color: #E7A413;
+		  }
 	  }
 	}
+	a.social {
+	  i {
+	    margin-left: 20px;
+	  }
+	}
+}
+.listed-by {
+  background-color: #EAE6E1;
+  padding: 10px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  min-height: 112px;
+  a {
+    img {
+      float: left;
+    }
+  }
+  p {
+    a {
+      font-weight: bold;
+      padding-left: 10px;
+    }
+  }
 }
 p.search-number {
 	margin-top: -10px;
@@ -51,6 +74,43 @@ p.search-number {
 	    font-weight: bold;
 	    margin-bottom: 0;
 	    padding-bottom: 0;
+	  }
+	}
+}
+
+.share {
+  position: fixed;
+  z-index: 99;
+  p.social {
+  	font-size: 12px;
+  	position: fixed;
+  	top: 55%;
+  	right: 0;
+  	padding: 5px 10px 10px 9px;
+  	background-color: #FFF;
+  }
+	.tw {
+	  top: 60%;
+	  position: fixed;
+	  right: 0;
+	  padding: 10px 12px 10px 12px;
+	  color: #FFF;
+	  background-color: #0084B4;
+	  &:hover {
+	    color: #FFF;
+	    background-color: #005675;
+	  }
+	}
+	.fb {
+	  top: 68%;
+	  position: fixed;
+	  padding: 10px 17px;
+	  right: 0;
+	  background-color: #45629D;
+	  color: #FFF;
+	  &:hover {
+	    color: #FFF;
+	    background-color: #324672;
 	  }
 	}
 }
