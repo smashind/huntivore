@@ -13,7 +13,7 @@
       <input type="hidden" name="currency_code" value="USD">
       <input type="hidden" name="item_name" value="<%= @reservation.property.title %>">
       <input type="hidden" name="amount" value="<%= @reservation.trip_price %>">
-      <input type="hidden" name="return" value="http://www.huntivore.com/pages/success">
+      <input type="hidden" name="return" value="http://www.huntivore.com/success">
       <input type="hidden" name="notify_url" value="http://www.huntivore.com/payment_notifications/">
       <input type="hidden" name="invoice" value="<%= @reservation.id %>">
       <input type="submit" class="btn btn-success btn-lg" value="Make Your Payment Now">
