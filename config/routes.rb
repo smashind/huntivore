@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   match 'contact', to: 'pages#contact', via: :get
   match 'terms', to: 'pages#terms', via: :get
   match 'about', to: 'pages#about', via: :get
-  get 'pages/success'
   devise_for :users, controllers: {registrations: 'registrations'}
   resources :users do 
     get 'trips'
@@ -20,6 +19,6 @@ Rails.application.routes.draw do
   resources :favorites
 
   post 'payment_notifications', :controller => 'payment_notifications', :action => 'create'
-  match "pages/success", :to => 'pages#success', via: [:get, :post]
+  match "success", :to => 'pages#success', via: :post
   match 'pages/home' => redirect('/'), via: [:get, :post]
 end

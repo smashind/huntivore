@@ -124,23 +124,23 @@ describe "PropertyPages" do
 	describe "property deletion" do
 		before { visit property_path(listing) }
 
-		it "can be deleted by the owner" do 
-			expect(page).to have_link("Delete property")
+		it "cannot be deleted by the owner" do 
+			expect(page).to_not have_link("Delete property")
 		end
 
-		it "destroys the property" do 
-			expect { click_link "Delete property" }.to change(Property, :count).by(-1)
-		end
+		# it "destroys the property" do 
+		# 	expect { click_link "Delete property" }.to change(Property, :count).by(-1)
+		# end
 
-		it "redirects to properties path" do 
-			click_link "Delete property"
-			expect(current_path).to eq(properties_path)
-		end
+		# it "redirects to properties path" do 
+		# 	click_link "Delete property"
+		# 	expect(current_path).to eq(properties_path)
+		# end
 
-		it "shows a successfully deleted message" do 
-			click_link "Delete property"
-			expect(page).to have_content("Property was successfully deleted.")
-		end
+		# it "shows a successfully deleted message" do 
+		# 	click_link "Delete property"
+		# 	expect(page).to have_content("Property was successfully deleted.")
+		# end
 
 		it "can't be deleted by non owner" do 
 			click_link "Logout"
