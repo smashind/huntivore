@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   match 'contact', to: 'pages#contact', via: :get
   match 'terms', to: 'pages#terms', via: :get
   match 'about', to: 'pages#about', via: :get
+  match 'list', to: 'pages#list', via: :get
   devise_for :users, controllers: {registrations: 'registrations'}
   resources :users do 
     get 'trips'

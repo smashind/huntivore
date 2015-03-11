@@ -1,0 +1,113 @@
+<% content_for :head do %>
+  <title>Huntivore | List Your Hunt, Property, or Lodge</title>
+  <meta name="description" content="Have a hunting property or lodge? Have a hunt you want to advertise? List it on Huntivore for free.">
+<% end %>
+
+<div class="row">
+	<div class="col-md-8">
+		<div class="jumbotron list">
+		  <h1>List Your Hunt</h1>
+		  <p>List your hunt, property, or lodge on Huntivore and make money when it gets booked. It's 100% free to list, and you don't need any technical skills. Create your free account today to get started.</p>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<%= render partial: "devise/registrations/form" %>
+	</div>
+
+</div>
+</div><!-- container body -->
+
+<section class="content-list">
+	<div class="container">
+	  <div class="row list">
+	  	<div class="col-sm-4">
+	  		<h3>Here's How Easy it Is:</h3>
+	  	</div>
+
+	    <div class="col-sm-2 col-xs-3">
+	      <i class="fa fa-user-plus fa-5x"></i>
+	      <h5>Create Your Account</h5>
+	    </div>
+
+	    <div class="col-sm-2 col-xs-3">
+	      <i class="fa fa-home fa-5x"></i>
+	      <h5>List Your Hunt</h5>
+	    </div>
+
+	    <div class="col-sm-2 col-xs-3">
+	      <i class="fa fa-check-square-o fa-5x"></i>
+	      <h5>Accept Reservations</h5>
+	    </div>
+
+	    <div class="col-sm-2 col-xs-3">
+	      <i class="fa fa-money fa-5x"></i>
+	      <h5>Get Paid</h5>
+	    </div>
+	  </div>
+	</div>
+</section>
+
+<section class="list-body">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>Yes - People Really Want to Hunt Your Land!</h2>
+			</div>
+		</div>
+
+		<div class="row">
+		  <div class="col-sm-6">
+		    <img src="https://s3-us-west-1.amazonaws.com/huntivore/images/assets/list/list-your-property.jpg" />
+		  </div>
+
+		  <div class="col-sm-6">
+			  <h3>Hunters are searching online right now</h3>
+			  <p>Hunters search for new spots online. If they can't easily find your property or lodge online, they can't book it!</p>
+			  <p>We speak from experience - before listing our lodge online, it was vacant most of the year. Since putting it online and accepting reservations, it's been booked and bringing in money every year. <strong>It's really that easy.</strong></p>
+			  <%= link_to raw('Get Started Now (FREE) <i class="fa fa-arrow-circle-right"></i>'), new_user_registration_path, class: 'btn btn-lg btn-danger' %>
+		  </div>
+		</div>
+	</div>
+
+	<div class="container mid">
+		<div class="row">
+		  <div class="col-sm-12">
+		    <h2>Here's Why You'll Love Huntivore</h2>
+		  </div>
+
+		  <div class="col-sm-3 col-xs-6">
+		    <h3><i class="fa fa-pencil-square-o"></i> Simple to List</h3>
+		    <p>Listing your hunt or property takes minutes. Just let people know what they can hunt, the cost, and where it's at.</p> 
+		  </div>
+		  <div class="col-sm-3 col-xs-6">
+		    <h3><i class="fa fa-crosshairs"></i> Unlimited Listings</h3>
+		    <p>Have multiple properties or hunts? Great! You can easily list them all. Then you can manage your listings from your account.</p> 
+		  </div>
+		  <div class="col-sm-3 col-xs-6">
+		    <h3><i class="fa fa-usd"></i> Earn Money</h3>
+		    <p>You set the cost to book a listing. Charge per person, per night, or flat rate. You can also change the price at any time.</p>
+		  </div>
+		  <div class="col-sm-3 col-xs-6">
+		    <h3><i class="fa fa-ban"></i> NO Fees</h3>
+		    <p>You don't pay <strong>anything</strong> to list. The hunter will pay a small fee on top of your booking price to cover our costs.</p>
+		  </div>
+		</div>
+	</div>
+</section>
+
+<section class="list-cta">
+	<div class="row">
+		<div class="container">
+			<div class="col-sm-7 col-sm-offset-1 col-xs-12">
+				<h2>Want Free Exposure for Your Property or Hunt?</h2>
+			</div>
+
+			<div class="col-sm-3 col-xs-12">
+				<%= link_to raw('Get Started Now (FREE) <i class="fa fa-arrow-circle-right"></i>'), new_user_registration_path, class: 'btn btn-lg btn-primary' %>
+			</div>
+		</div>
+	</div>
+</section>
+
+

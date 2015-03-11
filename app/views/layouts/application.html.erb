@@ -20,7 +20,13 @@
         }
       }
     </style>
-    <% else %>
+  <% elsif controller_name == "pages" && action_name == "list" %>
+    <style>
+    body {
+      background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/list.jpg');
+    }
+    </style>
+  <% else %>
     <style>
     body {
       background: #FFF;
@@ -29,7 +35,7 @@
   <% end %>
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/pepper-grinder/jquery-ui.css", "application" %>
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <%= csrf_meta_tags %>
   <link rel="shortcut icon" href="https://s3-us-west-1.amazonaws.com/huntivore/images/assets/favicon.ico" type="image/x-icon">
   <link rel="icon" href="https://s3-us-west-1.amazonaws.com/huntivore/images/assets/favicon.ico" type="image/x-icon">

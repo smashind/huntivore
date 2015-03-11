@@ -5,35 +5,74 @@
 
 <h1>FAQ</h3>
 
-        <h3>Does it cost anything to create a listing? </h3>
-     
-      <p> No. Listing your lodge, property, or hunt on Huntivore is 100% free. </span>For successful reservations (meaning the reservation is made, you accept it, and the traveler stays with you), our fee is 8%. There aren't any other fees. So you can list as many cabins/properties as you want, and the 8% would only be taken out after a successful reservation.</p>      
+<div id="faq">
+  <div class="faq-question">
+    <h3>Does it cost anything to create a listing? </h3>
+  </div>
+ 
+  <div class="faq-answer default">
+    <p> No. Listing your lodge, property, or hunt on Huntivore is 100% free. Travelers will be charged an extra <%= fee_percent(HUNTIVORE_FEE) %> when they make their reservation (the Huntivore service fee). The hunt/property owner never pays any fees.</p>
+  </div>      
+
+  <div class="faq-question"> 
+    <h3>How long does it take to create a listing? </h3>
+  </div>
+
+  <div class="faq-answer">
+    <p> You can create a listing in under 5 minutes. However, it is best to spend some time adding information and details to your listing. High quality images can really help your listing stand out and will improve the chances of it getting rented.</span></p> 
+  </div>     
+
+  <div class="faq-question">
+    <h3>When will I get paid? </h3>
+  </div>
     
-        <h3>How long does it take to create a listing? </h3>
-     
-      <p> You can create a listing in under 5 minutes. However, it is best to spend some time adding information and details to your listing. High quality images can really help your listing stand out and will improve the chances of it getting rented.</span></p>      
+  <div class="faq-answer">
+    <p> Funds are typically released within 5 days after the trip is completed. However, funds may be withheld for a longer period for quality assurance purposes. </span></p> 
+  </div>     
+
+  <div class="faq-question">  
+    <h3>Do I have to pay with Paypal? </h3>
+  </div>  
+ 
+  <div class="faq-answer">
+    <p> Currently, Paypal is the only form which we accept payments. Paypal is the most reputable and secure way of paying online. We believe that Paypal is the best way we can protect your information. </span></p>
+<p><a href="http://www.paypal.com/" target="_blank">Get a Paypal Account Here</a></p>  
+  </div>    
+
+  <div class="faq-question">  
+    <h3>Do I need a Paypal account to rent through Huntivore? </h3>
+  </div>  
+ 
+  <div class="faq-answer">
+    <p> You do not need a Paypal account to rent property. You are able to use your credit card with Paypal without having an account. However, we suggest that you create a Paypal account so that you can easily track your purchases. </span></p>
+<p><a href="http://www.paypal.com/" target="_blank">Get a Paypal Account Here</a></p>  
+  </div>    
+
+  <div class="faq-question">  
+    <h3>Do I need a Paypal account to receive money? </h3>
+  </div>  
+ 
+  <div class="faq-answer">
+    <p> Yes. In order to receive payment, you will need to create a Paypal account. You can get one for free here:</span></p>
+<p><a href="http://www.paypal.com/" target="_blank">Get a Paypal Account Here</a></p>    
+  </div>      
+
+  <div class="faq-question">  
+    <h3>Are taxes covered in the purchase of the rental? </h3>
+  </div>  
+ 
+  <div class="faq-answer">
+    <p>We do not withhold sales tax on Huntivore. It is the responsibility of the host to follow their state's laws regarding taxes.</p>       
+  </div>  
+</div>
     
-        <h3>When will I get paid? </h3>
-     
-      <p> Funds are typically released within 5 days after the trip is completed. However, funds may be withheld for a longer period for quality assurance purposes. </span></p>      
-    
-        <h3>Do I have to pay with Paypal? </h3>
-     
-      <p> Currently, Paypal is the only form which we accept payments. Paypal is the most reputable and secure way of paying online. We believe that Paypal is the best way we can protect your information. </span></p>
-<p><a href="http://www.paypal.com/" target="_blank">Get a Paypal Account Here</a></p>      
-    
-        <h3>Do I need a Paypal account to rent through Huntivore? </h3>
-     
-      <p> You do not need a Paypal account to rent property. You are able to use your credit card with Paypal without having an account. However, we suggest that you create a Paypal account so that you can easily track your purchases. </span></p>
-<p><a href="http://www.paypal.com/" target="_blank">Get a Paypal Account Here</a></p>      
-    
-        <h3>Do I need a Paypal account to receive money? </h3>
-     
-      <p> Yes. In order to receive payment, you will need to create a Paypal account. You can get one for free here:</span></p>
-<p><a href="http://www.paypal.com/" target="_blank">Get a Paypal Account Here</a></p>          
-    
-        <h3>Are taxes covered in the purchase of the rental? </h3>
-     
-      <p>We do not withhold sales tax on Huntivore. It is the responsibility of the host to follow their state's laws regarding taxes.</p>         
-    
-    <p style="margin-top:20px" align="center">Still have questions? Feel to <strong><a href="http://www.Huntivore.com/contact">contact us here</a></strong>. We will try to respond within 24 hours.</p>
+<p style="margin-top:20px" align="center">Still have questions? Feel to <strong><a href="http://www.Huntivore.com/contact">contact us here</a></strong>. We will try to respond within 24 hours.</p>
+
+<script>
+$("#faq").find(".faq-question").click(function() {
+  $(this).next().slideToggle();
+  $(".faq-answer").not($(this).next()).slideUp();
+});
+</script>
+
+
