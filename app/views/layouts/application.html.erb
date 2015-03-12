@@ -55,16 +55,18 @@
       <a href="/" class="navbar-brand"><img src="https://s3-us-west-1.amazonaws.com/huntivore/images/assets/huntivore.png"></a>
     </div>
     <div class="navbar-collapse collapse" id="navbar">
-      <ul class="nav navbar-nav">
-        <li><%= link_to "View all Properties", properties_path %></li>
-        <li><%= link_to "Hunts by Game", games_path %></li>
-      </ul>
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "View all Properties", properties_path %></li>
+          <li><%= link_to "Hunts by Game", games_path %></li>
+        </ul>
 
-      <div class="navbar-form navbar-left">
-        <%= form_tag(properties_path, action: 'search', :method => 'get') do %>
-          <%= text_field_tag :search, params[:search], class: "form-control col-lg-8 col-md-4 col-sm-2", placeholder: "Search hunts" %>
-        <% end %>
-      </div>      
+        <div class="navbar-form navbar-left">
+          <%= form_tag(properties_path, action: 'search', :method => 'get') do %>
+            <%= text_field_tag :search, params[:search], class: "form-control col-lg-8 col-md-4 col-sm-2", placeholder: "Search hunts" %>
+          <% end %>
+        </div> 
+      <% end %>     
       
       <ul class="nav navbar-nav navbar-right">
       	<% if user_signed_in? %>
@@ -105,7 +107,6 @@
 </div>
 <div class="container foot">
   <footer>
-    <div class="container">
       <div class="row">
         <div class="col-sm-4">
           
@@ -119,9 +120,13 @@
 
         <div class="col-sm-3 col-sm-offset-2">
           <h3>Hunts</h3>
+          <% if user_signed_in? %>
             <p><%= link_to "Properties", properties_path %></p>
             <p><%= link_to "Hunts by Game", games_path %></p>
             <p><%= link_to "List Your Hunt", new_property_path %></p>
+          <% else %>
+            <p><%= link_to "List Your Hunt", list_path %></p>
+          <% end %>
         </div>
 
         <div class="col-sm-3">
@@ -132,7 +137,7 @@
             <p><%= link_to "Terms", terms_path %></p>
         </div>
       </div>
-    </div>
+
   </footer>
 </div>
 </body>
