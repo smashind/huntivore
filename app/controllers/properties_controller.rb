@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
 	before_action :set_property, only: [:show, :edit, :update, :destroy]
-	before_action :authenticate_user!, only: [:new, :edit, :destroy]
+	before_action :authenticate_user!, only: [:index, :new, :edit, :destroy]
 
 	def index
 		@properties = Property.where(available: true).order(created_at: :desc).paginate(page: params[:page], per_page: 10)

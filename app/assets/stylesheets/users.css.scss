@@ -110,3 +110,33 @@
 	  }
 	}
 }
+
+.user-sign-in {
+  background: #F2F2F2;
+	border: 1px solid #D6D6D6;
+	-webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+	h2 {
+	  text-align: center;
+	  margin-bottom: 20px;
+	}
+	.form-group {
+	  margin-bottom: 20px;
+	}
+	.btn {
+	  margin-top: 15px;
+	  width: 100%;
+	}
+	.col-xs-3.col-xs-offset-1.control-label {
+	  @media (max-width: 767px) {
+	    padding-top: 10px;
+	    text-align: right;
+	  }
+	}
+}
+.forgot p {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 0;
+}
