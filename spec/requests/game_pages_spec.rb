@@ -13,6 +13,7 @@ describe "GamePages" do
   describe "index" do 
 
   	it "should include all tags in alphabetical order" do 
+      sign_in user
   		visit games_path
   		expect(page).to have_content("duck hen mallard")
   	end

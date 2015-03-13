@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226235157) do
+ActiveRecord::Schema.define(version: 20150313105449) do
 
   create_table "favorites", force: true do |t|
     t.integer  "user_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150226235157) do
     t.datetime "updated_at"
     t.integer  "accommodates"
     t.boolean  "per_person",   default: true
+    t.string   "phone"
   end
 
   add_index "properties", ["location"], name: "index_properties_on_location", unique: true

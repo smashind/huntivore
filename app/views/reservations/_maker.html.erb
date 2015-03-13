@@ -1,6 +1,7 @@
 <h3>Owner Contact Information</h3>
 <p>
   <strong>Name:</strong> <%= @reservation.property.user.full_name %><br />
+  <strong>Phone:</strong> <%= @reservation.property.phone %><br />
   <strong>Email:</strong> <%= mail_to "#{@reservation.property.user.email}" %>
 </p>
 

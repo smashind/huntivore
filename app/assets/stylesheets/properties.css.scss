@@ -1,19 +1,26 @@
-.file-upload {
-	padding-top: 8px;
-}
-.col-md-8 {
-	.prop-images {
-	  img {
-	    margin: 0 10px 10px 0;
+.form-horizontal.property {
+	.file-upload {
+		padding-top: 8px;
+	}
+	.col-md-8 {
+		.prop-images {
+		  img {
+		    margin: 0 10px 10px 0;
+		  }
+		}
+		.radio {
+		  padding-left: 20px;
+		}
+	}
+	.prop-image {
+		img {
+		  margin: 0 10px 10px 0;
+		}
+	}
+	.col-md-4.control-label {
+	  @media(max-width: 992px) {
+	    padding-bottom: 10px;
 	  }
-	}
-	.radio {
-	  padding-left: 20px;
-	}
-}
-.prop-image {
-	img {
-	  margin: 0 10px 10px 0;
 	}
 }
 .property {

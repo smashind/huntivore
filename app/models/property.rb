@@ -9,6 +9,7 @@ class Property < ActiveRecord::Base
   validates :price, presence: true
   validates :user_id, presence: true
   validates :game_list, presence: true
+  validates :phone, presence: true
 
   has_many :property_attachments, dependent: :destroy
   accepts_nested_attributes_for :property_attachments
