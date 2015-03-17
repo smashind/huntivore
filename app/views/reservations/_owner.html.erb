@@ -26,4 +26,10 @@
   <h3>Canceled</h3>
   <p>You have canceled this reservation.</p>
   <p><strong>Reason:</strong> <%= @reservation.cancel_reason %></p>
+<% elsif @reservation.status == 'Missed' %>
+  <h3>Reservation Missed</h3>
+  <p>This reservation was missed. It was not paid for and the reserved date has passed.</p>
+<% elsif @reservation.status == 'Completed' %>
+  <h3>Completed</h3>
+  <p>Congratulations on a successful reservation!</p>
 <% end %>

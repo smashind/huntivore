@@ -6,7 +6,7 @@ describe "PropertyPages" do
 
 	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", accepted_terms: true) }
 	let(:user2) { User.create(first_name: "Gary", last_name: "Scott", email: "gary@example.com", password: "foobarrr", accepted_terms: true) }
-	let(:listing) { user.properties.create(title: "Duck Hunt", hunttype: "Overnight", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, price: 99) }
+	let(:listing) { user.properties.create(title: "Duck Hunt", hunttype: "Overnight", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, phone: "123 555 4567", price: 99) }
 	before { sign_in user }
 
 	describe "property creation" do 
@@ -16,9 +16,10 @@ describe "PropertyPages" do
 			before do 
 				fill_in 'Title',        with: 'Duck Hunt'
 				fill_in 'Description',  with: 'A sweet place to hunt ducks'
-				fill_in 'Game',    with: 'duck,mallard,hen'
+				fill_in 'Game',         with: 'duck,mallard,hen'
 				fill_in 'Location',     with: 'Alabama'
 				fill_in 'Accommodates', with: 4
+				fill_in 'Phone',        with: "444 444 4444" 
 			  fill_in 'Price',        with: 99
 			end
 

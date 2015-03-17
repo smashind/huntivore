@@ -9,6 +9,7 @@ describe Property do
 			hunttype: 'day',
 			location: 'Alabama',
 			accommodates: 4,
+			phone: '555 123 4567',
 			price: 99,
 			user_id: 1)
 		expect(property).to be_valid
@@ -56,4 +57,9 @@ describe Property do
 		expect(property.errors[:user_id]).to include("can't be blank")
 	end
 
+	it "is invalid with a phone number" do 
+		property = Property.new(phone: nil)
+		property.valid?
+		expect(property.errors[:phone]).to include("can't be blank")
+	end
 end

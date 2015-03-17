@@ -19,7 +19,7 @@
 				      <th>Property</th>
 				      <th>Reservation</th>
 				      <th>When</th>
-				      <th>Price</th>
+				      <th>Earnings</th>
 				      <th>Status</th>
 				    </tr>
 				  </thead>
@@ -37,7 +37,7 @@
 						  <td><%= link_to "#{res.property.title}", property_path(res.property) %></td>
 						  <td><%= link_to "View Reservation", res %></td>
 						  <td> <%= res.from %> <% if res.property.hunttype == 'Overnight' %> to <%= res.to %> <% end %></td>
-						  <td> $<%= res.trip_price %></td>
+						  <td> $<%= res.owner_earnings %></td>
 							<td> <%= res.status %></td>
 						</tr>
 				  <% end %>

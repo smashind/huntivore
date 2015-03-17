@@ -7,7 +7,7 @@ describe "GamePages" do
   let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", accepted_terms: true) }
 
 	before do 
-	  user.properties.create(title: "Duck Hunt", game_list: "duck, mallard, hen", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, price: 99)
+	  user.properties.create(title: "Duck Hunt", game_list: "duck, mallard, hen", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, phone: "123 555 4567", price: 99)
 	end
 
   describe "index" do 

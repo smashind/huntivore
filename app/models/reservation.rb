@@ -11,13 +11,25 @@ class Reservation < ActiveRecord::Base
 
   def trip_price
     if to.nil? && !property.per_person
-      (property.price + (property.price * HUNTIVORE_FEE)).to_i
+      sprintf("%.2f", (property.price + (property.price * HUNTIVORE_FEE)))
     elsif to.nil? && property.per_person
-      (property.price * guests + ((property.price * guests) * HUNTIVORE_FEE)).to_i
+      sprintf("%.2f", (property.price * guests + ((property.price * guests) * HUNTIVORE_FEE)))
     elsif property.per_person
-  	  (Array(from..to-1).count * property.price * guests + ((Array(from..to-1).count * property.price * guests) * HUNTIVORE_FEE)).to_i
+  	  sprintf("%.2f", (Array(from..to-1).count * property.price * guests + ((Array(from..to-1).count * property.price * guests) * HUNTIVORE_FEE)))
     else
-      (Array(from..to-1).count * property.price + ((Array(from..to-1).count * property.price) * HUNTIVORE_FEE)).to_i
+      sprintf("%.2f", (Array(from..to-1).count * property.price + ((Array(from..to-1).count * property.price) * HUNTIVORE_FEE)))
+    end
+  end
+
+  def owner_earnings
+    if to.nil? && !property.per_person
+      sprintf("%.2f", (property.price))
+    elsif to.nil? && property.per_person
+      sprintf("%.2f", (property.price * guests))
+    elsif property.per_person
+      sprintf("%.2f", (Array(from..to-1).count * property.price * guests))
+    else
+      sprintf("%.2f", (Array(from..to-1).count * property.price))
     end
   end
 
@@ -39,10 +51,6 @@ class Reservation < ActiveRecord::Base
       ReservationMailer.paid_day_hunts(@paid_day).deliver
     end
     where(status: "Paid", to: nil).where.not(from: Date.today..Float::INFINITY).update_all(status: "Completed")
-  end
-
-  def self.testing
-    puts "This is a test"
   end
 
   private

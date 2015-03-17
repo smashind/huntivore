@@ -7,7 +7,7 @@ describe "ReservationPages" do
   let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", accepted_terms: true) }
   let(:user2) { User.create(first_name: "Gary", last_name: "Scott", email: "gary@example.com", password: "foobarrr", accepted_terms: true) }
   let(:user3) { User.create(first_name: "Tom", last_name: "Nook", email: "tom@example.com", password: "foobarrr", accepted_terms: true) }
-  let(:listing) { user.properties.create(title: "Duck Hunt", hunttype: "Overnight", description: "A sweet place to hunt ducks", game_list: "duck, hen", location: "Alabama", accommodates: 4, price: 99) }
+  let(:listing) { user.properties.create(title: "Duck Hunt", hunttype: "Overnight", description: "A sweet place to hunt ducks", game_list: "duck, hen", location: "Alabama", accommodates: 4, phone: "123 555 4567", price: 99) }
   before { sign_in user2 }
 
   describe "reservation creation" do 

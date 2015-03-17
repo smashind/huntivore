@@ -28,7 +28,7 @@ describe 'User pages' do
 
 	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", twitter: "huntivore", accepted_terms: true) }
 	let(:user2) { User.create(first_name: "Gassy", last_name: "Pol", email: "garsspol@example.com", password: "foobarrr", accepted_terms: true ) }
-	let(:listing) { user.properties.create(title: "Duck Hunt", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, price: 99) }
+	let(:listing) { user.properties.create(title: "Duck Hunt", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, phone: "123 555 4567", price: 99) }
 	let(:res) { user2.reservations.create(property_id: listing.id, from: "05/25/2015", to: "05/27/2015") }
 
   describe "user login" do 
@@ -79,6 +79,7 @@ describe 'User pages' do
 			fill_in 'Game',         with: 'duck'
 			fill_in 'Location',     with: 'Alabama'
 			fill_in 'Accommodates', with: 4
+			fill_in 'Phone',        with: '555 999 1234'
 		  fill_in 'Price',        with: 99
 		  click_button 'Submit Property'
 		  visit user_path(user)
@@ -104,7 +105,7 @@ describe 'User pages' do
 		describe "trip and hosting tabs" do 
 			
 			let!(:user2) { User.create(first_name: "Gary", last_name: "Johnson", email: "gary@example.com", password: "foobarrr", accepted_terms: true ) }
-			let!(:listing) { user.properties.create(title: "Duck Hunt", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, price: 99) }
+			let!(:listing) { user.properties.create(title: "Duck Hunt", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, phone: "123 555 4567", price: 99) }
 			let!(:res) { user2.reservations.create(property_id: listing.id, from: "05/25/2015", to: "05/27/2015") }
 			
       it "should list the user's hosted trips" do
