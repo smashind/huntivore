@@ -7,7 +7,8 @@
 <p><strong>Total reservations:</strong> <%= Reservation.count %></p>
 
 <% @reservations.each do |res| %>
-<p><strong><%= link_to "#{res.property.title}", res %></strong> - <strong>Booked by:</strong> <%= link_to "#{res.user.full_name}", user_path(res.user_id) %> <strong>Listed by:</strong> <%= link_to "#{res.property.user.full_name}", user_path(res.property.user_id) %> | <strong>Total price:</strong> $<%= res.trip_price %> | <strong>Owner payout:</strong> $<%= res.owner_earnings %> | <strong>Huntivore Earnings:</strong> $<%= res.huntivore_earnings %> <%= link_to "Delete", res, method: :delete, data: { confirm: "Delete this reservation?" }, class: "btn btn-danger btn-xs" %></p>
+<p><strong><%= link_to "#{res.property.title}", res %></strong> - <strong>Booked by:</strong> <%= link_to "#{res.user.full_name}", user_path(res.user_id) %> <strong>Listed by:</strong> <%= link_to "#{res.property.user.full_name}", user_path(res.property.user_id) %> <strong>Status:</strong> <%= res.status %> | <strong>Total price:</strong> $<%= res.trip_price %> | <strong>Owner payout:</strong> $<%= res.owner_earnings %> | <strong>Huntivore Earnings:</strong> $<%= res.huntivore_earnings %> <%= link_to "Delete", res, method: :delete, data: { confirm: "Delete this reservation?" }, class: "btn btn-danger btn-xs" %></p>
+<hr />
 <% end %>
 <%= will_paginate @reservations, renderer: BootstrapPagination::Rails %>
 <% end %>
