@@ -66,10 +66,7 @@ class PropertiesController < ApplicationController
 
 	def destroy
 		@property.destroy
-		respond_to do |format|
-			format.html { redirect_to properties_path, notice: "Property was successfully deleted." }
-			format.json { head :no_content }
-		end
+    redirect_to :back, alert: "Property was successfully deleted."
 	end
 
 	private

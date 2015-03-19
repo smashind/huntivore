@@ -17,9 +17,9 @@
   <strong>Participants:</strong> <%= @reservation.guests %><br />
   <% if res_maker? %>
     <strong>Huntivore Fee:</strong> <%= fee_percent(HUNTIVORE_FEE) %><br /> 
-    <strong>Total Price:</strong> $<%= @reservation.trip_price %>
+    <strong>Total Price:</strong> $<%= @reservation.trip_price %><br />
   <% end %>
-  <% if prop_owner? %><strong>Your earnings:</strong>  $<%= @reservation.owner_earnings %><% end %>
+  <% if prop_owner? %><strong>Owner earnings:</strong>  $<%= @reservation.owner_earnings %><% end %>
     
   <% if res_maker? %>
     <%= render partial: "maker" %>

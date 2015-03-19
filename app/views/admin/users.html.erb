@@ -1,0 +1,13 @@
+<% unless user_signed_in? && current_user.role == "admin" %>
+<h3>Permission was denied.</h3>
+<% else %>
+<p><%= link_to 'Users', admin_users_path %> | <%= link_to 'Properties', admin_properties_path %> | <%= link_to 'Reservations', admin_reservations_path %></p>
+<h1>Huntivore Users</h1>
+
+<p><strong>Total users:</strong> <%= User.count %></p>
+
+<% @users.each do |user| %>
+<p><strong><%= link_to "#{user.full_name}", user %></strong> - <%= user.email %> - <strong>Registered:</strong> <%= user.created_at.strftime("%m/%d/%Y") %> - <strong>Last sign in:</strong> <% unless user.last_sign_in_at == nil %><%= user.last_sign_in_at.strftime("%m/%d/%Y") %><% end %> </p>
+<% end %>
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+<% end %>

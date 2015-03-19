@@ -1,0 +1,13 @@
+<% unless user_signed_in? && current_user.role == "admin" %>
+<h3>Permission was denied.</h3>
+<% else %>
+<p><%= link_to 'Users', admin_users_path %> | <%= link_to 'Properties', admin_properties_path %> | <%= link_to 'Reservations', admin_reservations_path %></p>
+<h1>Huntivore Admin</h1>
+<p>Welcome to Huntivore Admin.</p>
+
+<p>
+  <strong>Total users:</strong> <%= @users.count %> - <%= link_to 'View', admin_users_path %><br />
+  <strong>Total properties:</strong> <%= @properties.count %> - <%= link_to 'View', admin_properties_path %><br />
+  <strong>Total reservations:</strong> <%= @reservations.count %> - <%= link_to 'View', admin_reservations_path %>
+</p>
+<% end %>

@@ -33,6 +33,10 @@ class Reservation < ActiveRecord::Base
     end
   end
 
+  def huntivore_earnings
+    sprintf("%.2f", (trip_price.to_f - owner_earnings.to_f))
+  end
+
   def self.update_statuses
     # Update pending reservations to missed
     @pending_night = where(status: "Pending").where.not(to: Date.today..Float::INFINITY)

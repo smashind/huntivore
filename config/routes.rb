@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'pages#home'
   match 'faq', to: 'pages#faq', via: :get
   match 'contact', to: 'pages#contact', via: :get
@@ -22,4 +23,11 @@ Rails.application.routes.draw do
   post 'payment_notifications', :controller => 'payment_notifications', :action => 'create'
   match "success", :to => 'pages#success', via: :post
   match 'pages/home' => redirect('/'), via: [:get, :post]
+
+  #Admin
+  match 'admin', to: 'admin#index', via: :get
+  get 'admin/users'
+  get 'admin/properties'
+  get 'admin/reservations'
+
 end
