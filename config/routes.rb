@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root to: 'pages#home'
   match 'faq', to: 'pages#faq', via: :get
   match 'contact', to: 'pages#contact', via: :get
@@ -19,6 +18,7 @@ Rails.application.routes.draw do
   resources :property_attachments, only: :destroy
   resources :games, path: "game"
   resources :favorites
+  post 'contact_messages', controller: 'contact_messages', action: 'create'
 
   post 'payment_notifications', :controller => 'payment_notifications', :action => 'create'
   match "success", :to => 'pages#success', via: :post

@@ -1,0 +1,47 @@
+<h1>Contact Us</h1>
+<p>Questions? Please contact taylor [at] huntivore (dot) com or fill out the form below:</p>
+
+<%= form_for(@contact_message = ContactMessage.new) do |f| %>
+	<% if @contact_message.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@contact_message.errors.count, "error") %> stopped this message from being submitted:</h2>
+
+					<ul>
+					<% @contact_message.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+					</ul>
+				</div>
+			<% end %>
+
+<div class="form-horizontal property">
+	<fieldset>
+		<div class="form-group">
+			<%= f.label :name, "Name", class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_field :name, class: "form-control", required: true %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :email, class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_field :email, class: "form-control", required: true %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :message, class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_area :message, class: "form-control", required: true %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-8 col-md-offset-4">
+				<%= f.submit "Submit Property", class: "btn btn-primary center-block" %>
+			</div>
+		</div>
+		<% end %> 
+	</fieldset>
+</div>

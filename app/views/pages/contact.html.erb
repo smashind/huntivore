@@ -3,5 +3,50 @@
   <meta name="description" content="Want to get in touch? Click here to contact Huntivore.">
 <% end %>
 
-<h1>Contact Us</h1>
-<p>Questions? Please contact taylor [at] huntivore (dot) com</p>
+<div class="row">
+  <div class="col-sm-12">
+
+    <h1>Contact Us</h1>
+    <p>Questions? Please contact taylor [at] huntivore (dot) com or fill out the form below:</p>
+
+		<%= form_for(@contact_message = ContactMessage.new) do |f| %>
+
+		<div class="form-horizontal contact">
+			<fieldset>
+				<div class="form-group">
+				  <div class="col-sm-2 col-xs-2">
+					  <%= f.label :name, "Name", class: "control-label" %>
+					</div>
+					<div class="col-sm-6 col-xs-10">
+						<%= f.text_field :name, class: "form-control", required: true %>
+					</div>
+				</div>
+
+				<div class="form-group">
+				  <div class="col-sm-2 col-xs-2">
+					  <%= f.label :email, class: "control-label" %>
+					</div>
+					<div class="col-sm-6 col-xs-10">
+						<%= f.email_field :email, class: "form-control", required: true %>
+					</div>
+				</div>
+
+				<div class="form-group">
+				  <div class="col-sm-2 col-xs-2">
+					  <%= f.label :message, class: "control-label" %>
+					</div>
+					<div class="col-sm-6 col-xs-10">
+						<%= f.text_area :message, class: "form-control", required: true %>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-6 col-sm-offset-2 col-xs-10 col-xs-offset-2">
+						<%= f.submit "Send Message", class: "btn btn-primary pull-right" %>
+					</div>
+				</div>
+				<% end %> 
+			</fieldset>
+		</div>
+	</div>
+</div>
