@@ -27,20 +27,27 @@ class Property < ActiveRecord::Base
     self.games = new_or_found_games
   end
 
+  # def self.searchy(search)
+  #   search_condition = "%" + search + "%"
+  #   where(
+  #     '(title LIKE ? OR description LIKE ? OR location LIKE ?) OR JOINS (games) WHERE (games.name LIKE ?)', search_condition, search_condition, search_condition, search_condition
+  #   )
+  # end 
+
   def self.search(search)
     if Rails.env.production?
       search_condition = "%" + search + "%"
       if where('title ILIKE ? OR description ILIKE ? OR location ILIKE ?', search_condition, search_condition, search_condition).any?
         where('title ILIKE ? OR description ILIKE ? OR location ILIKE ?', search_condition, search_condition, search_condition)
       else
-        joins(:games).where(games: { name: search })
+        joins(:games).where('games.name ILIKE ?', search_condition)
       end
     else
       search_condition = "%" + search + "%"
       if where('title LIKE ? OR description LIKE ? OR location LIKE ?', search_condition, search_condition, search_condition).any?
         where('title LIKE ? OR description LIKE ? OR location LIKE ?', search_condition, search_condition, search_condition)
       else
-        joins(:games).where(games: { name: search })
+        joins(:games).where('games.name LIKE ?', search_condition)
       end 
     end
   end

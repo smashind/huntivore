@@ -29,6 +29,10 @@ html,body {
 .navbar-brand > img {
   margin-top: -5px;
 }
+.form-control:focus {
+  border-color: #EDA649;
+  box-shadow: inset 0 1px 1px rgba(247, 113, 69, 0.075), 0 0 8px rgba(247, 113, 69, 0.6);
+}
 .jumbotron.home {
 //  background: rgba(150, 150, 150, 1);
   background: none;
