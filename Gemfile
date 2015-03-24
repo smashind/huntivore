@@ -6,9 +6,10 @@ gem 'rails', '4.1.6'
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do 
-  gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0.0'
 end
+
+gem 'pg', '~> 0.18.0.pre20141117110243'
 
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.1'
@@ -18,12 +19,13 @@ gem 'autoprefixer-rails'
 gem 'bootswatch-rails'
 
 gem 'devise'
-gem 'will_paginate', '~> 3.0'
+gem 'will_paginate', '~> 3.0.5'
 gem 'will_paginate-bootstrap'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'american_date'
+gem 'active_record_union'
 
 # Test Suite
 group :test do 
@@ -36,7 +38,6 @@ end
 
 # For heroku (ensures that asset pipeline is correctly used)
 group :production, :staging do
-	gem 'pg'
 	gem 'rails_12factor'
 end
 
