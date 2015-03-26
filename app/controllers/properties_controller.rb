@@ -1,15 +1,13 @@
 class PropertiesController < ApplicationController
 	before_action :set_property, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, only: [:index, :new, :edit, :destroy]
-	require 'will_paginate/array'
 
 	def index
-		@properties = Property.where(available: true).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
-		@allpropsearch = Property.all
-	end
-
-	def search
-		@allpropsearch = Propery.search(params[:search])
+		if params[:search]
+		  @properties = Property.search(params[:search]).paginate(page: params[:page], per_page: 10)
+		else
+      @properties = Property.where(available: true).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    end
 	end
 
 	def show

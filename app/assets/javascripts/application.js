@@ -168,3 +168,10 @@ $(document).ready(function() {
         }
     });
 });
+
+$(document).ready(function() {
+  $('.navbar-form').click(function() {
+    alert("Clicked!");
+   // $('i.fa fa-search').hide();
+  });
+)}

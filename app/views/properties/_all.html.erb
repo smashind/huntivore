@@ -1,4 +1,9 @@
-<h1>Current Listings</h1>
+<% if params[:search] %>
+  <h1>Search Results</h1>
+  <p class="search-number"><%= pluralize(@properties.count, 'result') %> found</p>
+<% else %>
+  <h1>Current Listings</h1>
+<% end %>
 <div class="all-properties">
   <% @properties.each do |p| %>
     <div class="row">

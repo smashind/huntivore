@@ -62,9 +62,12 @@
 
       <% if user_signed_in? %>
         <div class="navbar-form navbar-left">
-          <%= form_tag(properties_path, action: 'search', :method => 'get') do %>
-            <%= text_field_tag :search, params[:search], class: "form-control col-lg-8 col-md-4 col-sm-2", placeholder: "Search hunts" %>
-          <% end %>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+            <%= form_tag(properties_path, action: 'search', :method => 'get') do %>
+              <%= text_field_tag :search, params[:search], class: "form-control col-lg-8 col-md-4 col-sm-2", placeholder: "Search hunts" %>
+            <% end %>
+          </div>
         </div> 
       <% end %>     
       

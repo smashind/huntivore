@@ -27,32 +27,9 @@ class Property < ActiveRecord::Base
     self.games = new_or_found_games
   end
 
-  def self.searchy(search)
-    search_condition = "%" + search + "%"
-    a = where('title ILIKE ? OR description ILIKE ? OR location ILIKE ?', search_condition, search_condition, search_condition)
-    b = joins(:games).where('games.name ILIKE ?', search_condition)
-    a.union(b)
-  end 
-
   def self.search(search)
     search_condition = "%" + search + "%"
-    a = where('title ILIKE ? OR description ILIKE ? OR location ILIKE ?', search_condition, search_condition, search_condition)
-    b = joins(:games).where('games.name ILIKE ?', search_condition)
-    a.union(b)
-    # if Rails.env.production?
-    #   search_condition = "%" + search + "%"
-    #   if where('title ILIKE ? OR description ILIKE ? OR location ILIKE ?', search_condition, search_condition, search_condition).any?
-    #     where('title ILIKE ? OR description ILIKE ? OR location ILIKE ?', search_condition, search_condition, search_condition)
-    #   else
-    #     joins(:games).where('games.name ILIKE ?', search_condition)
-    #   end
-    # else
-    #   search_condition = "%" + search + "%"
-    #   if where('title LIKE ? OR description LIKE ? OR location LIKE ?', search_condition, search_condition, search_condition).any?
-    #     where('title LIKE ? OR description LIKE ? OR location LIKE ?', search_condition, search_condition, search_condition)
-    #   else
-    #     joins(:games).where('games.name LIKE ?', search_condition)
-    #   end 
-    # end
+    where('title ILIKE ? OR description ILIKE ? OR location ILIKE ?', search_condition, search_condition, search_condition)
+    .union(joins(:games).where('games.name ILIKE ?', search_condition))
   end
 end

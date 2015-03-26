@@ -112,14 +112,33 @@ html,body {
 		font-size: 20px;
 	}	
 }
+.navbar-nav > li > a {
+  @media(max-width: 991px) and (min-width: 768px) {
+    padding-left: 0px;
+  }
+}
 .navbar-form.navbar-left {
+  .form-control:focus {
+    border-color: #CCC;
+    box-shadow: none;
+  }
 	input[type="text"] {
+    border-left: #FFF;
+    padding-left: 5px;
     @media (max-width: 991px) and (min-width: 768px) {
       width: 110px;
-
     }
     @media (max-width: 767px) {
       width: 200px;
+    }
+  }
+  .input-group-addon {
+    background-color: #FFF;
+    border-right: #FFF;
+    padding-left: 8px;
+    padding-right: 2px;
+    i {
+      color: #BBA7AF;
     }
   }
 }
