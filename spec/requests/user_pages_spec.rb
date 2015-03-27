@@ -17,8 +17,7 @@ describe 'User pages' do
 
 		it "should redirect to user's page" do 
 			check("user_accepted_terms")
-			click_button "SIGN UP (FREE)"
-			expect(current_path).to eq(user_path(1))
+			expect { click_button "SIGN UP (FREE)" }.to change(User, :count).by(1)
 		end
 
 		it "should not be valid without accepting the terms" do  
@@ -110,7 +109,7 @@ describe 'User pages' do
 			
       it "should list the user's hosted trips" do
 			  visit user_hosting_path(user) 		
-				expect(page).to have_link("View Reservation", href: reservation_path(1))
+				expect(page).to have_link("View Reservation", href: reservation_path(res))
 			end
 
 			it "should list the hosted trip status" do 
@@ -122,7 +121,7 @@ describe 'User pages' do
 				click_link "Logout"
 				sign_in user2
 				visit user_trips_path(user2) 		
-				expect(page).to have_link("View Reservation", href: reservation_path(1))
+				expect(page).to have_link("View Reservation", href: reservation_path(res))
 			end
 
 			it "should list the user's trips' status" do 

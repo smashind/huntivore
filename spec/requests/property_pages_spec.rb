@@ -172,7 +172,7 @@ describe "PropertyPages" do
 		before do 
 			click_link "Logout"
 			sign_in user2
-			user2.favorites.create(property_id: 1)
+			user2.favorites.create(property_id: listing.id)		
 		end
 
 		it "can be unfavorited" do 

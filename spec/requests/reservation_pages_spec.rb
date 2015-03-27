@@ -78,51 +78,47 @@ describe "ReservationPages" do
 
   describe "Reservation page" do 
 
-    before do 
-      visit property_path(listing)
-      fill_in "reservation_from", with: '05/15/2015' 
-      fill_in "reservation_to",   with: '05/20/2015' 
-      click_button "Reserve this Listing"
-    end
+    let(:res) { user2.reservations.create(from: '05/15/2015', to: '05/20/2015', property_id: listing.id) }
 
     it "should show to logged in reservation maker" do 
-      visit reservation_path(1)
-      expect(current_path).to eq(reservation_path(1))
+      visit reservation_path(res)
+      expect(current_path).to eq(reservation_path(res))
     end
 
     it "should be pending" do 
+      visit reservation_path(res)
       expect(page).to have_content("Pending")
     end
 
     it "should have a pay now button" do 
-      visit reservation_path(1)
+      visit reservation_path(res)
       expect(page).to have_selector(:button, "Make Your Payment Now")
     end
 
     it "should show to the property owner" do 
       click_link "Logout"
       sign_in user
-      visit reservation_path(1)
-      expect(current_path).to eq(reservation_path(1))
+      visit reservation_path(res)
+      expect(current_path).to eq(reservation_path(res))
     end
 
     it "should have a cancel button" do 
       click_link "Logout"
       sign_in user
-      visit reservation_path(1)
+      visit reservation_path(res)
       expect(page).to have_content('Cancel')
     end
 
     it "should not show for a non logged in user" do 
       click_link "Logout"
-      visit reservation_path(1)
+      visit reservation_path(res)
       expect(current_path).to eq(new_user_session_path)
     end
 
     it "should not show for a different user" do 
       click_link "Logout"
       sign_in user3
-      visit reservation_path(1)
+      visit reservation_path(res)
       expect(page).to have_content("You don't have permission to view this page.")
     end
   end
