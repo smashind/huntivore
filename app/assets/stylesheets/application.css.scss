@@ -17,15 +17,29 @@
 @import "bootswatch/united/bootswatch";
 
 html,body {
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
+//  width: 100%;
+//  margin: 0px;
+//  padding: 0px;
+//  overflow-x: hidden;
+//  overflow-y: auto; 
+}
+html {
+  position: relative;
+  min-height: 100%;
   overflow-x: hidden;
-  overflow-y: auto; 
 }
-.container.body {
-	min-height: 400px;
+
+body {
+  margin-bottom: 255px;
+  overflow-x: hidden;
+  @media (max-width: 767px) and (min-width: 357px) {
+    margin-bottom: 480px;
+  }  
+  @media (max-width: 356px) {
+    margin-bottom: 490px;
+  }
 }
+
 .navbar-brand > img {
   margin-top: -5px;
 }
@@ -114,7 +128,8 @@ html,body {
 }
 .navbar-nav > li > a {
   @media(max-width: 991px) and (min-width: 768px) {
-    padding-left: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 }
 .navbar-form.navbar-left {
@@ -196,7 +211,6 @@ html,body {
   width: 100%;
   background-color: #E9E9E9;
   margin-top: 40px;
-  margin-bottom: -50px;
   padding: 40px 0;
   img {
     width: 90%;
@@ -251,9 +265,22 @@ html,body {
   display: block;
 }
 footer {
-  margin-top: 50px;
-	background-color: #313236;
-	box-shadow: 0px 500px 0px 500px #313236; 
+//  margin-top: 50px;
+//	background-color: #313236;
+//	box-shadow: 0px 500px 0px 500px #313236;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 235px;
+  @media (max-width: 767px) and (min-width: 357px) {
+    height: 460px;    
+  } 
+  @media (max-width: 356px) {
+    height: 480px;
+  }
+  background-color: #313236;
   .footer-links {
     margin-top: 10px;
     img {
@@ -404,7 +431,6 @@ footer {
 }
 .list-cta {
   background: #EFEFEF;
-  margin-bottom: -50px;
   padding: 30px 0;
   h2 {
     text-align: center;
