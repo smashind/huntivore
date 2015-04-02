@@ -16,12 +16,6 @@
 //= require jquery-ui
 //= require_tree .
 
-
-// $(function() {
-// 	$("#reservation_from").datepicker({ minDate: 0 });
-// 	$("#reservation_to").datepicker({ minDate:  });
-// })
-
 $(function() {
 
   var datepickersOpt = {
@@ -158,20 +152,10 @@ $(document).ready(function() {
         gallery: {
             enabled: true,
             navigateByImgClick: true,
-            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+            preload: [0,1] 
         },
         image: {
             tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-            // titleSrc: function(item) {
-            //     return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
-            // }
         }
     });
 });
-
-$(document).ready(function() {
-  $('.navbar-form').click(function() {
-    alert("Clicked!");
-   // $('i.fa fa-search').hide();
-  });
-)}
