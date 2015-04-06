@@ -7,6 +7,7 @@ class GamesController < ApplicationController
 
   def show
   	@game = Game.find(params[:id])
+    @games = @game.properties.paginate(page: params[:page], per_page: 10)
   end
 
   def destroy
