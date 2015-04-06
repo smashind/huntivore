@@ -32,4 +32,8 @@ class Property < ActiveRecord::Base
     where('title ILIKE ? OR description ILIKE ? OR location ILIKE ?', search_condition, search_condition, search_condition)
     .union(joins(:games).where('games.name ILIKE ?', search_condition))
   end
+
+  def to_param
+    [id, title.parameterize].join("-")
+  end
 end

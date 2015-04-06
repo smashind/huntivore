@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
   def full_name
   	first_name + " " + last_name
   end
+
+  def to_param
+    [id, full_name.parameterize].join("-")
+  end
 end
