@@ -62,4 +62,59 @@ describe Property do
 		property.valid?
 		expect(property.errors[:phone]).to include("can't be blank")
 	end
+
+	describe "searching" do 
+  	before :each do 
+	    Property.create(title: 'Duck Hunt', description: 'A sweet place to hunt mallard.', game_list: 'boar,bear,geese',
+			                hunttype: 'day',	location: 'Alabama', accommodates: 4,	phone: '555 123 4567', price: 99,	user_id: 1)
+    end
+
+    context "when there is a title match" do 
+    	it "returns the correct number of results" do
+    		result = Property.search("Duck")
+    		expect(result.count).to eq(1)
+    	end
+    end
+
+    context "when there is a description match" do 
+    	it "returns the correct number of results" do
+    		result = Property.search("mallard")
+    		expect(result.count).to eq(1)
+    	end
+    end
+
+    context "when there is a location match" do 
+    	it "returns the correct number of results" do
+    		result = Property.search("Alabama")
+    		expect(result.count).to eq(1)
+    	end
+    end
+    
+    context "when there is a game match" do 
+			it "returns the correct number of results" do  
+				result = Property.search("boar")
+				expect(result.count).to eq(1)
+			end
+		end
+
+		context "when there aren't any matches" do 
+    	it "returns the correct 0 results" do
+    		result = Property.search("jaguar")
+    		expect(result.count).to eq(0)
+    	end
+    end
+  end
+
+  describe "game list" do 
+  	before :each do 
+	    @property = Property.create(title: 'Duck Hunt', description: 'A sweet place to hunt mallard.', game_list: 'boar,boar,bear,geese',
+			                            hunttype: 'day',	location: 'Alabama', accommodates: 4,	phone: '555 123 4567', price: 99,	user_id: 1)
+    end
+
+    it "includes 3 unique game" do
+      total_game = @property.games.count
+      expect(total_game).to eq(3)
+    end
+  end
+
 end

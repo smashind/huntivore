@@ -4,9 +4,9 @@ describe "PropertyPages" do
 
 	subject { page }
 
-	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", accepted_terms: true) }
-	let(:user2) { User.create(first_name: "Gary", last_name: "Scott", email: "gary@example.com", password: "foobarrr", accepted_terms: true) }
-	let(:listing) { user.properties.create(title: "Duck Hunt", hunttype: "Overnight", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, phone: "123 555 4567", price: 99) }
+	let(:user) { FactoryGirl.create(:user) }
+	let(:user2) { FactoryGirl.create(:user) }
+	let(:listing) { FactoryGirl.create(:property, :overnight, user_id: user.id) }
 	before { sign_in user }
 
 	describe "property creation" do 
