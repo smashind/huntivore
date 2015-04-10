@@ -24,7 +24,7 @@
        @media only screen and (max-width: 640px) {
        a[href^="tel"], a[href^="sms"] {
        text-decoration: none;
-       color: #DD4814#DD4814; /* or whatever your want */
+       color: #DD4814; /* or whatever your want */
        pointer-events: none;
        cursor: default;
        }
@@ -91,16 +91,16 @@
                               <!-- Spacing -->
                               <tr>
                                  <td>
-                                    <table width="280" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                    <table width="600" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
                                        <tbody>
                                           <tr>
-                                             <td align="left" valign="middle" style="font-family: Helvetica, arial, sans-serif; font-size: 13px;color: #ffffff">
-                                                <a href="http://www.huntivore.com/" target="_blank" style="text-decoration: none; color: #ffffff">Huntivore</a>
+                                             <td align="center" valign="middle" style="font-family: Helvetica, arial, sans-serif; font-size: 13px;color: #ffffff">
+                                                <%= message.subject %>
                                              </td>
                                           </tr>
                                        </tbody>
                                     </table>
-                                    <table width="280" align="right" border="0" cellpadding="0" cellspacing="0" class="emhide">
+<!--                                     <table width="280" align="right" border="0" cellpadding="0" cellspacing="0" class="emhide">
                                        <tbody>
                                           <tr>
                                              <td align="right" valign="middle" style="font-family: Helvetica, arial, sans-serif; font-size: 13px;color: #ffffff">
@@ -108,7 +108,7 @@
                                              </td>
                                           </tr>
                                        </tbody>
-                                    </table>
+                                    </table> -->
                                  </td>
                               </tr>
                               <!-- Spacing -->
@@ -181,11 +181,11 @@
                                     <table width="560" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
                                        <tbody>
                                           <!-- Title -->
-                                          <tr>
+<!--                                           <tr>
                                              <td style="font-family: Helvetica, arial, sans-serif; font-size: 14px; font-weight:bold; color: #333333; text-align:left;line-height: 24px;">
                                                 <%= message.subject %>
                                              </td>
-                                          </tr>
+                                          </tr> -->
                                           <!-- End of Title -->
                                           <!-- spacing -->
                                           <tr>
@@ -208,10 +208,11 @@
                                           <!-- Spacing -->
                                           <!-- button -->
                                           <tr>
-                                             <td style="font-family: Helvetica, arial, sans-serif; font-size: 14px; font-weight:bold; color: #000; text-align:center;line-height: 24px;">
+                                             <td style="font-family: Helvetica, arial, sans-serif; font-size: 12px; font-weight:bold; color: #000; text-align:center;line-height: 24px;">
                                                 <a href="http://www.huntivore.com/" style="color:#DD4814;text-decoration:none;font-weight:bold;">Your Account</a> | 
                                                 <a href="http://www.huntivore.com/faq" style="color:#DD4814;text-decoration:none;font-weight:bold;">FAQs</a> | 
-                                                <a href="http://www.huntivore.com/properties/new" style="color:#DD4814;text-decoration:none;font-weight:bold;">List Your Hunt</a>
+                                                <a href="http://www.huntivore.com/properties/new" style="color:#DD4814;text-decoration:none;font-weight:bold;">List Your Hunt</a> |
+                                                <a href="http://www.huntivore.com/contact" style="color:#DD4814;text-decoration:none;font-weight:bold;">Support</a>
                                              </td>
                                           </tr>
                                           <!-- /button -->
@@ -252,9 +253,9 @@
                               </tr>
                               <!-- Spacing -->
                               <tr>
-                                 <td>
+                                 <td width="100%">
                                     <!-- Social icons -->
-                                    <table  width="100" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                    <table width="100%" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
                                        <tbody>
                                           <tr>
                                              <td width="43" height="43" align="center">
