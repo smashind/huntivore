@@ -14,11 +14,22 @@ class User < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   has_many :favorited, through: :properties, source: :favorites
 
+  after_create :send_welcome_email
+
   def full_name
   	first_name + " " + last_name
   end
 
   def to_param
     [id, full_name.parameterize].join("-")
+  end
+
+  def send_welcome_email
+    if self.owner
+      UserMailer.welcome_email_owner(self).deliver
+      UserMailer.new_owner(self).deliver
+    else
+      UserMailer.welcome_email(self).deliver
+    end
   end
 end

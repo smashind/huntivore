@@ -1,11 +1,7 @@
 class ContactMessageMailer < ActionMailer::Base
+  layout 'mail'
   default from: "Huntbot <huntbot@huntivore.com>"
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.contact_message.mailer.subject
-  #
   def contact_us(contact_message)
     @contact_message = contact_message
     @name = contact_message.name

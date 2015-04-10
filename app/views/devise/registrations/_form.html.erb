@@ -39,6 +39,10 @@
 			  	</div>
 			  </div>
 
+			  <% if controller_name == "pages" && action_name == "list" %>
+			  <%= f.hidden_field :owner, value: true %>
+			  <% end %>
+
 			  <div class="form-group terms">
 			  	<div class="col-xs-1">	
 			  		<%= f.check_box :accepted_terms, required: true %>

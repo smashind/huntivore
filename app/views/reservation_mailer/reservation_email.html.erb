@@ -1,43 +1,35 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h3>Hey <%= @user.first_name %>,</h3>
-    <p>
-      You just successfully reservered <strong><%= @property.title %></strong>.
-    </p>
+<h3>Hey <%= @user.first_name %>,</h3>
+<p>
+  You just successfully reservered <strong><%= @property.title %></strong>.
+</p>
 
-    <p>
-      To see the details, please visit <%= link_to "the reservation confirmation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
-    </p>
+<p>
+  To see the details, please visit <%= link_to "the reservation confirmation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
+</p>
 
-    <h3>Owner Contact information:</h3>
-      <p><strong>Name:</strong> <%= @owner.full_name %><br />
-        <strong>Phone:</strong> <%= @property.phone %><br />
-        <strong>Email:</strong> <%= @owner.email %>
-      </p>
+<h3>Owner Contact information:</h3>
+  <p><strong>Name:</strong> <%= @owner.full_name %><br />
+    <strong>Phone:</strong> <%= @property.phone %><br />
+    <strong>Email:</strong> <%= @owner.email %>
+  </p>
 
-    <h3>Hunt Details</h3>
-      <p><% if @reservation.property.hunttype == 'Overnight' %>
-            <strong>Start:</strong> <%= @reservation.from %><br />
-            <strong>End:</strong> <%= @reservation.to %><br />
-          <% else %>
-            <strong>Date:</strong> <%= @reservation.from %><br /> 
-          <% end %>
-          <strong>Total Price:</strong> $<%= @reservation.trip_price %>
-      </p>
+<h3>Hunt Details</h3>
+  <p><% if @reservation.property.hunttype == 'Overnight' %>
+        <strong>Start:</strong> <%= @reservation.from %><br />
+        <strong>End:</strong> <%= @reservation.to %><br />
+      <% else %>
+        <strong>Date:</strong> <%= @reservation.from %><br /> 
+      <% end %>
+      <strong>Total Price:</strong> $<%= @reservation.trip_price %>
+  </p>
 
-      <p>If you haven't already, please <strong><%= link_to "pay for your reservation now", "http://www.huntivore.com#{reservation_path(@reservation)}" %></strong>.
-      </p>
+  <p>If you haven't already, please <strong><%= link_to "pay for your reservation now", "http://www.huntivore.com#{reservation_path(@reservation)}" %></strong>.
+  </p>
 
-    <p>Have a great day!</p>
+<p>Have a great day!</p>
 
-    <p>
-      Thanks,
-    </p>  
+<p>
+  Thanks,
+</p>  
 
-      <h3>The Huntivore Team</h3>
-  </body>
-</html>
+  <h3>The Huntivore Team</h3>

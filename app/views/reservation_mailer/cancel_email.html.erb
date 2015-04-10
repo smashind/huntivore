@@ -1,34 +1,26 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h3>Hey <%= @resmaker.first_name %>,</h3>
-    <p>
-      The below reservation was canceled by the owner: 
-    </p>
+<h3>Hey <%= @resmaker.first_name %>,</h3>
+<p>
+  The below reservation was canceled by the owner: 
+</p>
 
-    <h3>Hunt Details</h3>
-      <p><% if @reservation.property.hunttype == 'Overnight' %>
-            <strong>Start:</strong> <%= @reservation.from %><br />
-            <strong>End:</strong> <%= @reservation.to %><br />
-          <% else %>
-            <strong>Date:</strong> <%= @reservation.from %><br /> 
-          <% end %>
-      </p>
+<h3>Hunt Details</h3>
+  <p><% if @reservation.property.hunttype == 'Overnight' %>
+        <strong>Start:</strong> <%= @reservation.from %><br />
+        <strong>End:</strong> <%= @reservation.to %><br />
+      <% else %>
+        <strong>Date:</strong> <%= @reservation.from %><br /> 
+      <% end %>
+  </p>
 
-    <h3>Cancellation Reason</h3>
-    <p><%= @reservation.cancel_reason %></p>  
+<h3>Cancellation Reason</h3>
+<p><%= @reservation.cancel_reason %></p>  
 
-    <p>
-      To see the details, please visit <%= link_to "the reservation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
-    </p>
+<p>
+  To see the details, please visit <%= link_to "the reservation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
+</p>
 
-    <p>
-      Thanks,
-    </p>
+<p>
+  Thanks,
+</p>
 
-      <h3>The Huntivore Team</h3>
-  </body>
-</html>
+  <h3>The Huntivore Team</h3>

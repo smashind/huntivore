@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319232554) do
+ActiveRecord::Schema.define(version: 20150407232706) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "contact_messages", force: true do |t|
     t.string   "name"
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20150319232554) do
     t.datetime "updated_at"
   end
 
-  add_index "favorites", ["property_id"], name: "index_favorites_on_property_id"
-  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
+  add_index "favorites", ["property_id"], name: "index_favorites_on_property_id", using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "games", force: true do |t|
     t.string   "name"
@@ -44,8 +47,8 @@ ActiveRecord::Schema.define(version: 20150319232554) do
     t.datetime "updated_at"
   end
 
-  add_index "gamings", ["game_id"], name: "index_gamings_on_game_id"
-  add_index "gamings", ["property_id"], name: "index_gamings_on_property_id"
+  add_index "gamings", ["game_id"], name: "index_gamings_on_game_id", using: :btree
+  add_index "gamings", ["property_id"], name: "index_gamings_on_property_id", using: :btree
 
   create_table "payment_notifications", force: true do |t|
     t.text     "params"
@@ -56,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150319232554) do
     t.datetime "updated_at"
   end
 
-  add_index "payment_notifications", ["reservation_id"], name: "index_payment_notifications_on_reservation_id"
+  add_index "payment_notifications", ["reservation_id"], name: "index_payment_notifications_on_reservation_id", using: :btree
 
   create_table "properties", force: true do |t|
     t.string   "title"
@@ -73,8 +76,8 @@ ActiveRecord::Schema.define(version: 20150319232554) do
     t.string   "phone"
   end
 
-  add_index "properties", ["location"], name: "index_properties_on_location", unique: true
-  add_index "properties", ["user_id"], name: "index_properties_on_user_id"
+  add_index "properties", ["location"], name: "index_properties_on_location", unique: true, using: :btree
+  add_index "properties", ["user_id"], name: "index_properties_on_user_id", using: :btree
 
   create_table "property_attachments", force: true do |t|
     t.integer  "property_id"
@@ -83,7 +86,7 @@ ActiveRecord::Schema.define(version: 20150319232554) do
     t.datetime "updated_at"
   end
 
-  add_index "property_attachments", ["property_id"], name: "index_property_attachments_on_property_id"
+  add_index "property_attachments", ["property_id"], name: "index_property_attachments_on_property_id", using: :btree
 
   create_table "reservations", force: true do |t|
     t.date     "to"
@@ -97,8 +100,8 @@ ActiveRecord::Schema.define(version: 20150319232554) do
     t.integer  "guests",        default: 1
   end
 
-  add_index "reservations", ["property_id"], name: "index_reservations_on_property_id"
-  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id"
+  add_index "reservations", ["property_id"], name: "index_reservations_on_property_id", using: :btree
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -122,10 +125,11 @@ ActiveRecord::Schema.define(version: 20150319232554) do
     t.string   "instagram"
     t.boolean  "accepted_terms",         default: false
     t.string   "role",                   default: "user"
+    t.boolean  "owner",                  default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
