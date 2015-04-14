@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_good_slug(object)
-    redirect_to controller: controller_name, action: params[:action], id: object.to_param, status: :moved_permantently
+    redirect_to controller: controller_name, action: params[:action], id: object.to_param, status: 301
   end
 
 
