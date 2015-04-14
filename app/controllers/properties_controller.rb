@@ -11,6 +11,7 @@ class PropertiesController < ApplicationController
 	end
 
 	def show
+		redirect_to_good_slug(@property) and return if bad_slug?(@property)
 		@reservation = Reservation.new
 		@property_attachments = @property.property_attachments.all
 		javascript_variables(price: @property.price, per_person: @property.per_person, hunttype: @property.hunttype, fee: HUNTIVORE_FEE)

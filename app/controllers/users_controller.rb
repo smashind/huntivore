@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def show
   	@user = User.find(params[:id])
+    redirect_to_good_slug(@user) and return if bad_slug?(@user)
   end
 
   def trips

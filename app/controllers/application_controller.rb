@@ -9,6 +9,15 @@ class ApplicationController < ActionController::Base
     @javascript_variables.merge!(variables)
   end
 
+  def bad_slug?(object)
+    params[:id] != object.to_param
+  end
+
+  def redirect_to_good_slug(object)
+    redirect_to controller: controller_name, action: params[:action], id: object.to_param, status: :moved_permantently
+  end
+
+
   protected
 
   def configure_permitted_parameters
