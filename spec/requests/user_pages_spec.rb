@@ -25,10 +25,7 @@ describe 'User pages' do
 		end
 	end
 
-	let(:user) { User.create(first_name: "Joe", last_name: "Smith", email: "joe@example.com", password: "foobarrr", twitter: "huntivore", accepted_terms: true) }
-	let(:user2) { User.create(first_name: "Gassy", last_name: "Pol", email: "garsspol@example.com", password: "foobarrr", accepted_terms: true ) }
-	let(:listing) { user.properties.create(title: "Duck Hunt", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, phone: "123 555 4567", price: 99) }
-	let(:res) { user2.reservations.create(property_id: listing.id, from: "05/25/2015", to: "05/27/2015") }
+	let(:user) { FactoryGirl.create(:user, first_name: "John", last_name: "Barry") }
 
   describe "user login" do 
 
@@ -42,7 +39,7 @@ describe 'User pages' do
 		before { sign_in user }
 
 		it "should welcome the user" do 
-			expect(page).to have_content("Welcome back, Joe")
+			expect(page).to have_content("Welcome back, John")
 		end
 
 		it "should link to the user profile from the navbar" do 
@@ -52,7 +49,7 @@ describe 'User pages' do
 
 		it "should show the user's profile page" do 
 			visit user_path(user)
-			expect(page).to have_content("Joe Smith")
+			expect(page).to have_content("John Barry")
 		end
 	end
 
@@ -60,7 +57,7 @@ describe 'User pages' do
 		before { sign_in user }
 
 		it "should have the user's gravatar" do 
-			expect(page).to have_css("img[alt='Joe Smith']")
+			expect(page).to have_css("img[alt='John Barry']")
 		end
 
 		it "should show how long the user has been a member" do 
@@ -72,15 +69,7 @@ describe 'User pages' do
 		end
 
 		it "should list the user's properties" do
-			visit new_property_path
-			fill_in 'Title',        with: 'Duck Hunt'
-			fill_in 'Description',  with: 'A sweet place to hunt ducks'
-			fill_in 'Game',         with: 'duck'
-			fill_in 'Location',     with: 'Alabama'
-			fill_in 'Accommodates', with: 4
-			fill_in 'Phone',        with: '555 999 1234'
-		  fill_in 'Price',        with: 99
-		  click_button 'Submit Property'
+			FactoryGirl.create(:property, user: user)
 		  visit user_path(user)
 		  expect(page).to have_link("Duck Hunt")
 		end
@@ -103,8 +92,9 @@ describe 'User pages' do
 
 		describe "trip and hosting tabs" do 
 			
-			let!(:user2) { User.create(first_name: "Gary", last_name: "Johnson", email: "gary@example.com", password: "foobarrr", accepted_terms: true ) }
-			let!(:listing) { user.properties.create(title: "Duck Hunt", game_list: "duck,mallard", description: "A sweet place to hunt ducks", location: "Alabama", accommodates: 4, phone: "123 555 4567", price: 99) }
+			let!(:user) { FactoryGirl.create(:user) }
+			let!(:user2) { FactoryGirl.create(:user) }
+			let!(:listing) { FactoryGirl.create(:property, user: user) }
 			let!(:res) { user2.reservations.create(property_id: listing.id, from: "05/25/2015", to: "05/27/2015") }
 			
       it "should list the user's hosted trips" do
@@ -168,6 +158,8 @@ describe 'User pages' do
   end
 
   describe "different users" do 
+  	let(:user2) { FactoryGirl.create(:user) }
+
   	before do
   		sign_in user2
   		visit user_path(user)
