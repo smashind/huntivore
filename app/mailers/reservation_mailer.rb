@@ -2,20 +2,20 @@ class ReservationMailer < ActionMailer::Base
   layout 'mail'
   default from: "The Huntivore Team <support@huntivore.com>"
 
-  def reservation_email(user, property, reservation)
-  	@user = user
-  	@property = property
-  	@reservation = reservation
-  	@owner = property.user
+  def reservation_email(reservation)
+    @reservation = reservation
+    @user = reservation.user
+    @property = reservation.property 
+    @owner = reservation.property.user 
   	mail(to: @user.email, subject: 'Your reservation was successful!')
   end
 
-  def owner_email(user, property, reservation)
-  	@user = property.user
-  	@property = property
-  	@reservation = reservation
-  	@resmaker = user
-  	mail(to: @user.email, subject: 'Your listing was booked!')
+  def owner_email(reservation)
+    @reservation = reservation
+    @user = reservation.property.user
+    @property = reservation.property
+    @resmaker = reservation.user
+  	mail(to: @user.email, subject: "#{@property.title} was booked!")
   end
 
   def paid_email(reservation)

@@ -1,10 +1,10 @@
 <h3>Hey <%= @user.first_name %>,</h3>
 <p>
-  You just successfully reservered <strong><%= @property.title %></strong>.
+  You successfully reservered <%= link_to "#{@property.title}", "http://www.huntivore.com/properties/#{@property.id}" %> on Huntivore!
 </p>
 
 <p>
-  To see the details, please visit <%= link_to "the reservation confirmation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
+  To see the details, please visit <strong><%= link_to "the reservation confirmation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %></strong>.
 </p>
 
 <h3>Owner Contact information:</h3>

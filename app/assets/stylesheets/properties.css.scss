@@ -49,6 +49,10 @@
 	-webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   min-height: 112px;
+  margin-bottom: 40px;
+  @media (max-width: 767px) {
+    margin-bottom: 0;
+  }
   a {
     img {
       float: left;

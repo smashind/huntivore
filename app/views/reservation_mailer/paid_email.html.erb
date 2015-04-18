@@ -1,26 +1,31 @@
-<p>Hey <%= @user.first_name %>,</p>
+<h3>Hey <%= @user.first_name %>,</h3>
 <p>
   The below reservation was paid for. 
 </p>
 
 <p>
-  To see the details, please visit <%= link_to "the reservation confirmation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
+  To see the details, please visit <strong><%= link_to "the reservation confirmation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %></strong>.
 </p>
-<h3>User Contact information:</h3>
+
+<h3>Hunt Details</h3>
+  <p>
+    <strong><%= link_to "#{@property.title}", "http://www.huntivore.com/properties/#{@property.id}" %></strong><br />
+    <% if @reservation.property.hunttype == 'Overnight' %>
+      <strong>Start:</strong> <%= @reservation.from %><br />
+      <strong>End:</strong> <%= @reservation.to %><br />
+    <% else %>
+      <strong>Date:</strong> <%= @reservation.from %><br /> 
+    <% end %>
+  </p>
+
+<h3>Hunter Contact information:</h3>
   <p><strong>Name:</strong> <%= @resmaker.full_name %><br />
     <strong>Email:</strong> <%= @resmaker.email %><br />
   </p>
 
-<h3>Hunt Details</h3>
-  <p><% if @reservation.property.hunttype == 'Overnight' %>
-        <strong>Start:</strong> <%= @reservation.from %><br />
-        <strong>End:</strong> <%= @reservation.to %><br />
-      <% else %>
-        <strong>Date:</strong> <%= @reservation.from %><br /> 
-      <% end %>
-  </p>
+<h3>Your Earnings</h3>
 
-<p>You will be paid after the trip is completed.</p>
+<p>After the trip is completed, you'll earn <strong>$<%= @reservation.owner_earnings %></strong>.</p>
 
 <p>
   Thanks,

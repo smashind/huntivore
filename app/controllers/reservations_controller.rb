@@ -14,8 +14,8 @@ class ReservationsController < ApplicationController
 
   	if @reservation.save
       #if Rails.env.production?
-        ReservationMailer.reservation_email(@reservation.user, @reservation.property, @reservation).deliver
-        ReservationMailer.owner_email(@reservation.user, @reservation.property, @reservation).deliver
+        ReservationMailer.reservation_email(@reservation).deliver
+        ReservationMailer.owner_email(@reservation).deliver
       #end
   		redirect_to @reservation, notice: "Reservation was successfully created."
     else
