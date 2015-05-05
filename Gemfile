@@ -26,6 +26,7 @@ gem 'mini_magick'
 gem 'fog'
 gem 'american_date'
 gem 'active_record_union'
+gem 'browser-timezone-rails'
 
 # Test Suite
 group :test do 

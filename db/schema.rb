@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407232706) do
+ActiveRecord::Schema.define(version: 20150429223730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(version: 20150407232706) do
 
   add_index "gamings", ["game_id"], name: "index_gamings_on_game_id", using: :btree
   add_index "gamings", ["property_id"], name: "index_gamings_on_property_id", using: :btree
+
+  create_table "message_replies", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "sent_message_id"
+    t.text     "body"
+    t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "message_replies", ["sent_message_id"], name: "index_message_replies_on_sent_message_id", using: :btree
+  add_index "message_replies", ["user_id"], name: "index_message_replies_on_user_id", using: :btree
 
   create_table "payment_notifications", force: true do |t|
     t.text     "params"
@@ -102,6 +114,21 @@ ActiveRecord::Schema.define(version: 20150407232706) do
 
   add_index "reservations", ["property_id"], name: "index_reservations_on_property_id", using: :btree
   add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
+
+  create_table "sent_messages", force: true do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "recipient_id"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "replied_to",        default: false
+    t.boolean  "read_by_user"
+    t.boolean  "read_by_recipient"
+    t.datetime "reply_date"
+  end
+
+  add_index "sent_messages", ["user_id"], name: "index_sent_messages_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"

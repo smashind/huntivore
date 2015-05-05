@@ -13,6 +13,11 @@ class User < ActiveRecord::Base
   has_many :hostings, through: :properties, source: :reservations
   has_many :favorites, dependent: :destroy
   has_many :favorited, through: :properties, source: :favorites
+  has_many :sent_messages
+  has_many :messages, class_name: "SentMessage", foreign_key: "recipient_id"
+
+  has_many :message_replies
+  has_many :replied_messages, class_name: "MessageReply", foreign_key: "recipient_id"
 
   after_create :send_welcome_email
 

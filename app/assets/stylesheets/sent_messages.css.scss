@@ -1,0 +1,73 @@
+// Place all the styles related to the SentMessages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.message-view {
+	padding: 20px;
+	background: #F7E0C5;
+	min-height: 100px;
+	img { 
+    float: left;
+    margin: 0 20px 20px 0;
+	}
+}
+.sender-name a {
+	color: #6D5F59;
+  font-size: 14px;
+}
+.message-date {
+  color: #6D5F59;
+  font-style: italic;
+  font-size: 12px;
+}
+.reply-container {
+	margin: 20px 0;
+	.reply-view {
+		padding: 20px;
+		min-height: 100px;
+		img { 
+	    float: left;
+	    margin: 0 20px 20px 0;
+		}
+	}
+	.reply-view:nth-child(odd) {
+		background: #D3EDC4;
+	}
+	.reply-view:nth-child(even) {
+		background: #E2F7D7;
+	}
+}
+.reply-form {
+	margin-bottom: 20px;
+	.btn.btn-primary {
+	  margin: 10px 0;
+	}
+}
+.back-message {
+	float: right;
+}
+.table-messages {
+	th {
+	  border-bottom: none !important;
+	}
+	tr {
+	  a {
+	    color: #46474C;
+	  }
+	}
+	a {
+	  display: block;
+	  height: 100%;
+	  width: 100%;
+	  padding: 8px;
+	}
+	tr.unread {
+	  font-weight: bold;
+	}
+	tr.unread:hover {
+    background-color: #F7F7F7;
+  }
+}
+.table.table-messages tbody > tr > td {
+	  padding: 0;
+	}

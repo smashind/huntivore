@@ -1,0 +1,66 @@
+<% if current_user == @sent_message.user || current_user == User.find(@sent_message.recipient_id) %>
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <%= link_to "Back to messages", user_messages_path(current_user), class: "btn btn-default back-message" %>
+		<h3>Conversation with
+		<% if current_user.id == @sent_message.user_id %>
+		 <%= User.find(@sent_message.recipient_id).full_name %>
+		<% elsif current_user.id == @sent_message.recipient_id %>
+		 <%= @sent_message.user.full_name %>
+		<% end %>
+		<% if @sent_message.property_id %>
+			regarding <%= link_to "#{Property.find(@sent_message.property_id).title}", Property.find(@sent_message.property_id) %>
+		<% end %>
+		</h3>
+
+		<div class="message-view">
+		  <%= link_to gravatar_for(@sent_message.user, size: 60), @sent_message.user %>
+		  <div class="sender-name">
+		  	<%= link_to "#{@sent_message.user.full_name}", @sent_message.user %>:
+		  </div>
+		  <%= @sent_message.body %>
+		  <div class="message-date">
+		    <%= time_ago_in_words(@sent_message.created_at) %> ago
+		  </div>
+		</div>
+
+		<div class="reply-container">
+			<% @sent_message.replies.each do |reply| %>
+				<div class="reply-view">
+					<%= link_to gravatar_for(reply.user, size: 60), reply.user %>
+					<div class="sender-name">
+		  	    <%= link_to "#{reply.user.full_name}", reply.user %>:
+		      </div>
+					<%= reply.body %>
+					<div class="message-date">
+				    <%= time_ago_in_words(reply.created_at) %> ago
+				  </div>
+			  </div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+
+		<div class="reply-form">
+		  <%= form_for (@message_reply = MessageReply.new) do |f| %>
+		    <%= f.text_area :body, class: "form-control", rows: 3, placeholder: "Post your reply...", required: true %> 
+        <%= f.hidden_field :sent_message_id, value: @sent_message.id %>
+        <% if current_user.id == @sent_message.user_id %>
+				 <%= f.hidden_field :recipient_id, value: @sent_message.recipient_id %>
+				<% elsif current_user.id == @sent_message.recipient_id %>
+				 <%= f.hidden_field :recipient_id, value: @sent_message.user_id %>
+				<% end %>
+      <%= f.submit "Reply", class: "btn btn-primary pull-right" %>
+      <% end %>
+		</div>
+
+	</div>
+</div>
+
+<% else %>
+<h2>Permission was denied.</h2>
+<% end %>
+

@@ -20,7 +20,7 @@ describe "GamePages" do
 
   	it "should include the tags" do 
   		visit property_path(property)
-  		expect(page).to have_content("hen mallard duck")
+  		expect(page).to have_content("duck mallard hen")
   	end
   end
 

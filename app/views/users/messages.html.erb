@@ -1,0 +1,81 @@
+<% content_for :head do %>
+  <title>Huntivore | <%= @user.full_name %>'s Messages</title>
+  <meta name="description" content="Viewing <%= @user.full_name %>'s Messages.">
+<% end %>
+
+<% if is_owner? @user %>	
+	<div id="user-profile">
+		<%= render partial: "profile_top" %>
+
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				
+				<%= render partial: "nav", locals: { active: 'Messages' } %>
+
+				<% if @user.messages.any? %>
+
+				  <table class="table table-hover table-messages">
+				    <thead>
+					    <tr>
+					      <th></th>
+					      <th></th>
+					      <th></th>
+					    </tr>
+				    </thead>
+				  <tbody>
+
+					<% @messages.each do |message| %>
+
+					    <% if (current_user == message.user && message.read_by_user? == false) %> 
+					    	<tr class="unread">
+					    <% elsif (current_user == User.find(message.recipient_id) && message.read_by_recipient? == false) %>
+					      <tr class="unread">
+					    <% else %>
+					      <tr class="active">
+					    <% end %>
+					      <td>
+									<% if message.user_id == @user.id && message.replied_to %>
+									  <%= link_to "#{User.find(message.recipient_id).full_name}, me (#{message.replies.count + 1})", message, method: :put %>
+									<% elsif message.user_id == @user.id && !message.replied_to %>
+									  <%= link_to "#{User.find(message.recipient_id).full_name}", message, method: :put %>
+									<% elsif message.recipient_id == @user.id && message.replied_to%>
+									   <%= link_to "#{message.user.full_name}, me (#{message.replies.count + 1})", message, method: :put %>
+									<% elsif message.recipient_id == @user.id && !message.replied_to%>
+									   <%= link_to "#{message.user.full_name}, me (#{message.replies.count + 1})", message, method: :put %>
+									<% end %>
+								</td>
+					      <td>
+					        <% if message.replied_to %> 
+					          <% if message.replies.last.user == @user %>
+					            <%= link_to "me: #{message.replies.last.body.truncate(75)}", message, method: :put %> 
+					          <% else %>
+					            <%= link_to "#{message.replies.last.user.first_name}: #{message.replies.last.body.truncate(75)}", message, method: :put %> "
+					          <% end %>
+					        <% else %> 
+					          <%= link_to "#{message.body.truncate(75)}", message, method: :put %> 
+					        <% end %>
+					      </td>
+					      <td>
+					        <% if message.reply_date.today? %>
+					          <%= link_to "#{message.reply_date.strftime('%l:%M %P')}", message, method: :put %>
+					        <% else %>
+					      	  <%= link_to "#{message.reply_date.strftime('%b %d')}", message, method: :put %>
+					      	<% end %>
+					      </td>
+					    </tr>
+					<% end %>
+				  </tbody>
+				  </table>
+
+				<%= will_paginate @messages, renderer: BootstrapPagination::Rails %>
+				<% else %>
+					<h4>No messages yet.</h4>
+				<% end %>
+
+
+	    </div>
+		</div>
+	</div>
+<% else %>
+<h2>Permission was denied.</h2>
+<% end %>

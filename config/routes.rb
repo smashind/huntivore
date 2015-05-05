@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get 'trips'
     get 'hosting'
     get 'favorites'
+    get 'messages'
   end
   resources :properties
   resources :reservations do 
@@ -19,7 +20,8 @@ Rails.application.routes.draw do
   resources :games, path: "game"
   resources :favorites
   post 'contact_messages', controller: 'contact_messages', action: 'create'
-
+  resources :sent_messages
+  resources :message_replies
   post 'payment_notifications', :controller => 'payment_notifications', :action => 'create'
   match "success", :to => 'pages#success', via: :post
   match 'pages/home' => redirect('/'), via: [:get, :post]

@@ -45,6 +45,9 @@ GEM
       sass (~> 3.2)
     bootswatch-rails (3.2.4)
       railties (>= 3.1)
+    browser-timezone-rails (0.0.8)
+      jquery-rails
+      rails (>= 3.1)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -232,6 +235,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass (~> 3.3.1)
   bootswatch-rails
+  browser-timezone-rails
   capybara
   carrierwave
   coffee-rails (~> 4.0.0)
