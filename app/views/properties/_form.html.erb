@@ -29,14 +29,22 @@
 		<div class="form-group">
 			<%= f.label :description, class: "col-md-4 control-label" %>
 			<div class="col-md-8">
-				<%= f.text_area :description, class: "form-control", placeholder: "Be descriptive and detailed, but not too long", required: true %>
+				<%= f.text_area :description, class: "form-control", placeholder: "Be descriptive and detailed, but not too long", required: true, rows: 10 %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :game_list, "Game", class: "col-md-4 control-label" %>
 			<div class="col-md-8">
-				<%= f.text_field :game_list, class: "form-control", placeholder: "List available game, separated by commas (e.g. elk, deer, boar)", required: true %>
+			  <% if @property.games.any?
+			    games = []
+			    @property.games.each do |game| 
+			  	games << game.name 
+			  	end %>
+			  	<%= f.text_field :game_list, class: "form-control", value: games.join(", "), required: true %>
+			  <% else %>
+				  <%= f.text_field :game_list, class: "form-control", placeholder: "List available game, separated by commas (e.g. elk, deer, boar)", required: true %>
+				<% end %>
 			</div>
 		</div>
 

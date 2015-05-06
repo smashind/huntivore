@@ -56,10 +56,12 @@
       <a href="/" class="navbar-brand"><img src="https://s3-us-west-1.amazonaws.com/huntivore/images/assets/huntivore.png"></a>
     </div>
     <div class="navbar-collapse collapse" id="navbar">
+    <!--
       <ul class="nav navbar-nav">
         <li><%= link_to "View all Properties", properties_path %></li>
         <li><%= link_to "Hunts by Game", games_path %></li>
       </ul>
+    -->
 
       <% if user_signed_in? %>
         <div class="navbar-form navbar-left">
@@ -130,8 +132,10 @@
 
         <div class="col-sm-3 col-sm-offset-2">
           <h3>Hunts</h3>
+          <!--
             <p><%= link_to "Properties", properties_path %></p>
             <p><%= link_to "Hunts by Game", games_path %></p>
+          -->
           <% if user_signed_in? %>
             <p><%= link_to "List Your Hunt", new_property_path %></p>
           <% else %>

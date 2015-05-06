@@ -5,8 +5,8 @@ class Property < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
   validates :location, presence: true
-  validates :accommodates, presence: true
-  validates :price, presence: true
+  validates :accommodates, presence: true, numericality: { greater_than: 0 }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 10 }
   validates :user_id, presence: true
   validates :game_list, presence: true
   validates :phone, presence: true

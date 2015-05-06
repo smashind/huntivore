@@ -56,7 +56,7 @@
 		<p><strong>Price:</strong> $<%= @property.price %><% if @property.hunttype == 'Overnight' %>/night <% end%> <% if @property.per_person %> (per person) <% else %> (total)<% end %></p>
 
 		<% if is_owner? @property.user %>
-			<%= link_to "Edit property", edit_property_path(@property) %>
+			<p><%= link_to "Edit this property", edit_property_path(@property) %></p>
 		<% else %>
 		  <div class="listed-by">
 			  <p><strong>Listed by:</strong></p> 
