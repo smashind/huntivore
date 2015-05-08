@@ -22,14 +22,14 @@
 		<div class="form-group">
 			<%= f.label :title, class: "col-md-4 control-label" %>
 			<div class="col-md-8">
-				<%= f.text_field :title, class: "form-control", placeholder: "Pick an exciting, descriptive title", required: true %>
+				<%= f.text_field :title, class: "form-control", placeholder: "Pick an exciting, descriptive title" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :description, class: "col-md-4 control-label" %>
 			<div class="col-md-8">
-				<%= f.text_area :description, class: "form-control", placeholder: "Be descriptive and detailed, but not too long", required: true, rows: 10 %>
+				<%= f.text_area :description, class: "form-control", placeholder: "Be descriptive and detailed, but not too long", rows: 10 %>
 			</div>
 		</div>
 
@@ -41,9 +41,9 @@
 			    @property.games.each do |game| 
 			  	games << game.name 
 			  	end %>
-			  	<%= f.text_field :game_list, class: "form-control", value: games.join(", "), required: true %>
+			  	<%= f.text_field :game_list, class: "form-control", value: games.join(", ") %>
 			  <% else %>
-				  <%= f.text_field :game_list, class: "form-control", placeholder: "List available game, separated by commas (e.g. elk, deer, boar)", required: true %>
+				  <%= f.text_field :game_list, class: "form-control", placeholder: "List available game, separated by commas (e.g. elk, deer, boar)" %>
 				<% end %>
 			</div>
 		</div>
@@ -51,28 +51,28 @@
 		<div class="form-group">
 			<%= f.label :phone, "Phone", class: "col-md-4 control-label" %>
 			<div class="col-md-8">
-				<%= f.text_field :phone, class: "form-control", placeholder: "The phone number associated with the property or hunt", required: true %>
+				<%= f.text_field :phone, class: "form-control", placeholder: "The phone number associated with the property or hunt" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :location, class: "col-md-4 control-label" %>
 			<div class="col-md-8">
-				<%= f.text_field :location, class: "form-control", placeholder: "Where is your property?", required: true %>
+				<%= f.text_field :location, class: "form-control", placeholder: "Where is your property?" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :accommodates, class: "col-md-4 control-label" %>
 			<div class="col-md-8">
-				<%= f.text_field :accommodates, class: "form-control", placeholder: "How many people does your property accommodate?", required: true %>
+				<%= f.text_field :accommodates, class: "form-control", placeholder: "How many people does your property accommodate?" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :price, "Price", class: "col-md-4 control-label" %>
 			<div class="col-md-8">
-				<%= f.text_field :price, class: "form-control", placeholder: "Price per night for overnight hunts, or total price for day hunts", required: true %>
+				<%= f.text_field :price, class: "form-control", placeholder: "Price per night for overnight hunts, or total price for day hunts" %>
 			</div>
 		</div>
 
