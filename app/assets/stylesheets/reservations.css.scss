@@ -11,6 +11,7 @@
 	  display: block;
 	  width: 100%;
 	}
+
 //	@media (max-width: 1200px) and (min-width: 769px) {
 //	  .input-group-addon {
 //	    display: none;
@@ -62,6 +63,28 @@
 	  .input-group {
 	    margin-bottom: 15px;
 	  }
+	}
+}
+.form-group.reserve {
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (max-width: 1202px) and (min-width: 1200px) {
+	.form-group.reserve {
+	  margin-left: 0;
+	  margin-right: 0px;
+	}
+}
+@media (max-width: 1199px) and (min-width: 992px) {
+	.form-group.reserve {
+	  margin-left: 0;
+	  margin-right: -10px;
+	}
+}
+@media (max-width: 991px) and (min-width: 767px) {
+	.form-group.reserve {
+	  margin-left: 0;
+	  margin-right: -20px;
 	}
 }
 .trip-preview {

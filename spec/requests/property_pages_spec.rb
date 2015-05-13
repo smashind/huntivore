@@ -105,7 +105,7 @@ describe "PropertyPages" do
 			before { visit property_path(listing) }
 
 			it "should have edit link for owner" do 
-				expect(page).to have_link("Edit property")
+				expect(page).to have_link("Edit this property")
 			end
 
 			it "should not have an edit link for non owner or non logged in user" do 
@@ -115,7 +115,7 @@ describe "PropertyPages" do
 			end
 
 			it "should render the edit view" do 
-				click_link "Edit property"
+				click_link "Edit this property"
 				expect(current_path).to eq(edit_property_path(listing))
 			end
 		end
