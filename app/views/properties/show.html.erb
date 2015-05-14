@@ -28,7 +28,7 @@
     <a class="social fb" href="https://www.facebook.com/sharer/sharer.php?app_id=1546406892291301&sdk=joey&u=<%= request.original_url %>&display=popup&ref=plugin" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
     </div>
 
-		<p><%= @property.description %></p>
+		<p><%= @property.description.html_safe %></p>
 
 		<p>
 			<% @property.games.each do |game| %>
