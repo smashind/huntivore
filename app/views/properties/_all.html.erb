@@ -9,8 +9,10 @@
     <div class="row">
       <div class="col-md-6">
         <% if p.property_attachments.any? %>
-      	  <% p.property_attachments[0,1].each do |a| %>
-            <%= link_to image_tag(a.image_url(:thumb)), p %>
+      	  <% if p.primary_image %>
+            <%= link_to image_tag(p.primary_image.image_url(:thumb)), p %>
+          <% else %>
+            <%= link_to image_tag(p.property_attachments.first.image_url(:thumb)), p %>
           <% end %>
         <% else %>
             <%= link_to image_tag('https://s3-us-west-1.amazonaws.com/huntivore/images/properties/default_huntivore_property_image.png'), p %>
@@ -18,7 +20,7 @@
         <h4><%= link_to "#{p.title}", p %></h4>
         <%= p.location %> ($<%= p.price %><% if p.hunttype == "Overnight" %>/night<% end %><% if p.per_person? %>/person<% end %>)
         <p>Accommodates: <%= p.accommodates %></p>
-        <p><%= truncate("#{p.description}", length: 20 ) { link_to "See more", p } %></p>
+        <p><%= truncate(strip_tags("#{p.description}"), length: 40 ) { link_to "See more", p } %></p>
         <% p.games.each do |game| %>
           <%= link_to game.name, game_path(game), class: "btn btn-primary btn-xs" %>
         <% end %>

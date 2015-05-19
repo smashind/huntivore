@@ -28,6 +28,17 @@
     <a class="social fb" href="https://www.facebook.com/sharer/sharer.php?app_id=1546406892291301&sdk=joey&u=<%= request.original_url %>&display=popup&ref=plugin" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
     </div>
 
+    <% if @property_attachments.any? %>
+    <% if is_owner? @property.user %>
+    <%= link_to "Edit this image", "/properties/#{@property.id}-#{@property.title.parameterize}/edit#images", class: "edit-primary" %>
+    <% end %>
+	    <% if @property.primary_image %>
+	      <%= image_tag(@property.primary_image.image_url, class: "main-image") %>
+	    <% else %>
+	      <%= image_tag(@property.property_attachments.first.image_url, class: "main-image") %>
+	    <% end %>
+    <% end %>
+
 		<p><%= @property.description.html_safe %></p>
 
 		<p>
@@ -42,6 +53,8 @@
 				<%= link_to(image_tag(p.image_url(:thumb)), p.image_url, class: "prop-image") %>
 			<% end %>
 		</div>
+		<a class="see-images">See more images...</a>
+		<a class="hide-images">Hide images...</a>
 		<% else %>
 			<% if is_owner? @property.user %>
 				<p>You haven't uploaded any images yet. Listings with vibrant images are much more likely to be rented!</p>
@@ -120,4 +133,18 @@ $('.social.fb').click(function(event) {
     event.preventDefault();
     window.open($(this).attr("href"), "popupWindow", "width=650");
 });
+</script>
+
+<script>
+$('a.see-images').click(function() {
+	$('a.prop-image:nth-child(n + 4) img').show();
+	$('a.see-images').hide();
+	$('a.hide-images').show();
+})
+
+$('a.hide-images').click(function() {
+	$('a.prop-image:nth-child(n + 4) img').hide();
+	$('a.see-images').show();
+	$('a.hide-images').hide();
+})
 </script>

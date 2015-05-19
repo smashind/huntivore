@@ -28,9 +28,11 @@
 					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 						<%= link_to p do %>
 							<% if p.property_attachments.any? %>
-								<% p.property_attachments[0,1].each do |a| %>
-							  	<div class="prop"><p><%= p.title %></p><%= image_tag(a.image_url(:thumb)) %></div>
-							  <% end %>
+							  <% if p.primary_image %>
+		            	<div class="prop"><p><%= p.title %></p><%= image_tag(p.primary_image.image_url(:thumb)) %></div>
+		            <% else %>
+		              <div class="prop"><p><%= p.title %></p><%= image_tag(p.property_attachments.first.image_url(:thumb)) %></div>
+		            <% end %>
 							<% else %>
 								<div class='prop'><p><%= p.title %></p><%= image_tag 'https://s3-us-west-1.amazonaws.com/huntivore/images/properties/no_property_images.png' %></div>
 							<% end %>

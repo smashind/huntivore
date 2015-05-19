@@ -18,11 +18,13 @@
 					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 						<%= link_to f.property do %>
 							<% if f.property.property_attachments.any? %>
-								<% f.property.property_attachments[0,1].each do |a| %>
-							  	<div class="prop"><p><%= f.property.title %></p><%= image_tag(a.image_url(:thumb)) %></div>
-							  <% end %>
+								<% if f.property.primary_image %>
+		            	<div class="prop"><p><%= f.property.title %></p><%= image_tag(f.property.primary_image.image_url(:thumb)) %></div>
+		            <% else %>
+		              <div class="prop"><p><%= f.property.title %></p><%= image_tag(f.property.property_attachments.first.image_url(:thumb)) %></div>
+		            <% end %>
 							<% else %>
-								<div class='prop'><p><%= f.property.title %></p><%= image_tag 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcReAAGzQYXCHxU__J0IiGF1Igvy4NgPbUKbNz1HZvQS0YsjUWTDbQ' %></div>
+								<div class='prop'><p><%= f.property.title %></p><%= image_tag 'https://s3-us-west-1.amazonaws.com/huntivore/images/properties/no_property_images.png' %></div>
 							<% end %>
 						<% end %>
 					</div>

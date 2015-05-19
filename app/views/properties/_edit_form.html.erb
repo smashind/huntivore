@@ -14,7 +14,7 @@
 	<fieldset>
 		<div class="form-group">
 			<%= f.label :available, "Available to book?", class: "col-md-4 control-label" %>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<div class="radio">
 					<%= f.radio_button(:available, true) %>
 					<%= label(:available, "Yes") %>
@@ -28,7 +28,7 @@
 
 		<div class="form-group">
 			<%= f.label :hunttype, "Type of Hunt", class: "col-md-4 control-label" %>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<% if @property.hunttype == "Overnight" %>
 					<%= f.select :hunttype, options_for_select(["Overnight","Day trip"]), {}, { autofocus: true, class: "form-control" } %>
 				<% else %>
@@ -39,56 +39,56 @@
 
 		<div class="form-group">
 			<%= f.label :title, class: "col-md-4 control-label" %>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<%= f.text_field :title, class: "form-control", placeholder: "Pick an exciting, descriptive title" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :description, class: "col-md-4 control-label" %>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<%= f.text_area :description, class: "form-control", placeholder: "Be descriptive and detailed, but try to keep it short :)", rows: 10 %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :game_list, "Edit Game", class: "col-md-4 control-label" %>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<%= f.text_field :game_list, :value => edit_game(@property.games), class: "form-control", placeholder: "Enter game separated by commas" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :phone, "Phone", class: "col-md-4 control-label" %>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<%= f.text_field :phone, class: "form-control", placeholder: "The phone number associated with the property or hunt", required: true %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :location, class: "col-md-4 control-label" %>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<%= f.text_field :location, class: "form-control", placeholder: "Where is your property?" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :accommodates, class: "col-md-4 control-label" %>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<%= f.text_field :accommodates, class: "form-control", placeholder: "How many people does your property accommodate?" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :price, "Price", class: "col-md-4 control-label" %>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<%= f.text_field :price, class: "form-control", placeholder: "Price per night for overnight hunts, or total price for day hunts" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<%= f.label :per_person, "Per Person?", class: "col-md-4 control-label" %>
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<div class="radio">
 					<%= f.radio_button(:per_person, true) %>
 					<%= label(:per_person, "Price is per person") %>
@@ -100,24 +100,14 @@
 			</div>
 		</div>
 
-		<div class="form-group">
-			<% if @property.property_attachments.any? %>
-			<label class="col-md-4 control-label">Current images<br />(click image to delete)</label>
-			<div class="col-md-8 prop-images">
-			  <% @property.property_attachments.each do |p| %>
-
-			    <%= link_to image_tag(p.image_url(:thumb)), p, method: :delete, data: { confirm: 'Are you sure you want to delete this image?' } %>
-
-			  <% end %>
-			<% end %>
-		</div>
+		
 
 		<div class="form-group">
 			<label class="col-md-4 control-label">
-				<%= f.label :image, "Images" %>
+				<%= f.label :image, "Add Images" %>
 			</label>
 			
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<div class="file-upload">
 					<%= f.file_field :image, :multiple => true, name: "property_attachments[image][]" %>
 				</div>
@@ -125,10 +115,33 @@
 		</div>
 
 		<div class="form-group">
-			<div class="col-md-8 col-md-offset-4">
+			<div class="col-md-6 col-md-offset-4">
 				<%= f.submit "Update Property", class: "btn btn-primary center-block" %>
 			</div>
 		</div>
+
 		<% end %> 
 	</fieldset>
+</div>
+
+<a name="images"></a>
+<div class="col-sm-12 images">
+	<% if @property.property_attachments.any? %>
+	<!-- <label class="col-md-4 control-label">Current images</label> -->
+	<div class="col-md-12">
+	  <% @property.property_attachments.reverse_each do |p| %>
+	  <div class="prop-attach">
+	  	
+	  	<% if p.is_primary? %>
+	  	  <span class="is-primary"><a><i class="fa fa-star-o"></i> Primary image</a></span>
+	  	<% else %>
+	  	  <span class="primary"><%= link_to raw('<i class="fa fa-picture-o"></i> Make primary'), p, method: :put, data: { confirm: 'Set as primary image?' } %></span>
+	  	<% end %>
+	      
+	    <%= image_tag(p.image_url(:thumb)) %>
+	    <span class="delete"><%= link_to raw('<i class="fa fa-trash-o"></i> Delete'), p, method: :delete, data: { confirm: 'Are you sure you want to delete this image?' } %></span>
+	  </div>
+	  <% end %>
+	</div>
+	<% end %>
 </div>

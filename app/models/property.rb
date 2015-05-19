@@ -13,6 +13,7 @@ class Property < ActiveRecord::Base
 
   has_many :property_attachments, dependent: :destroy
   accepts_nested_attributes_for :property_attachments
+  has_one :primary_image, -> { where is_primary: true }, class_name: "PropertyAttachment"
 
   has_many :gamings, dependent: :destroy
   has_many :games, through: :gamings

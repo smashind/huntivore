@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :reservations do 
     post :cancel
   end
-  resources :property_attachments, only: :destroy
+  resources :property_attachments, only: [:update, :destroy]
   resources :games, path: "game"
   resources :favorites
   post 'contact_messages', controller: 'contact_messages', action: 'create'
