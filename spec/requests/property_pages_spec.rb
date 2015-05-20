@@ -260,4 +260,16 @@ describe "PropertyPages" do
 			expect(page.all('select#selectUsers option').map(&:value)).to eq(%w(1 2 3 4))
 		end
 	end
+
+	describe "contacting the owner" do 
+		before do
+		  click_link "Logout"
+		  sign_in user2
+			visit property_path(listing)
+		end
+
+		it "should have a link to contact the owner" do 
+			expect(page).to have_content("Send #{listing.user.first_name} a Message")
+		end
+	end
 end
