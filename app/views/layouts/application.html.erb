@@ -26,6 +26,14 @@
       background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/list.jpg');
     }
     </style>
+  <% elsif controller_name == "pages" && action_name == "special" %>
+    <style>
+      body {
+        background: rgba(0,0,0,1);
+        background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/outfitter-bg-dark.png');
+        background-size: cover;
+      }
+    </style>
   <% else %>
     <style>
     body {
@@ -131,15 +139,19 @@
         </div>
 
         <div class="col-sm-3 col-sm-offset-2">
-          <h3>Hunts</h3>
-          
+          <h3>Hunting</h3>
+          <p><%= link_to "Huntivore Blog", "http://blog.huntivore.com/" %></p>
           <!--
             <p><%= link_to "Properties", properties_path %></p>
             <p><%= link_to "Hunts by Game", games_path %></p>
           -->
           <% if user_signed_in? %>
             <p><%= link_to "List Your Hunt", new_property_path %></p>
+            <% if current_user.outfitter? %>
+              <p><%= link_to "Create Outfitter Page", new_outfitter_path %></p>
+            <% end %>
           <% else %>
+            <p><%= link_to "Outfitters", special_path %></p>
             <p><%= link_to "List Your Hunt", list_path %></p>
           <% end %>
         </div>

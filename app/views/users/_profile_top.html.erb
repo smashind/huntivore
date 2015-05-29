@@ -1,17 +1,30 @@
-<div class="row">
-		<div class="col-md-2 col-md-offset-1">
-			<%= gravatar_for(@user) %>
-			<% if is_owner? @user %>
-				<div><%= link_to "Edit this image", "https://en.gravatar.com/", target: "_blank" %></div>
-			<% end %>
+<% if user_signed_in? && current_user == @user && @user.outfitter? %> 
+	<% unless @user.outfitters.any? %>
+		<div class="row user-outfitter-profile">
+		  <div class="col-sm-10 col-sm-offset-1">
+		    <h3><%= link_to raw("Create Your FREE Outfitter Page Here <i class='fa fa-arrow-right'></i>"), new_outfitter_path %></h3>
+		  </div>
 		</div>
-		<div class="col-md-8">
-    <% if is_owner? @user %>
-  		<%= link_to "List your property", new_property_path, class: "btn btn-success pull-right" %>
-  		<%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-warning pull-right" %>
-    <% end %>
-			<h1><%= @user.full_name %></h1>
-			<p><%= (@user.created_at).strftime("Member since %B %Y") %></p>
-			<%= render partial: "social" %>
-		</div>		
+	<% end %>
+<% end %>
+
+<div class="row">
+	<div class="col-md-2 col-md-offset-1">
+		<%= gravatar_for(@user) %>
+		<% if is_owner? @user %>
+			<div><%= link_to "Edit this image", "https://en.gravatar.com/", target: "_blank" %></div>
+		<% end %>
 	</div>
+	<div class="col-md-8">
+  <% if is_owner? @user %>
+		<%= link_to "List your property", new_property_path, class: "btn btn-success pull-right" %>
+		<%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-warning pull-right" %>
+  <% end %>
+		<h1><%= @user.full_name %></h1>
+		<% if @user.outfitter? %>
+			<p class="outfitter"><%= link_to raw("<i class='fa fa-star'></i> Outfitter"), user_outfitter_pages_path(@user) %></p> 
+		<% end %>
+		<p><%= (@user.created_at).strftime("Member since %B %Y") %></p>
+		<%= render partial: "social" %>
+	</div>		
+</div>

@@ -26,4 +26,8 @@ class UsersController < ApplicationController
     @messages = SentMessage.where(user_id: @user.id).where(replied_to: true).union(SentMessage.where(recipient_id: @user.id)).order(reply_date: :desc).paginate(page: params[:page], per_page: 10)
   end
 
+  def outfitter_pages
+    @user = User.find(params[:user_id])
+    @outfitters = @user.outfitters.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+  end
 end

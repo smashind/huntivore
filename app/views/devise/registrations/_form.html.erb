@@ -40,7 +40,9 @@
 			  </div>
 
 			  <% if controller_name == "pages" && action_name == "list" %>
-			  <%= f.hidden_field :owner, value: true %>
+			  	<%= f.hidden_field :owner, value: true %>
+			  <% elsif controller_name == "pages" && action_name == "special" %>
+			  	<%= f.hidden_field :outfitter, value: true %>
 			  <% end %>
 
 			  <div class="form-group terms">

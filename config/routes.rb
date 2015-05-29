@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'hosting'
     get 'favorites'
     get 'messages'
+    get 'outfitter_pages'
   end
   resources :properties
   resources :reservations do 
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
   resources :property_attachments, only: [:update, :destroy]
   resources :games, path: "game"
   resources :favorites
+  resources :outfitters
+  get 'special', to: 'pages#special'
   post 'contact_messages', controller: 'contact_messages', action: 'create'
   resources :sent_messages
   resources :message_replies

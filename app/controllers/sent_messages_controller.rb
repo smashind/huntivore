@@ -33,6 +33,6 @@ class SentMessagesController < ApplicationController
   private 
 
     def sent_message_params
-      params.require(:sent_message).permit(:user_id, :recipient_id, :body, :property_id, :read_by_user, :read_by_recipient, :reply_date)
+      params.require(:sent_message).permit(:user_id, :recipient_id, :body, :property_id, :outfitter_id, :read_by_user, :read_by_recipient, :reply_date)
     end
 end

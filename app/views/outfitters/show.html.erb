@@ -1,0 +1,108 @@
+</div><!-- close body container -->
+<div id="outfitter">
+	<section class="top">
+		<div class="container">
+			<div class="row top">
+			  <div class="col-sm-3">
+			    <% if user_signed_in? && current_user == @outfitter.user %> 
+						<%= link_to "Edit this image", edit_outfitter_path(@outfitter), class: "edit-link" %> 
+					<% end %>
+			    <% if @outfitter.profile? %>
+			    	<%= image_tag(@outfitter.profile_url(:thumb)) %>
+			    <% else %>
+			      <img src="https://s3-us-west-1.amazonaws.com/huntivore/images/assets/huntivore-outfitter.jpg" />
+			    <% end %>
+			  </div>
+			  <div class="col-sm-6 col-sm-offset-1">
+			    <h1><%= @outfitter.name %></h1>
+			    <h3><%= @outfitter.location %></h3>
+			  </div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+		<div class="row outfitter-info">
+		  <div class="col-sm-7">
+		    <h2>About <%= @outfitter.name %></h2>
+		    <p class="description"><%= @outfitter.description.html_safe %></p>
+		    <% if user_signed_in? && current_user == @outfitter.user %> 
+					<%= link_to "Edit outfitter page", edit_outfitter_path(@outfitter), class: "btn btn-warning" %> 
+				<% end %>
+		    
+		  </div>
+		  <div class="col-sm-4 col-sm-offset-1">
+	      <% if user_signed_in? %>
+		    <button class="btn btn-large btn-primary contact" data-toggle="modal" data-target="#myModal">Ask a Question</button>
+		    <% else %>
+		    <button class="btn btn-large btn-primary contact" data-toggle="modal" data-target="#myModal" disabled=true alt="Login or signup to send message">Sign in to Ask a Question</button>
+		    <% end %>
+		    <!-- Modal -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="myModalLabel">Contact <%= @outfitter.name %></h4>
+				      </div>
+				      <div class="modal-body">
+
+				        <%= form_for(@sent_message = SentMessage.new) do |f| %>
+				          <%= f.text_area :body, class: "form-control", rows: 3, placeholder: "I have a question ...", required: true %> 
+				          <%= f.hidden_field :recipient_id, value: @outfitter.user.id %>
+				          <%= f.hidden_field :outfitter_id, value: @outfitter.id %>
+				          <%= f.hidden_field :reply_date, value: Time.now %>
+
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        <%= f.submit "Send Message", class: "btn btn-primary" %>
+				        <% end %>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+		  </div>
+		</div>
+	</div>
+
+	<section class="huntlist">
+		<div class="container">
+			<div class="row properties">
+				<div class="col-sm-12">
+					<h3>Listings</h3>
+					<% if @outfitter.user.properties.any? %>
+						<% @outfitter.user.properties.includes(:property_attachments).each do |property| %>
+						<div class="hunt">
+						  <h4><%= link_to "#{truncate(property.title, length: 20)}", property %></h4>
+							<% if property.property_attachments.any? %>
+				      	<% if property.primary_image %>
+				          <%= link_to image_tag(property.primary_image.image_url(:thumb)), property %>
+				        <% else %>
+				          <%= link_to image_tag(property.property_attachments.first.image_url(:thumb)), property %>
+				        <% end %>
+				      <% else %>
+				        <%= link_to image_tag('https://s3-us-west-1.amazonaws.com/huntivore/images/properties/default_huntivore_property_image.png'), property %>
+				      <% end %>
+						</div>
+						<% end %>
+					<% else %>
+						<p>No properties listed yet.</p> 
+						<% if user_signed_in? && current_user == @outfitter.user %> 
+							<%= link_to "List your property or hunt", new_property_path, class: "btn btn-success" %> 
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<script>
+$('#myModal').bind('hidden.bs.modal', function () {
+  $("html").css("margin-right", "0px");
+});
+$('#myModal').bind('show.bs.modal', function () {
+  $("html").css("margin-right", "-17px");
+});
+</script>

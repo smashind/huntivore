@@ -1,0 +1,42 @@
+<% content_for :head do %>
+  <title>Huntivore | <%= @user.full_name %>'s Huntivore Outfitter Pages</title>
+  <meta name="description" content="<%= @user.full_name %> is on Huntivore. Join today and start hunting!">
+<% end %>
+
+<div id="user-profile">
+	<%= render partial: "profile_top" %>
+
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			
+			<%= render partial: "nav", locals: { active: 'Outfitter' } %>
+
+			<% if is_owner? @user && @user.outfitters.any? == false %>
+				<div class="prop-list">
+					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+						<%= link_to new_outfitter_path do %>
+							<div class='prop'><p>+ Add Your Outfitter Page</p></div>
+						<% end %>
+					</div>
+			<% elsif @user.outfitters.any? == false %>
+			  <h4>No Outfitter page yet.</h4>
+			<% end %>
+			
+			<% if @user.outfitters.any? %>
+			<div class="prop-list">	
+				<% @user.outfitters.each do |o| %>
+					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+						<%= link_to o do %>
+							<% if o.profile? %>
+	            	<div class="prop"><p><%= o.name %></p><%= image_tag(o.profile_url(:thumb)) %></div>
+	            <% else %>
+								<div class='prop'><p><%= o.name %></p><%= image_tag 'https://s3-us-west-1.amazonaws.com/huntivore/images/assets/huntivore-outfitter.jpg' %></div>
+							<% end %>
+						<% end %>
+					</div>
+				<% end %>
+			<% end %>
+			</div>
+		</div>
+	</div>
+</div>

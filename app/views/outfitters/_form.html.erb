@@ -1,0 +1,55 @@
+<%= form_for(@outfitter) do |f| %>
+			<% if @outfitter.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@outfitter.errors.count, "error") %> stopped this listing from being created:</h2>
+
+					<ul>
+					<% @outfitter.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+					</ul>
+				</div>
+			<% end %>
+<div class="form-horizontal property">
+	<fieldset>
+		<div class="form-group">
+			<%= f.label :name, class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_field :name, class: "form-control", placeholder: "The name of your outfit" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :location, class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_field :location, class: "form-control", placeholder: "Where are you located?" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :description, "About", class: "col-md-4 control-label" %>
+			<div class="col-md-8">
+				<%= f.text_area :description, class: "form-control", placeholder: "Be descriptive and detailed, but not too long", rows: 10 %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-4 control-label">
+				<%= f.label :image, "Main Image" %>
+			</label>
+			
+			<div class="col-md-8">
+				<div class="file-upload">
+					<%= f.file_field :profile %>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-8 col-md-offset-4">
+				<%= f.submit "Submit outfitter page", class: "btn btn-primary center-block" %>
+			</div>
+		</div>
+		<% end %> 
+	</fieldset>
+</div>

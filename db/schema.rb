@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514002558) do
+ActiveRecord::Schema.define(version: 20150524145245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,18 @@ ActiveRecord::Schema.define(version: 20150514002558) do
 
   add_index "message_replies", ["sent_message_id"], name: "index_message_replies_on_sent_message_id", using: :btree
   add_index "message_replies", ["user_id"], name: "index_message_replies_on_user_id", using: :btree
+
+  create_table "outfitters", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "profile"
+    t.string   "location"
+  end
+
+  add_index "outfitters", ["user_id"], name: "index_outfitters_on_user_id", using: :btree
 
   create_table "payment_notifications", force: true do |t|
     t.text     "params"
@@ -127,6 +139,7 @@ ActiveRecord::Schema.define(version: 20150514002558) do
     t.boolean  "read_by_user"
     t.boolean  "read_by_recipient"
     t.datetime "reply_date"
+    t.integer  "outfitter_id"
   end
 
   add_index "sent_messages", ["user_id"], name: "index_sent_messages_on_user_id", using: :btree
@@ -154,6 +167,7 @@ ActiveRecord::Schema.define(version: 20150514002558) do
     t.boolean  "accepted_terms",         default: false
     t.string   "role",                   default: "user"
     t.boolean  "owner",                  default: false
+    t.boolean  "outfitter"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

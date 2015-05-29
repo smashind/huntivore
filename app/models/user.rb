@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :message_replies
   has_many :replied_messages, class_name: "MessageReply", foreign_key: "recipient_id"
 
+  has_many :outfitters
+
   after_create :send_welcome_email
 
   def full_name

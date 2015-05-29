@@ -10,6 +10,8 @@
 		<% end %>
 		<% if @sent_message.property_id %>
 			regarding <%= link_to "#{Property.find(@sent_message.property_id).title}", Property.find(@sent_message.property_id) %>
+		<% elsif @sent_message.outfitter_id %>
+		  regarding <%= link_to "#{Outfitter.find(@sent_message.outfitter_id).name}", Outfitter.find(@sent_message.outfitter_id) %>
 		<% end %>
 		</h3>
 
