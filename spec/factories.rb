@@ -5,6 +5,14 @@ FactoryGirl.define do
 		sequence(:email) { |n| "first_#{n}@example.com" }
 		password "foobarrr"
 		accepted_terms true
+
+		trait :owner do 
+			owner true
+		end
+
+		trait :outfitter do 
+			outfitter true
+		end
 	end
 
 	factory :property do
@@ -34,5 +42,12 @@ FactoryGirl.define do
 			hunttype "Day trip"
 			per_person false
 		end
+	end
+
+	factory :outfitter do 
+		name "Cool Outfitter" 
+		description "A really cool outfitter"
+		location "Montana"
+		user 
 	end
 end

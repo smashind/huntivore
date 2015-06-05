@@ -47,7 +47,11 @@
 
 		<div class="form-group">
 			<div class="col-md-8 col-md-offset-4">
+			<% if action_name == "new" %>
 				<%= f.submit "Submit outfitter page", class: "btn btn-primary center-block" %>
+			<% else %>
+			  <%= f.submit "Update outfitter page", class: "btn btn-primary center-block" %>
+			<% end %>
 			</div>
 		</div>
 		<% end %> 
