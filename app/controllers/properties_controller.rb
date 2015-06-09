@@ -4,9 +4,11 @@ class PropertiesController < ApplicationController
 
 	def index
 		if params[:search]
-		  @properties = Property.search(params[:search]).paginate(page: params[:page], per_page: 10)
+		  @properties = Property.search(params[:search]).includes(:property_attachments).includes(:primary_image)
+		                .includes(:games).paginate(page: params[:page], per_page: 10)
 		else
-      @properties = Property.where(available: true).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+      @properties = Property.where(available: true).includes(:property_attachments).includes(:primary_image).includes(:games)
+                    .order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     end
 	end
 

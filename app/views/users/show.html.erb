@@ -22,9 +22,9 @@
 				<div class="prop-list">
 			<% end %>
 			
-			<% if @user.properties.any? %>
+			<% if @properties.any? %>
 				
-				<% @user.properties.each do |p| %>
+				<% @properties.each do |p| %>
 					<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 						<%= link_to p do %>
 							<% if p.property_attachments.any? %>

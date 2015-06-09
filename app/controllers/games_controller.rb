@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-  	@games = Game.alphabetically
+  	@games = Game.alphabetically.includes(:properties)
   end
 
   def show

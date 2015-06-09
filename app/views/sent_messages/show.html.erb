@@ -27,7 +27,7 @@
 		</div>
 
 		<div class="reply-container">
-			<% @sent_message.replies.each do |reply| %>
+			<% @sent_message.replies.includes(:user).each do |reply| %>
 				<div class="reply-view">
 					<%= link_to gravatar_for(reply.user, size: 60), reply.user %>
 					<div class="sender-name">
