@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
 	has_many :gamings
-	has_many :properties, through: :gamings
+	has_many :properties, through: :gamings, counter_cache: :properties_count
 
 	scope :alphabetically, -> { order("name ASC") }
 

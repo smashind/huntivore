@@ -18,6 +18,9 @@ class Property < ActiveRecord::Base
   has_many :gamings, dependent: :destroy
   has_many :games, through: :gamings
 
+  after_create :increase_properties_count
+  after_destroy :decrease_properties_count
+
   def game_list
     games.join(", ")
   end
@@ -36,5 +39,17 @@ class Property < ActiveRecord::Base
 
   def to_param
     [id, title.parameterize].join("-")
+  end
+
+  def increase_properties_count
+    games.each do |game|
+      Game.increment_counter(:properties_count, game.id)
+    end
+  end
+
+  def decrease_properties_count
+    games.each do |game|
+      Game.decrement_counter(:properties_count, game.id)
+    end
   end
 end

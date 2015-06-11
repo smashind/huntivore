@@ -8,7 +8,7 @@ class GamesController < ApplicationController
   def show
   	@game = Game.find(params[:id])
     redirect_to_good_slug(@game) and return if bad_slug?(@game)
-    @games = @game.properties.paginate(page: params[:page], per_page: 10)
+    @games = @game.properties.includes(:property_attachments).includes(:games).paginate(page: params[:page], per_page: 10)
   end
 
   def destroy

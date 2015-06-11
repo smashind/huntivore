@@ -8,7 +8,9 @@
 <div id="all-game">
 	<% @games.each do |game| %>
 	  <% if game.properties.any? %>
-		  <%= link_to game.name, game_path(game), class: "btn btn-primary btn-lg" %>
+		  <%= link_to game.name, game_path(game), class: "btn btn-primary btn-lg tooltip-btn", 
+		                                          data: { toggle: "tooltip" }, 
+		                                          title: "#{pluralize(game.properties_count, 'listing')}" %>
 		<% end %>
 	<% end %>
 </div>
