@@ -21,23 +21,20 @@
 		</div>
 	</section>
 
-<%= @outfitter.user.full_name %>
-
 	<div class="container">
 		<div class="row outfitter-info">
 		  <div class="col-sm-7">
 		    <h2>About <%= @outfitter.name %></h2>
-		    <p class="description"><%= @outfitter.description.html_safe %></p>
-		    <% if user_signed_in? && current_user == @outfitter.user %> 
-					<%= link_to "Edit outfitter page", edit_outfitter_path(@outfitter), class: "btn btn-warning" %> 
-				<% end %>
-		    
+		    <p class="description"><%= @outfitter.description.html_safe %></p>		    
 		  </div>
+
 		  <div class="col-sm-4 col-sm-offset-1">
-	      <% if user_signed_in? %>
-		    <button class="btn btn-large btn-primary contact" data-toggle="modal" data-target="#myModal">Ask a Question</button>
-		    <% else %>
-		    <button class="btn btn-large btn-primary contact" data-toggle="modal" data-target="#myModal" disabled=true alt="Login or signup to send message">Sign in to Ask a Question</button>
+	      <% if is_outfitter_owner? @outfitter.user %>
+		      <%= link_to "Edit outfitter page", edit_outfitter_path(@outfitter), class: "btn btn-lg btn-warning edit-outfitter" %> 
+		    <% elsif user_signed_in? %>
+		      <button class="btn btn-large btn-primary contact" data-toggle="modal" data-target="#myModal">Ask a Question</button>
+		    <% else %> 
+		      <button class="btn btn-large btn-primary contact" data-toggle="modal" data-target="#myModal" disabled=true alt="Login or signup to send message">Sign in to Ask a Question</button>
 		    <% end %>
 		    <!-- Modal -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -73,8 +70,8 @@
 			<div class="row properties">
 				<div class="col-sm-12">
 					<h3>Listings</h3>
-					<% if @outfitter.user.properties.any? %>
-						<% @outfitter.user.properties.includes(:property_attachments).each do |property| %>
+					<% if @outfitter_properties.any? %>
+						<% @outfitter_properties.each do |property| %>
 						<div class="hunt">
 						  <h4><%= link_to "#{truncate(property.title, length: 20)}", property %></h4>
 							<% if property.property_attachments.any? %>

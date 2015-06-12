@@ -8,6 +8,7 @@ class OutfittersController < ApplicationController
 
   def show
     redirect_to_good_slug(@outfitter) and return if bad_slug?(@outfitter)
+    @outfitter_properties = @outfitter.user.properties.includes(:property_attachments).includes(:primary_image)
   end
 
   def new
