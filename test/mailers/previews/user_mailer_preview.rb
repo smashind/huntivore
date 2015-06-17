@@ -1,5 +1,4 @@
-class UserPreview < ActionMailer::Preview
-  # Accessible from http://localhost:3000/rails/mailers/user/welcome
+class UserMailPreview < ActionMailer::Preview
   def welcome_user
     UserMailer.welcome_email(User.first)
   end

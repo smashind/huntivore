@@ -18,7 +18,7 @@ RSpec.describe UserMailer, :type => :mailer do
   	end 
 
   	it 'assigns @first_name' do 
-  		expect(mail.body).to include(user.first_name)
+  		expect(mail.body.encoded).to include(user.first_name)
   	end
   end
 
@@ -39,11 +39,11 @@ RSpec.describe UserMailer, :type => :mailer do
   	end
 
   	it 'assigns @first_name' do 
-  		expect(owner_mail.body).to include(owner.first_name)
+  		expect(owner_mail.body.encoded).to include(owner.first_name)
   	end
 
   	it 'includes call to action' do 
-  		expect(owner_mail.body).to include('List it here FREE')
+  		expect(owner_mail.body.encoded).to include('List it here FREE')
   	end
   end
 
@@ -64,11 +64,11 @@ RSpec.describe UserMailer, :type => :mailer do
   	end
 
   	it 'assigns @full_name' do 
-  		expect(new_owner_mail.body).to include(owner.full_name)
+  		expect(new_owner_mail.body.encoded).to include(owner.full_name)
   	end
 
   	it 'assigns @email' do 
-  		expect(new_owner_mail.body).to include(owner.email)
+  		expect(new_owner_mail.body.encoded).to include(owner.email)
   	end
   end
 end

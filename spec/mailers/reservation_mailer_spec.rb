@@ -17,15 +17,15 @@ RSpec.describe ReservationMailer, type: :mailer do
     end
 
     it 'assigns @first_name' do 
-    	expect(user_mail.body).to include(user2.first_name)
+    	expect(user_mail.body.encoded).to include(user2.first_name)
     end
 
     it 'assigns @property.title' do 
-    	expect(user_mail.body).to include(property.title)
+    	expect(user_mail.body.encoded).to include(property.title)
     end
 
     it 'assigns @reservation.from' do 
-    	expect(user_mail.body).to include(reservation.from)
+    	expect(user_mail.body.encoded).to include(reservation.from.to_s)
     end
 
     let(:owner_email) { ReservationMailer.owner_email(reservation) }
@@ -39,8 +39,8 @@ RSpec.describe ReservationMailer, type: :mailer do
     end
 
     it 'has the user information' do 
-    	expect(owner_email.body).to include(user2.full_name)
-    	expect(owner_email.body).to include(user2.email)
+    	expect(owner_email.body.encoded).to include(user2.full_name)
+    	expect(owner_email.body.encoded).to include(user2.email)
     end
 
     let(:paid_email) { ReservationMailer.paid_email(reservation) }
@@ -54,7 +54,7 @@ RSpec.describe ReservationMailer, type: :mailer do
     end
 
     it 'includes the owner earnings' do 
-    	expect(paid_email.body).to include(reservation.owner_earnings)
+    	expect(paid_email.body.encoded).to include(reservation.owner_earnings)
     end
 
     let(:cancel_email) { ReservationMailer.cancel_email(reservation) }
@@ -68,12 +68,12 @@ RSpec.describe ReservationMailer, type: :mailer do
     end
 
     it 'assigns reservation maker @first_name' do 
-    	expect(cancel_email.body).to include(user2.first_name)
+    	expect(cancel_email.body.encoded).to include(user2.first_name)
     end
 
     it 'assigns @cancel_reason' do 
     	reservation.cancel_reason = "I need to cancel this reservation."
-    	expect(cancel_email.body).to include("I need to cancel this reservation.")
+    	expect(cancel_email.body.encoded).to include("I need to cancel this reservation.")
     end
 
     let(:paid_night_hunts) { ReservationMailer.paid_night_hunts(Reservation.all) }

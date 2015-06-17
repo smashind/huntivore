@@ -1,0 +1,13 @@
+Hey <%= @recipient.first_name %>,
+
+<%= @sender.full_name %> just replied to your message. Here's their reply:
+
+"<%= @reply %>"
+
+<%= link_to "Go here to reply to this message in your account >>", sent_message_path(@sent_message.id) %> 
+
+(Please don't reply to this mail, it was sent by HuntBot. He never checks his email).
+
+Thanks,
+
+The Huntivore Team

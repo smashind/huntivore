@@ -1,0 +1,21 @@
+Hey <%= @recipient.first_name %>,
+
+<%= @sender.full_name %> just sent you a message
+<% if @property %>
+regarding <%= @property.title %>.
+<% elsif @outfitter %>
+regarding <%= @outfitter.name %>.
+<% else %>
+on <%= Huntivore %>.
+<% end %> Here's the message:
+
+"<%= @message %>"
+
+<%= link_to "Go here to reply to this message in your account >>", sent_message_path(@sent_message.id) %>
+
+(Please don't reply to this mail, it was sent by HuntBot. He never checks his email).
+
+Thanks, 
+
+The Huntivore Team
+

@@ -50,4 +50,5 @@ FactoryGirl.define do
 		location "Montana"
 		user 
 	end
+
 end

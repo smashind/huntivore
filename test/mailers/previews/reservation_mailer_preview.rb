@@ -1,5 +1,4 @@
-class ReservationPreview < ActionMailer::Preview
-  # Accessible from http://localhost:3000/rails/mailers/reservation
+class ReservationMailsPreview < ActionMailer::Preview
   def reservation_email
     ReservationMailer.reservation_email(Reservation.first)
   end

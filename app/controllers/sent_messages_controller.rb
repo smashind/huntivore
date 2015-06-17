@@ -13,6 +13,7 @@ class SentMessagesController < ApplicationController
     @sent_message = current_user.sent_messages.new(sent_message_params)
 
     if @sent_message.save
+      MessageMailer.new_message_mail(@sent_message).deliver
       redirect_to :back, notice: "Your message was sent successfully!"
     else
       redirect_to :back, alert: "There was a problem and your message wasn't sent."

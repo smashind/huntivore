@@ -1,0 +1,12 @@
+Hi boss,
+
+The following day hunts were completed and the owners can be paid via Paypal.
+
+
+<% @paid_day.each do |res| %>
+  Reservation ID: <%= res.id %> - <%= res.property.user.full_name %>: <%= res.property.user.email %> -<%= res.trip_price %>
+<% end %>
+
+Thanks,
+
+Hunbot 3000

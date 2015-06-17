@@ -1,0 +1,11 @@
+Hi boss,
+
+The following night hunts were completed and the owners can be paid via Paypal.
+
+
+<% @paid_night.each do |res| %>
+  Reservation ID: <%= res.id %> - <%= res.property.user.full_name %>: <%= res.property.user.email %> - <%= res.trip_price %>
+<% end %>
+
+Thanks,
+Hunbot 3000

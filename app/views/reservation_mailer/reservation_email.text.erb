@@ -1,0 +1,29 @@
+Hey <%= @user.first_name %>,
+
+You successfully reservered <%= link_to "#{@property.title}", "http://www.huntivore.com/properties/#{@property.id}" %> on Huntivore!
+
+To see the details, please visit <%= link_to "the reservation confirmation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
+
+Owner Contact information:
+
+Name: <%= @owner.full_name %>
+Phone: <%= @property.phone %>
+Email: <%= @owner.email %>
+
+Hunt Details:
+
+<% if @reservation.property.hunttype == 'Overnight' %>
+  Start: <%= @reservation.from %>
+  End: <%= @reservation.to %>
+<% else %>
+  Date: <%= @reservation.from %> 
+<% end %>
+Total Price: $<%= @reservation.trip_price %>
+
+If you haven't already, please <%= link_to "pay for your reservation now", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
+
+Have a great day!
+
+Thanks, 
+
+The Huntivore Team

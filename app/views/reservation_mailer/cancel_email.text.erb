@@ -1,0 +1,20 @@
+Hey <%= @resmaker.first_name %>,
+
+The below reservation was canceled by the owner: 
+
+Hunt Details
+<% if @reservation.property.hunttype == 'Overnight' %>
+Start: <%= @reservation.from %>
+End: <%= @reservation.to %>
+<% else %>
+Date: <%= @reservation.from %> 
+<% end %>
+
+Cancellation Reason
+<%= @reservation.cancel_reason %> 
+
+To see the details, please visit <%= link_to "the reservation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
+
+Thanks,
+
+The Huntivore Team

@@ -49,7 +49,7 @@
 					          <% if message.replies.last.user == @user %>
 					            <%= link_to "me: #{message.replies.last.body.truncate(75)}", message, method: :put %> 
 					          <% else %>
-					            <%= link_to "#{message.replies.last.user.first_name}: #{message.replies.last.body.truncate(75)}", message, method: :put %> "
+					            <%= link_to "#{message.replies.last.user.first_name}: #{message.replies.last.body.truncate(75)}", message, method: :put %>
 					          <% end %>
 					        <% else %> 
 					          <%= link_to "#{message.body.truncate(75)}", message, method: :put %> 
