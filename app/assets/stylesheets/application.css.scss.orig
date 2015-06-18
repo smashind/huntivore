@@ -351,9 +351,8 @@ footer {
 .alert {
   position: absolute;
   z-index: 999;
-  top: 25px;
 }
-.alert-success, .alert-danger {
+.alert-success, .alert-warning {
   background-color: #000;
   color: #FFF;
   border: 1px solid #FFF;
@@ -479,6 +478,14 @@ button.close {
     }
   }
 }
+<<<<<<< HEAD
+.alert {
+  position: absolute;
+  z-index: 9999;
+  top: 25px;
+}
+=======
 .row.create-account {
   margin-bottom: 20px;
 }
+>>>>>>> turbolinks
