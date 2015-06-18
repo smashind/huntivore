@@ -1,0 +1,6 @@
+/* line 1, C:/Users/Smash/rails2015/huntivore/app/assets/stylesheets/special.css.scss */
+body {
+  background: black;
+  background-image: url("https://s3-us-west-1.amazonaws.com/huntivore/images/assets/outfitter-bg-dark.png");
+  background-size: cover;
+}

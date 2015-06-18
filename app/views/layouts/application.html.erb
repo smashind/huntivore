@@ -7,41 +7,15 @@
     <title>Huntivore | Find and List Hunting Properties</title>
     <meta name="description" content="Easily find and list hunting properties with Huntivore, the original peer to peer marketplace for hunters.">
   <% end %>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true  %>
   <% if controller_name == "pages" && action_name == "home" %>
-    <style>
-    body {
-      background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/huntivore-ducks-black-2.jpg');
-      background-size: 100%;
-    }
-    @media (max-width: 991px) {
-        body {
-          background: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/blacker-leather.jpg');
-        }
-      }
-    </style>
+    <%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track' => true %>
   <% elsif controller_name == "pages" && action_name == "list" %>
-    <style>
-    body {
-      background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/list.jpg');
-    }
-    </style>
+    <%= stylesheet_link_tag 'list', media: 'all', 'data-turbolinks-track' => true %>
   <% elsif controller_name == "pages" && action_name == "special" %>
-    <style>
-      body {
-        background: rgba(0,0,0,1);
-        background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/outfitter-bg-dark.png');
-        background-size: cover;
-      }
-    </style>
-  <% else %>
-    <style>
-    body {
-      background: #FFF;
-    }
-    </style>
+    <%= stylesheet_link_tag 'special', media: 'all', 'data-turbolinks-track' => true %>
   <% end %>
-  <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/pepper-grinder/jquery-ui.css", "application" %>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <%= csrf_meta_tags %>
