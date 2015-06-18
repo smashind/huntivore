@@ -1,0 +1,9 @@
+body {
+  background-image: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/huntivore-ducks-black-2.jpg');
+  background-size: 100%;
+}
+@media (max-width: 991px) {
+  body {
+    background: url('https://s3-us-west-1.amazonaws.com/huntivore/images/assets/blacker-leather.jpg');
+  }
+}

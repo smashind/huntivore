@@ -1,0 +1,12 @@
+/* line 1, C:/Users/Smash/rails2015/huntivore/app/assets/stylesheets/home.css.scss */
+body {
+  background-image: url("https://s3-us-west-1.amazonaws.com/huntivore/images/assets/huntivore-ducks-black-2.jpg");
+  background-size: 100%;
+}
+
+@media (max-width: 991px) {
+  /* line 6, C:/Users/Smash/rails2015/huntivore/app/assets/stylesheets/home.css.scss */
+  body {
+    background: url("https://s3-us-west-1.amazonaws.com/huntivore/images/assets/blacker-leather.jpg");
+  }
+}

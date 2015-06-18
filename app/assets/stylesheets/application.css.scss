@@ -2,7 +2,20 @@
 *= require_self
 *= require jquery-ui/pepper-grinder
 *= require font-awesome
-*= require_tree .
+*= require admin
+*= require contact_messages
+*= require favorites
+*= require games
+*= require magnific-popup
+*= require message_replies
+*= require outfitters
+*= require pages
+*= require payment_notifications
+*= require properties
+*= require property_attachments
+*= require reservations
+*= require sent_messages
+*= require users
 */
 
 @import "bootstrap-sprockets";
@@ -334,6 +347,24 @@ footer {
 	}
 }
 
+
+.alert {
+  position: absolute;
+  z-index: 999;
+}
+.alert-success, .alert-warning {
+  background-color: #000;
+  color: #FFF;
+  border: 1px solid #FFF;
+}
+button.close {
+  color: #FFF !important;
+  opacity: .5 !important;
+  &:hover {
+    opacity: .2 !important;
+  }
+}
+
 .jumbotron.list {
   background: none;
   @media (min-width: 768px) {
@@ -447,19 +478,6 @@ footer {
     }
   }
 }
-.alert {
-  position: absolute;
-  z-index: 999;
-}
-.alert-success, .alert-warning {
-  background-color: #000;
-  color: #FFF;
-  border: 1px solid #FFF;
-}
-button.close {
-  color: #FFF !important;
-  opacity: .5 !important;
-  &:hover {
-    opacity: .2 !important;
-  }
+.row.create-account {
+  margin-bottom: 20px;
 }
