@@ -449,17 +449,6 @@ footer {
 }
 .alert {
   position: absolute;
-  z-index: 999;
-}
-.alert-success, .alert-warning {
-  background-color: #000;
-  color: #FFF;
-  border: 1px solid #FFF;
-}
-button.close {
-  color: #FFF !important;
-  opacity: .5 !important;
-  &:hover {
-    opacity: .2 !important;
-  }
+  z-index: 9999;
+  top: 25px;
 }
