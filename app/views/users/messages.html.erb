@@ -14,6 +14,8 @@
 
 				<% if @user.messages.any? %>
 
+				  <h5 class="unread"><%= pluralize(unread_messages(@user), 'Unread Message') %></h5>
+
 				  <table class="table table-hover table-messages">
 				    <thead>
 					    <tr>
@@ -26,43 +28,43 @@
 
 					<% @messages.each do |message| %>
 
-					    <% if (current_user == message.user && message.read_by_user? == false) %> 
-					    	<tr class="unread">
-					    <% elsif (current_user == User.find(message.recipient_id) && message.read_by_recipient? == false) %>
-					      <tr class="unread">
-					    <% else %>
-					      <tr class="active">
-					    <% end %>
-					      <td>
-									<% if message.user_id == @user.id && message.replied_to %>
-									  <%= link_to "#{User.find(message.recipient_id).full_name}, me (#{message.replies.count + 1})", message, method: :put %>
-									<% elsif message.user_id == @user.id && !message.replied_to %>
-									  <%= link_to "#{User.find(message.recipient_id).full_name}", message, method: :put %>
-									<% elsif message.recipient_id == @user.id && message.replied_to%>
-									   <%= link_to "#{message.user.full_name}, me (#{message.replies.count + 1})", message, method: :put %>
-									<% elsif message.recipient_id == @user.id && !message.replied_to%>
-									   <%= link_to "#{message.user.full_name}, me (#{message.replies.count + 1})", message, method: :put %>
-									<% end %>
-								</td>
-					      <td>
-					        <% if message.replied_to %> 
-					          <% if message.replies.last.user == @user %>
-					            <%= link_to "me: #{message.replies.last.body.truncate(75)}", message, method: :put %> 
-					          <% else %>
-					            <%= link_to "#{message.replies.last.user.first_name}: #{message.replies.last.body.truncate(75)}", message, method: :put %>
-					          <% end %>
-					        <% else %> 
-					          <%= link_to "#{message.body.truncate(75)}", message, method: :put %> 
-					        <% end %>
-					      </td>
-					      <td>
-					        <% if message.reply_date.today? %>
-					          <%= link_to "#{message.reply_date.strftime('%l:%M %P')}", message, method: :put %>
-					        <% else %>
-					      	  <%= link_to "#{message.reply_date.strftime('%b %d')}", message, method: :put %>
-					      	<% end %>
-					      </td>
-					    </tr>
+				    <% if (current_user == message.user && message.read_by_user? == false) %> 
+				    	<tr class="unread">
+				    <% elsif (current_user == User.find(message.recipient_id) && message.read_by_recipient? == false) %>
+				      <tr class="unread">
+				    <% else %>
+				      <tr class="active">
+				    <% end %>
+				      <td>
+								<% if message.user_id == @user.id && message.replied_to %>
+								  <%= link_to "#{User.find(message.recipient_id).full_name}, me (#{message.replies.count + 1})", message, method: :put %>
+								<% elsif message.user_id == @user.id && !message.replied_to %>
+								  <%= link_to "#{User.find(message.recipient_id).full_name}", message, method: :put %>
+								<% elsif message.recipient_id == @user.id && message.replied_to %>
+								  <%= link_to "#{message.user.full_name}, me (#{message.replies.count + 1})", message, method: :put %>
+								<% elsif message.recipient_id == @user.id && !message.replied_to %>
+								  <%= link_to "#{message.user.full_name}", message, method: :put %>
+								<% end %>
+							</td>
+				      <td>
+				        <% if message.replied_to %> 
+				          <% if message.replies.last.user == @user %>
+				            <%= link_to "me: #{message.replies.last.body.truncate(75)}", message, method: :put %> 
+				          <% else %>
+				            <%= link_to "#{message.replies.last.user.first_name}: #{message.replies.last.body.truncate(75)}", message, method: :put %>
+				          <% end %>
+				        <% else %> 
+				          <%= link_to "#{message.body.truncate(75)}", message, method: :put %> 
+				        <% end %>
+				      </td>
+				      <td>
+				        <% if message.reply_date.today? %>
+				          <%= link_to "#{message.reply_date.strftime('%l:%M %P')}", message, method: :put %>
+				        <% else %>
+				      	  <%= link_to "#{message.reply_date.strftime('%b %d')}", message, method: :put %>
+				      	<% end %>
+				      </td>
+				    </tr>
 					<% end %>
 				  </tbody>
 				  </table>
