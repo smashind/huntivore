@@ -28,7 +28,6 @@ gem 'fog'
 gem 'american_date'
 gem 'active_record_union'
 gem 'browser-timezone-rails'
-gem 'rack-host-redirect'
 
 # Test Suite
 group :test do 
