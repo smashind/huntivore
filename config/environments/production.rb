@@ -77,4 +77,8 @@ Rails.application.configure do
   Rails.application.routes.default_url_options[:host] = 'huntivore.com'
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  # Redirect herokuapp domain to main domain
+  config.middleware.use Rack::HostRedirect, {
+    'protected-brook-4630.herokuapp.com' => 'www.huntivore.com'
+  }
 end
