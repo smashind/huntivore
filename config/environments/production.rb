@@ -79,6 +79,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   # Redirect herokuapp domain to main domain
   config.middleware.use Rack::HostRedirect, {
-    'protected-brook-4630.herokuapp.com' => 'www.huntivore.com'
+    'protected-brook-4630.herokuapp.com' => 'http://www.huntivore.com'
   }
 end
