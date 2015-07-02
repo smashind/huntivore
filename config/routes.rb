@@ -35,4 +35,7 @@ Rails.application.routes.draw do
   get 'admin/properties'
   get 'admin/reservations'
 
+  constraints domain: do 
+    get 'https://protected-brook-4630.herokuapp.com', to: redirect(domain: 'http://www.huntivore.com')
+  end
 end
