@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def hosting
   	@user = User.find(params[:user_id])
-  	@hosted_trips = @user.hostings.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+  	@hosted_trips = @user.hostings.includes(:property).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
   end
 
   def favorites

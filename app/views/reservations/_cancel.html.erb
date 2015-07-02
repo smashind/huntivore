@@ -13,10 +13,10 @@
         <%= form_for(@reservation) do |f| %>
           <%= f.text_area :cancel_reason, class: "form-control", rows: 3, placeholder: "We apologize but we need to cancel this reservation because...", required: true %> 
           <%= f.hidden_field :status, value: "Canceled" %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Don't Cancel</button>
-        <%= f.submit "Cancel Reservation", class: "btn btn-primary" %>
+          <div class="submit-modal-buttons">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <%= f.submit "Send Message", class: "btn btn-primary submit" %>
+          </div>
         <% end %>
       </div>
     </div>

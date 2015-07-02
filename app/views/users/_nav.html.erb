@@ -8,6 +8,6 @@
 	<li <% if active == "Hosting" %> class="active"<% end %> ><%= link_to "Hosting", user_hosting_path(@user) %></li>
 	<li <% if active == "Favorites" %> class="active"<% end %> ><%= link_to "Favorites", user_favorites_path(@user) %></li>
 	<li <% if active == "Messages" %> class="active"<% end %> >
-	<%= link_to "Messages", user_messages_path(@user) %></li>
+	<%= link_to ("Messages <span class='badge'>#{@user.unread_messages}</span>").html_safe, user_messages_path(@user) %></li>
 	<% end %>
 </ul>

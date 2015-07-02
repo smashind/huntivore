@@ -12,9 +12,7 @@
 				
 				<%= render partial: "nav", locals: { active: 'Messages' } %>
 
-				<% if @user.messages.any? %>
-
-				  <h5 class="unread"><%= pluralize(unread_messages(@user), 'Unread Message') %></h5>
+				<% if @user.messages.any? || @user.replied_messages.any? %>
 
 				  <table class="table table-hover table-messages">
 				    <thead>

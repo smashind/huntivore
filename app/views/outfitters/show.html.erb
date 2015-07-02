@@ -1,3 +1,13 @@
+<% content_for :head do %>
+  <title>Huntivore | <%= @outfitter.name %> - <%= @outfitter.location %></title>
+  <meta name="description" content="<%= @outfitter.name %> in <%= @outfitter.location %> is on Huntivore. Check them out and book their listings today.">
+  <meta property="og:type" content="article" />
+	<meta property="og:title" content="<%= @outfitter.name %> - <%= @outfitter.location %>" />
+	<meta property="og:description" content="<%= @outfitter.name %> in <%= @outfitter.location %> is on Huntivore. Check them out and book their listings today." />
+	<meta property="og:url" content="<%= request.original_url %>" />
+	<meta property="og:site_name" content="Huntivore" /> 
+<% end %>
+
 </div><!-- close body container -->
 <div id="outfitter">
 	<section class="top">
@@ -51,11 +61,10 @@
 				          <%= f.hidden_field :recipient_id, value: @outfitter.user.id %>
 				          <%= f.hidden_field :outfitter_id, value: @outfitter.id %>
 				          <%= f.hidden_field :reply_date, value: Time.now %>
-
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <%= f.submit "Send Message", class: "btn btn-primary" %>
+									<div class="submit-modal-buttons">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					          <%= f.submit "Send Message", class: "btn btn-primary submit" %>
+				          </div>
 				        <% end %>
 				      </div>
 				    </div>
@@ -102,6 +111,7 @@ $('#myModal').bind('hidden.bs.modal', function () {
   $("html").css("margin-right", "0px");
 });
 $('#myModal').bind('show.bs.modal', function () {
-  $("html").css("margin-right", "-17px");
+  $("html").css("margin-right", "-35px");
 });
+
 </script>

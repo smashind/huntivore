@@ -12,8 +12,10 @@ class MessageRepliesController < ApplicationController
       @sent_message.reply_date = DateTime.now
       if current_user == @sent_message.user 
         @sent_message.read_by_recipient = false
+        User.increment_counter(:unread_messages, @sent_message.recipient_id)
       else
         @sent_message.read_by_user = false
+        User.increment_counter(:unread_messages, @sent_message.user_id)
       end
     	@sent_message.save
       MessageMailer.reply_message(@message_reply).deliver

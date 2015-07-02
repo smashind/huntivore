@@ -242,3 +242,18 @@ a.prop-image:nth-child(n + 4) img {
     overflow-y: hidden;
   }
 }
+a.message-link {
+	cursor: pointer;
+}
+.modal-header {
+	button.close {
+	  color: #000 !important;
+	}
+}
+.submit-modal-buttons {
+	margin-top: 20px;
+	text-align: right;
+	.btn {
+	  margin-left: 10px;
+	}
+}

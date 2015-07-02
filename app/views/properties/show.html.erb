@@ -6,6 +6,7 @@
 	<meta property="og:description" content="<%= @property.title %> in <%= @property.location %> is on Huntivore. Check it out and book it today." />
 	<meta property="og:url" content="<%= request.original_url %>" />
 	<meta property="og:site_name" content="Huntivore" /> 
+
 <% end %>
 
 <div class="row">
@@ -94,10 +95,10 @@
 				          <%= f.hidden_field :recipient_id, value: @property.user.id %>
 				          <%= f.hidden_field :property_id, value: @property.id %>
 				          <%= f.hidden_field :reply_date, value: Time.now %>
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <%= f.submit "Send Message", class: "btn btn-primary" %>
+				          <div class="submit-modal-buttons">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					          <%= f.submit "Send Message", class: "btn btn-primary submit" %>
+				          </div>
 				        <% end %>
 				      </div>
 				    </div>
@@ -147,4 +148,6 @@ $('a.hide-images').click(function() {
 	$('a.see-images').show();
 	$('a.hide-images').hide();
 })
+
+
 </script>
