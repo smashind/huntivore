@@ -1,0 +1,154 @@
+#listing-special {
+	.navbar-default.listing {
+		background-color: #a6ab99;
+		border-color: #a6ab99; 
+	}
+
+	body.listing-landing {
+		background: url("https://s3-us-west-1.amazonaws.com/huntivore/images/assets/listing-bg.jpg") no-repeat;
+		background-size: cover;
+		background-position: 0 -170px;
+		@media (max-width: 767px) {
+		  background-size: 150%;
+		  background-position: 0 0;
+		}
+		@media (max-width: 600px) {
+		  background-size: 200%;
+		}
+		@media (max-width: 500px) {
+		  background-size: 250%;
+		}
+		@media (max-width: 390px) {
+		  background-size: 350%;
+		}
+	}
+
+	p.navbar-btn.listit {
+	  a.btn.btn-default {
+		  font-family: Montserrat;
+			background: #5b656e;
+			text-transform: uppercase;
+			border-radius: 0;
+			padding: 5px 40px;
+			margin-top: 4px;
+			@media (max-width: 767px) {
+			  margin-right: 15px;
+			}
+		}
+	}
+
+	.navbar-img > a > img {
+		border-radius: 20px;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
+		padding-top: 5px; 
+		@media (max-width: 767px) {
+		  float: left;
+		  margin-top: -47px;
+		  margin-left: 15px;
+		}
+	}
+
+	.navbar-default .navbar-nav > li > a {
+		@media(max-width: 767px) {
+		  float: left;
+		  margin-top: -45px;
+		  margin-left: 60px;
+		}
+		@media(max-width: 400px) {
+			float: none;
+			margin: 0;
+		}
+	}
+
+	.navbar-default .navbar-nav > li > a:hover, a:focus, a:active {
+		background-color: #A6AB99;
+	}
+
+	.navbar-default .navbar-collapse {
+		@media(max-width: 767px) {
+		  border-top: 1px solid #818477;
+		}
+	}
+
+	.navbar-default .navbar-toggle {
+		border-color: #818477;
+	}
+
+	button.navbar-toggle.collapsed:hover,
+	button.navbar-toggle.collapsed:focus,
+	button.navbar-toggle.collapsed:active, 
+	.navbar-default .navbar-toggle:hover, 
+	.navbar-default .navbar-toggle:focus, 
+	.navbar-default .navbar-toggle:active {
+		background-color: #818477;
+	}
+
+	section.listing {
+	  font-family: Montserrat;
+		padding-top: 370px;
+		padding-bottom: 50px;
+		@media (max-width: 767px) {
+		  padding-top: 150px;
+		}
+		.col-sm-4 {
+		  padding: 0 60px;
+		}
+		.btn {
+			text-transform: uppercase;
+			letter-spacing: -1px;
+			font-weight: 300;
+			font-size: 22px;
+			-webkit-border-radius: 10px;
+			-moz-border-radius: 10px;
+			border-radius: 10px;
+			display: block;
+			width: 198px;
+			margin: 0 auto;
+			padding-top: 12px;
+			padding-bottom: 12px;
+			background: rgba(221,72,20,0.75);
+			border: rgba(221,72,20,0.75);
+			&:hover {
+			  background: rgba(122,39,12,0.75);
+			  border: rgba(122,39,12,0.75);
+			}
+		}
+		h1, h2 {
+		  color: #FFF;
+		  text-align: center;
+		  text-shadow: 0 0 20px black;
+		}
+		h1 {
+		  font-weight: 900;
+		  font-size: 32px;
+		}
+		h2 {
+		  font-size: 19px;
+		  font-weight: bold;
+		  .superscript {
+		    vertical-align: super;
+		    font-size: 10px;
+		    text-transform: uppercase;
+		  }
+		}
+	}
+
+	section.listing-ad {
+		background-color: #6a747b;
+		padding: 50px 0;
+		color: #FFF;
+		text-align: center;
+		h4 {
+		  font-size: 22px;
+		  padding-bottom: 25px;
+		}
+		@media(max-width: 767px) {
+		  p {
+		    max-width: 445px;
+		    margin: 0 auto;
+		    padding-bottom: 50px;
+		  }
+		}
+	}
+}

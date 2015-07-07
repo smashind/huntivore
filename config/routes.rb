@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'terms', to: 'pages#terms', via: :get
   get 'about', to: 'pages#about', via: :get
   get 'list', to: 'pages#list', via: :get
+  get 'listing', to: 'pages#listing', via: :get
   devise_for :users, controllers: {registrations: 'registrations'}
   resources :users do 
     get 'trips'
