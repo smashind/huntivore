@@ -1,26 +1,26 @@
+body.listing-landing {
+	background: url("https://s3-us-west-1.amazonaws.com/huntivore/images/assets/listing-bg.jpg") no-repeat;
+	background-size: cover;
+	background-position: 0 -170px;
+	@media (max-width: 767px) {
+	  background-size: 150%;
+	  background-position: 0 0;
+	}
+	@media (max-width: 600px) {
+	  background-size: 200%;
+	}
+	@media (max-width: 500px) {
+	  background-size: 250%;
+	}
+	@media (max-width: 390px) {
+	  background-size: 350%;
+	}
+}
+
 #listing-special {
 	.navbar-default.listing {
 		background-color: #a6ab99;
 		border-color: #a6ab99; 
-	}
-
-	body.listing-landing {
-		background: url("https://s3-us-west-1.amazonaws.com/huntivore/images/assets/listing-bg.jpg") no-repeat;
-		background-size: cover;
-		background-position: 0 -170px;
-		@media (max-width: 767px) {
-		  background-size: 150%;
-		  background-position: 0 0;
-		}
-		@media (max-width: 600px) {
-		  background-size: 200%;
-		}
-		@media (max-width: 500px) {
-		  background-size: 250%;
-		}
-		@media (max-width: 390px) {
-		  background-size: 350%;
-		}
 	}
 
 	p.navbar-btn.listit {
