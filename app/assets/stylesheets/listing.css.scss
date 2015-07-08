@@ -31,6 +31,12 @@ body.listing-landing {
 			border-radius: 0;
 			padding: 5px 40px;
 			margin-top: 4px;
+			&:hover {
+			  background: #77848E;
+			  border: 0;
+			  margin-top: 5px;
+			  margin-right: 1px;
+			}
 			@media (max-width: 767px) {
 			  margin-right: 15px;
 			}
