@@ -1,23 +1,15 @@
 class PagesController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: :success
   layout 'listing', only: :listing
+  before_action :redirect_signed_in, only: [:home, :list, :special, :listing]
   
   def home
-  	if user_signed_in?
-  		redirect_to user_path(current_user)
-  	end
   end
 
   def list
-    if user_signed_in?
-      redirect_to user_path(current_user)
-    end
   end
 
   def special
-    if user_signed_in?
-      redirect_to user_path(current_user)
-    end
   end
 
   def listing
@@ -38,4 +30,12 @@ class PagesController < ApplicationController
   
   def success
   end
+
+  private
+
+    def redirect_signed_in
+      if user_signed_in?
+        redirect_to user_path(current_user)
+      end
+    end
 end

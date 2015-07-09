@@ -37,7 +37,11 @@
 
       <nav class="nav navbar-nav navbar-right">
         <p class="navbar-btn listit">
-          <%= link_to "List it", new_property_path, class: "btn btn-default pull-right" %>
+          <% unless user_signed_in? %>
+            <%= link_to "List your land", new_user_registration_path(list: true), class: "btn btn-default pull-right" %>
+          <% else %> 
+            <%= link_to "List your land", new_property_path, class: "btn btn-default pull-right" %>
+          <% end %>
         </p>
       </nav>
       

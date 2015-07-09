@@ -54,6 +54,10 @@
 			  	</div>
 			  </div>
 
+			  <% if params[:list] %>
+			  	<%= hidden_field_tag(:list, 'true') %>
+			  <% end %>
+
 			  <%= f.submit "SIGN UP (FREE)", class: "btn btn-success center-block" %>
 
 			<% end %>
