@@ -21,8 +21,8 @@
         <%= p.location %> ($<%= p.price %><% if p.hunttype == "Overnight" %>/night<% end %><% if p.per_person? %>/person<% end %>)
         <p>Accommodates: <%= p.accommodates %></p>
         <p><%= truncate(strip_tags("#{p.description}"), length: 40 ) { link_to "See more", p } %></p>
-        <% p.games.each do |game| %>
-          <%= link_to game.name, game_path(game), class: "btn btn-primary btn-xs" %>
+        <% p.games[0,3].each do |game| %>
+          <%= link_to truncate(game.name, length: 20), game_path(game), class: "btn btn-primary btn-xs" %>
         <% end %>
       </div>
     </div> 
