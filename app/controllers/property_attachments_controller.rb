@@ -4,7 +4,7 @@ class PropertyAttachmentsController < ApplicationController
 		@property_attachment = PropertyAttachment.find(params[:id])
 		@property_attachment.is_primary = true
 		@property_attachment.save
-		redirect_to :back, notice: "Successfully set as primary image."
+		redirect_back fallback_location: :root, notice: "Successfully set as primary image."
 	end
 
   def destroy

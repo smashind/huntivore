@@ -13,7 +13,7 @@ Date: <%= @reservation.from %>
 Cancellation Reason
 <%= @reservation.cancel_reason %> 
 
-To see the details, please visit <%= link_to "the reservation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
+To see the details, please visit <%= "#{reservation_url(@reservation)}" %>
 
 Thanks,
 

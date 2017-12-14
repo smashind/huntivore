@@ -2,16 +2,16 @@ Hey <%= @user.first_name %>,
 
 The below reservation was paid for. 
 
-To see the details, please visit <%= link_to "the reservation confirmation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
+To see the details, please visit <%= "#{reservation_url(@reservation)}" %>
 
 Hunt Details:
 
-<%= link_to "#{@property.title}", "http://www.huntivore.com/properties/#{@property.id}" %>
+<%= "#{property_url(@property)}" %>
 <% if @reservation.property.hunttype == 'Overnight' %>
-  Start: <%= @reservation.from %>
-  End: <%= @reservation.to %>
+Start: <%= @reservation.from %>
+End: <%= @reservation.to %>
 <% else %>
-  Date: <%= @reservation.from %> 
+Date: <%= @reservation.from %> 
 <% end %>
 
 Hunter Contact information:

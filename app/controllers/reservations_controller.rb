@@ -19,7 +19,7 @@ class ReservationsController < ApplicationController
       #end
   		redirect_to @reservation, notice: "Reservation was successfully created."
     else
-      redirect_to :back, alert: "Reservation not submitted. Please check your dates and try again." 
+      redirect_back fallback_location: :root, alert: "Reservation not submitted. Please check your dates and try again." 
   	end
   end
 
@@ -37,7 +37,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
-    redirect_to :back, alert: "Reservation was successfully deleted."
+    redirect_back fallback_location: :root, alert: "Reservation was successfully deleted."
   end
 
   private

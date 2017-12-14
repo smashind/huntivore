@@ -19,9 +19,9 @@ class MessageRepliesController < ApplicationController
       end
     	@sent_message.save
       MessageMailer.reply_message(@message_reply).deliver
-      redirect_to :back, notice: "Your reply was sent successfully!"
+      redirect_back fallback_location: :root, notice: "Your reply was sent successfully!"
     else
-      redirect_to :back, alert: "There was a problem and your reply wasn't sent."
+      redirect_back fallback_location: :root, alert: "There was a problem and your reply wasn't sent."
     end
   end
 

@@ -69,7 +69,7 @@ class PropertiesController < ApplicationController
 
 	def destroy
 		@property.destroy
-    redirect_to :back, alert: "Property was successfully deleted."
+    redirect_back fallback_location: :root, alert: "Property was successfully deleted."
 	end
 
 	private

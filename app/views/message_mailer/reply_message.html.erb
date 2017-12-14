@@ -4,7 +4,7 @@
 
 <p>"<%= @reply %>"</p>
 
-<p><strong><%= link_to "Go here to reply to this message in your account >>", sent_message_path(@sent_message.id) %></strong></p> 
+<p><strong><%= link_to "Go here to reply to this message in your account >>", sent_message_url(@sent_message) %></strong></p> 
 
 <p>(Please don't reply to this mail, it was sent by HuntBot. He never checks his email).</p>
 

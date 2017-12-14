@@ -3,9 +3,9 @@ class FavoritesController < ApplicationController
   	@favorite = current_user.favorites.build(property_id: params[:property_id])
 
   	if @favorite.save
-  		redirect_to :back, notice: "Property was successfully added to favorites."
+  		redirect_back fallback_location: :root, notice: "Property was successfully added to favorites."
   	else
-  		redirect_to :back, alert: "Something went wrong."
+  		redirect_back fallback_location: :root, alert: "Something went wrong."
   	end
   end
 
@@ -13,6 +13,6 @@ class FavoritesController < ApplicationController
   	@favorite = Favorite.find(params[:id])
 
   	@favorite.destroy
-  	redirect_to :back, alert: "Removed property from favorites."
+  	redirect_back fallback_location: :root, alert: "Removed property from favorites."
   end
 end

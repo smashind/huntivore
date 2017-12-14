@@ -16,9 +16,9 @@ class SentMessagesController < ApplicationController
       MessageMailer.new_message_mail(@sent_message).deliver
       #change recipient's unread messages count (up)
       User.increment_counter(:unread_messages, @sent_message.recipient_id)
-      redirect_to :back, notice: "Your message was sent successfully!"
+      redirect_back fallback_location: :root, notice: "Your message was sent successfully!"
     else
-      redirect_to :back, alert: "There was a problem and your message wasn't sent."
+      redirect_back fallback_location: :root, alert: "There was a problem and your message wasn't sent."
     end
   end
 

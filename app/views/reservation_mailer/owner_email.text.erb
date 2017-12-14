@@ -1,8 +1,8 @@
 Hey <%= @user.first_name %>,
 
-Your listing, <%= link_to "#{@property.title}", "http://www.huntivore.com/properties/#{@property.id}" %>, was just booked!
+Your listing at <%= "#{property_url(@property)}" %> was just booked!
 
-To see the details, please visit <%= link_to "the reservation confirmation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
+To see the details, please visit <%= "#{reservation_url(@reservation)}" %>
 
 Hunter Contact information:
 

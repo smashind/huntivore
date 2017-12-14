@@ -4,12 +4,12 @@
 </p>
 
 <p>
-  To see the details, please visit <strong><%= link_to "the reservation confirmation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %></strong>.
+  To see the details, please visit <strong><%= link_to "the reservation confirmation here", "#{reservation_url(@reservation)}" %></strong>.
 </p>
 
 <h3>Hunt Details</h3>
   <p>
-    <strong><%= link_to "#{@property.title}", "http://www.huntivore.com/properties/#{@property.id}" %></strong><br />
+    <strong><%= link_to "#{@property.title}", "#{property_url(@property)}" %></strong><br />
     <% if @reservation.property.hunttype == 'Overnight' %>
       <strong>Start:</strong> <%= @reservation.from %><br />
       <strong>End:</strong> <%= @reservation.to %><br />

@@ -16,7 +16,7 @@
 <p><%= @reservation.cancel_reason %></p>  
 
 <p>
-  To see the details, please visit <%= link_to "the reservation here", "http://www.huntivore.com#{reservation_path(@reservation)}" %>.
+  To see the details, please visit <%= link_to "the reservation here", "#{reservation_url(@reservation)}" %>.
 </p>
 
 <p>

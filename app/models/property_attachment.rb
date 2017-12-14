@@ -2,7 +2,7 @@ class PropertyAttachment < ActiveRecord::Base
 	mount_uploader :image, ImageUploader
   belongs_to :property
 
-  scope :primary, where(is_primary: true)
+  scope :primary, -> { where(is_primary: true) }
 
   before_save :clear_primary, if: Proc.new { |r| (r.is_primary_changed? && r.is_primary) }
 
